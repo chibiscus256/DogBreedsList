@@ -1,6 +1,6 @@
 <resources>
 <color name="dbl_black">#de000000</color>
-<color name="dbl_gray_50">#fafafa</color>
+<color name="dbl_gray_50">#FAFAFA</color>
 <color name="dbl_gray_50_a600">#99fafafa</color>
 <color name="dbl_green_300">#6dc790</color>
 <color name="dbl_green_500">#49bb79</color>

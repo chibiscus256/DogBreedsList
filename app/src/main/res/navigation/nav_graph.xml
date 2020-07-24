@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/view_pager_fragment"
-        android:name="com.example.dogbreedslist.ui.HomeViewPagerFragment"
+        android:name="com.example.dogbreedslist.ui.Ho"
         tools:layout="@layout/fragment_dogs_list">
 
         <action

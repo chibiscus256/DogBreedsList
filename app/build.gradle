@@ -7,13 +7,17 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
+    kapt {
+        generateStubs = true
+    }
+
     dataBinding {
         enabled = true
     }
 
     defaultConfig {
         applicationId "com.example.dogbreedslist"
-        minSdkVersion 22
+        minSdkVersion 26
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -43,4 +47,27 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
+
+    // Dagger 2 - Dependency Injection
+    implementation "com.google.dagger:dagger-android:2.28.1"
+    implementation "com.google.dagger:dagger-android-support:2.28.1"
+    implementation "com.google.dagger:dagger:2.28.1"
+    kapt "com.google.dagger:dagger-android-processor:2.28.1"
+    kapt "com.google.dagger:dagger-compiler:2.28.1"
+
+    // Retrofit 2 - Networking
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:adapter-rxjava:2.3.0"
+    implementation 'com.squareup.retrofit2:converter-moshi:2.9.0'
+    implementation 'com.squareup.moshi:moshi:1.9.3'
+    kapt 'com.squareup.moshi:moshi-kotlin-codegen:1.9.3'
+
+    // Logging - Networking
+    implementation "com.squareup.okhttp3:logging-interceptor:4.7.2"
+
+    // Glide - image loader
+    implementation "com.github.bumptech.glide:glide:4.11.0"
+    annotationProcessor "com.github.bumptech.glide:compiler:4.11.0"
+
+    implementation "com.jakewharton.timber:timber:4.7.1"
 }

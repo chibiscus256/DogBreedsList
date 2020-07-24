@@ -14,11 +14,10 @@
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
-                style="@style/Widget.MaterialComponents.Toolbar.Primary"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="parallax"
-                app:menu="@menu/menu_item_dog">
+                app:menu="@menu/menu_dogs_collection">
 
             </androidx.appcompat.widget.Toolbar>
 
