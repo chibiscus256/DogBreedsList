@@ -1,25 +1,31 @@
 package com.example.dogbreedslist
 
 import android.app.Application
+import android.content.Context
 import androidx.fragment.app.Fragment
+import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 
-class App : Application() {
+open class App : Application(), HasAndroidInjector {
 
     @Inject
-    lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
+    lateinit var androidInjector: DispatchingAndroidInjector<Any>
 
-    lateinit var component: AppComponent
+    override fun androidInjector(): AndroidInjector<Any> = androidInjector
 
     override fun onCreate() {
         super.onCreate()
-        component = DaggerAppComponent.builder()
-            .application(this)
-            .context(this)
-            .build()
-        component.inject(this)
+        context = applicationContext
+        initDagger()
     }
 
-    fun supportFragmentInjector() = fragmentInjector
+    open fun initDagger() {
+        DaggerAppComponent.builder().build().inject(this)
+    }
+
+    companion object {
+        lateinit var context: Context
+    }
 }
