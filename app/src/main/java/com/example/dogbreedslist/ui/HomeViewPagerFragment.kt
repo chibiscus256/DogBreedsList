@@ -19,7 +19,6 @@ class HomeViewPagerFragment : Fragment() {
         val viewPager = binding.viewPager
 
         viewPager.adapter = PagerAdapter(this)
-
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
 
         return binding.root

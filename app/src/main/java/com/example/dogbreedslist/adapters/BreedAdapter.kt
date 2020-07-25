@@ -19,19 +19,19 @@ package com.example.dogbreedslist.adapters
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.dogbreedslist.ui.DogFragment
-import com.example.dogbreedslist.ui.ListFragment
+import com.example.dogbreedslist.ui.BreedListFragment
 
 const val DOG_PAGE_INDEX = 0
 const val DOGS_LIST_PAGE_INDEX = 1
 
-class PagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
+class BreedAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
     /**
      * Mapping of the ViewPager page indexes to their respective Fragments
      */
     private val tabFragmentsCreators: Map<Int, () -> Fragment> = mapOf(
         DOG_PAGE_INDEX to { DogFragment() },
-        DOGS_LIST_PAGE_INDEX to { ListFragment() }
+        DOGS_LIST_PAGE_INDEX to { BreedListFragment() }
     )
 
     override fun getItemCount() = tabFragmentsCreators.size
