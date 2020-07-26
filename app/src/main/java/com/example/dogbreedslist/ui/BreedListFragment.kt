@@ -5,9 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
-import com.example.dogbreedslist.adapters.BreedAdapter
 import com.example.dogbreedslist.databinding.FragmentBreedBinding
 import com.example.dogbreedslist.viewmodels.BreedListViewModel
 import com.example.dogbreedslist.viewmodels.ViewModelFactory
