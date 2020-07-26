@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.dogbreedslist.adapters.PagerAdapter
+import com.example.dogbreedslist.adapters.ApplicationPagerAdapter
 import com.example.dogbreedslist.databinding.FragmentViewPagerBinding
 
 class HomeViewPagerFragment : Fragment() {
@@ -18,7 +18,7 @@ class HomeViewPagerFragment : Fragment() {
         val binding = FragmentViewPagerBinding.inflate(inflater, container, false)
         val viewPager = binding.viewPager
 
-        viewPager.adapter = PagerAdapter(this)
+        viewPager.adapter = ApplicationPagerAdapter(this)
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
 
         return binding.root

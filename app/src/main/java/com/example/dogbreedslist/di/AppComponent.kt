@@ -1,14 +1,20 @@
-package com.example.dogbreedslist
+package com.example.dogbreedslist.di
 
+import ViewModelModule
 import android.content.Context
+import com.example.dogbreedslist.App
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
 
-@Component(modules = [
-    AndroidSupportInjectionModule::class
-])
+@Component(
+    modules = [
+        AndroidSupportInjectionModule::class,
+        ViewModelModule::class,
+        ErrorModule::class
+    ]
+)
 @Singleton
 interface AppComponent {
 

@@ -1,6 +1,6 @@
 package com.example.dogbreedslist.data.network.service
 
-import com.example.dogbreedslist.data.network.dto.Breeds
+import com.example.dogbreedslist.data.network.dto.BreedList
 import com.example.dogbreedslist.data.network.dto.ResBreedImages
 import retrofit2.Response
 import retrofit2.http.GET
@@ -12,7 +12,7 @@ interface DogService {
     }
 
     @GET("breeds/list")
-    suspend fun getBreedList(): Response<Breeds>
+    suspend fun getBreedList(): Response<BreedList>
 
     @GET("breed/{type}/images")
     suspend fun getBreedImages(@Path("type") breedType: String): Response<ResBreedImages>

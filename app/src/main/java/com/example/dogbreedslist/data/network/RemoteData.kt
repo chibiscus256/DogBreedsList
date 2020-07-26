@@ -2,7 +2,7 @@ package com.example.dogbreedslist.data.network
 
 import com.example.dogbreedslist.App
 import com.example.dogbreedslist.data.Resource
-import com.example.dogbreedslist.data.network.dto.Breeds
+import com.example.dogbreedslist.data.network.dto.BreedList
 import com.example.dogbreedslist.data.network.service.DogService
 import com.example.dogbreedslist.data.error.Error.Companion.NETWORK_ERROR
 import com.example.dogbreedslist.data.error.Error.Companion.NO_INTERNET_CONNECTION
@@ -14,10 +14,10 @@ import javax.inject.Inject
 class RemoteData @Inject
 constructor(private val serviceGenerator: ServiceGenerator) : RemoteDataSource {
 
-    override suspend fun requestBreeds(): Resource<Breeds> {
+    override suspend fun requestBreeds(): Resource<BreedList> {
         val dogService = serviceGenerator.createService(DogService::class.java)
         return when (val response = processCall(dogService::getBreedList)) {
-            is Breeds -> {
+            is BreedList -> {
                 Resource.Success(data = response)
             }
             else -> {
