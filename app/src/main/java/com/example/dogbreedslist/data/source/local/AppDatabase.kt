@@ -1,4 +1,4 @@
-package com.example.dogbreedslist.data.local
+package com.example.dogbreedslist.data.source.local
 
 import android.content.Context
 import androidx.databinding.adapters.Converters

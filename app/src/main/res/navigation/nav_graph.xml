@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/dogs_list_fragment"
-        android:name="com.example.dogbreedslist.ui.BreedListFragment"
+        android:name="com.example.dogbreedslist.ui.breeds.BreedListFragment"
         android:label="@string/dog_item_title"
         tools:layout="@layout/fragment_dog">
         <argument

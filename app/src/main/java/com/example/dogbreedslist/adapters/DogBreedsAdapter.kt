@@ -1,57 +1,68 @@
 package com.example.dogbreedslist.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.dogbreedslist.App.Companion.context
 import com.example.dogbreedslist.data.network.dto.Breed
-import com.example.dogbreedslist.ui.DogFragment
-import com.example.dogbreedslist.ui.BreedListFragment
-import com.example.dogbreedslist.ui.RecyclerViewActionListener
-import com.example.dogbreedslist.viewmodels.BreedListViewModel
+import com.example.dogbreedslist.databinding.ItemBreedBinding
+import com.example.dogbreedslist.ui.base.RecyclerItemListener
+import com.example.dogbreedslist.viewmodels.BreedsViewModel
 
-class DogBreedsAdapter(private val viewModel: BreedListViewModel) : ListAdapter<Breed, DogBreedsAdapter.ViewHolder>((BreedDiffCallback())) {
+class DogBreedsAdapter(private val viewModel: BreedsViewModel) :
+    ListAdapter<Breed, DogBreedsAdapter.ViewHolder>((BreedDiffCallback())) {
 
-    val mDogBreed: ArrayList<String> = ArrayList()
-    val mActionItemListener: RecyclerViewActionListener<String> =
-        context as RecyclerViewActionListener<String>
+    val mDogBreedList: ArrayList<Breed> = ArrayList()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemDogBreed {
-        val view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_dog_breed, parent, false)
-        return ItemDogBreed(view)
+    private val onItemClickListener: RecyclerItemListener = object : RecyclerItemListener {
+        override fun onItemSelected(item: Breed) {
+            //newsListViewModel.openNewsDetails(item)
+        }
+    }
+
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder.from(parent)
     }
 
     override fun getItemCount(): Int {
-        return mDogBreed.size
+        return mDogBreedList.size
     }
 
-    override fun onBindViewHolder(holder: ItemDogBreed, position: Int) {
-        holder.bind(mDogBreed[position], mActionItemListener)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = getItem(position)
+        //holder.bind(createOnClickListener(item.id), mDogBreedList[position])
     }
 
-    class ViewHolder private constructor(val binding: TaskItemBinding) :
+    class ViewHolder private constructor(val binding: ItemBreedBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(viewModel: TasksViewModel, item: Task) {
-
-            binding.viewmodel = viewModel
-            binding.task = item
-            binding.executePendingBindings()
+        fun bind(listener: View.OnClickListener, item: Breed) {
+            binding.apply{
+                clickListener = listener
+                breed = item
+                executePendingBindings()
+            }
         }
 
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = TaskItemBinding.inflate(layoutInflater, parent, false)
-
+                val binding = ItemBreedBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(binding)
             }
         }
+    }
+}
+
+class BreedDiffCallback : DiffUtil.ItemCallback<Breed>() {
+    override fun areItemsTheSame(oldItem: Breed, newItem: Breed): Boolean {
+        return oldItem.id == newItem.id
+    }
+
+    override fun areContentsTheSame(oldItem: Breed, newItem: Breed): Boolean {
+        return oldItem == newItem
     }
 }
