@@ -9,11 +9,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.dogbreedslist.App.Companion.context
+import com.example.dogbreedslist.data.network.dto.Breed
 import com.example.dogbreedslist.ui.DogFragment
 import com.example.dogbreedslist.ui.BreedListFragment
 import com.example.dogbreedslist.ui.RecyclerViewActionListener
+import com.example.dogbreedslist.viewmodels.BreedListViewModel
 
-class DogBreedsAdapter(context: Context) : RecyclerView.Adapter<DogBreedsAdapter.ItemDogBreed>() {
+class DogBreedsAdapter(private val viewModel: BreedListViewModel) : ListAdapter<Breed, DogBreedsAdapter.ViewHolder>((BreedDiffCallback())) {
+
     val mDogBreed: ArrayList<String> = ArrayList()
     val mActionItemListener: RecyclerViewActionListener<String> =
         context as RecyclerViewActionListener<String>
@@ -28,28 +31,27 @@ class DogBreedsAdapter(context: Context) : RecyclerView.Adapter<DogBreedsAdapter
         return mDogBreed.size
     }
 
-
-
-    fun addData(data: List<String>) {
-        mDogBreed.addAll(data)
-        notifyDataSetChanged()
-    }
-
-
-    fun removeAllData() {
-        mDogBreed.clear()
-    }
-
-    class ItemDogBreed(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(breed: String, mActionItemListener: RecyclerViewActionListener<String>) {
-            itemView.textview_breed.text = CommonUtils.uppercaseTheFirstLetter(breed)
-            itemView.setOnClickListener {
-                mActionItemListener.onItemClick(breed)
-            }
-        }
-    }
-
     override fun onBindViewHolder(holder: ItemDogBreed, position: Int) {
         holder.bind(mDogBreed[position], mActionItemListener)
+    }
+
+    class ViewHolder private constructor(val binding: TaskItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(viewModel: TasksViewModel, item: Task) {
+
+            binding.viewmodel = viewModel
+            binding.task = item
+            binding.executePendingBindings()
+        }
+
+        companion object {
+            fun from(parent: ViewGroup): ViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = TaskItemBinding.inflate(layoutInflater, parent, false)
+
+                return ViewHolder(binding)
+            }
+        }
     }
 }
