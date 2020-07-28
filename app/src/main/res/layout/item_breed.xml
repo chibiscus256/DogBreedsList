@@ -5,8 +5,9 @@
 
     <data>
         <variable
-            name="clickListener"
-            type="android.view.View.OnClickListener"/>
+            name="breedViewModel"
+            type="com.example.dogbreedslist.viewmodels.BreedViewModel"/>
+
         <variable
             name="breed"
             type="com.example.dogbreedslist.data.network.dto.Breed" />

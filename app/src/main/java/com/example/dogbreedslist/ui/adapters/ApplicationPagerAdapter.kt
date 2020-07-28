@@ -1,4 +1,4 @@
-package com.example.dogbreedslist.adapters
+package com.example.dogbreedslist.ui.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
