@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.dogbreedslist.data.network.dto.Breed
-import com.example.dogbreedslist.viewmodels.BreedViewModel
+import com.example.dogbreedslist.viewmodel.BreedViewModel
 
 class DogBreedsAdapter(private val viewModel: BreedViewModel) :
     ListAdapter<Breed, BreedViewHolder>((BreedDiffCallback())) {

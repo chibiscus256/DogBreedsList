@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.dogbreedslist.viewmodels
+package com.example.dogbreedslist.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

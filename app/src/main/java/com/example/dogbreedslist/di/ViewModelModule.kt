@@ -16,10 +16,9 @@
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-
-import com.example.dogbreedslist.viewmodels.BreedListViewModel
 import com.example.dogbreedslist.di.ViewModelKey
-import com.example.dogbreedslist.viewmodels.ViewModelFactory
+import com.example.dogbreedslist.viewmodel.BreedViewModel
+import com.example.dogbreedslist.viewmodel.ViewModelFactory
 
 import dagger.Binds
 import dagger.Module
@@ -30,8 +29,8 @@ import dagger.multibindings.IntoMap
 abstract class ViewModelModule {
     @Binds
     @IntoMap
-    @ViewModelKey(BreedListViewModel::class)
-    abstract fun bindBreedListViewModel(breedListViewModel: BreedListViewModel): ViewModel
+    @ViewModelKey(BreedViewModel::class)
+    abstract fun bindBreedListViewModel(breedListViewModel: BreedViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory

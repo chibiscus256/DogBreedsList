@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.dogbreedslist.databinding.FragmentBreedBinding
-import com.example.dogbreedslist.viewmodels.BreedListViewModel
-import com.example.dogbreedslist.viewmodels.ViewModelFactory
+import com.example.dogbreedslist.viewmodel.BreedListViewModel
+import com.example.dogbreedslist.viewmodel.ViewModelFactory
 import javax.inject.Inject
 
 class BreedListFragment : Fragment() {
