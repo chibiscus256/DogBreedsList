@@ -11,6 +11,10 @@
         <variable
             name="breed"
             type="com.example.dogbreedslist.data.network.dto.Breed" />
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener"/>
     </data>
 
     <androidx.cardview.widget.CardView
@@ -29,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_normal"
                 android:layout_marginTop="@dimen/margin_normal"
-                android:text="@{plant.name}"
+                android:text="@{breed.name}"
                 android:textAppearance="?attr/textAppearanceListItem"
                 android:gravity="center_horizontal"
                 app:layout_constraintEnd_toEndOf="parent"

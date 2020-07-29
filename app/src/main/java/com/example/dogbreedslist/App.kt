@@ -2,7 +2,8 @@ package com.example.dogbreedslist
 
 import android.app.Application
 import android.content.Context
-import androidx.fragment.app.Fragment
+import com.example.dogbreedslist.di.AppComponent
+import com.example.dogbreedslist.di.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector

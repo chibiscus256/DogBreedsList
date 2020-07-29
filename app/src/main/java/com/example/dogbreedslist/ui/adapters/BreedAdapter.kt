@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.ListAdapter
 import com.example.dogbreedslist.data.network.dto.Breed
 import com.example.dogbreedslist.viewmodel.BreedViewModel
 
-class DogBreedsAdapter(private val viewModel: BreedViewModel) :
+class BreedAdapter(private val viewModel: BreedViewModel) :
     ListAdapter<Breed, BreedViewHolder>((BreedDiffCallback())) {
 
     val mDogBreedList: ArrayList<Breed> = ArrayList()

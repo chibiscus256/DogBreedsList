@@ -1,6 +1,5 @@
 package com.example.dogbreedslist.di
 
-import ViewModelModule
 import android.content.Context
 import com.example.dogbreedslist.App
 import dagger.BindsInstance

@@ -6,7 +6,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.dogbreedslist.data.network.BreedConverter
 import com.example.dogbreedslist.data.network.dto.Breed
 
 /**
@@ -14,7 +14,7 @@ import com.example.dogbreedslist.data.network.dto.Breed
  */
 @Database(entities = [Breed::class],
         version = 1, exportSchema = false)
-@TypeConverters(Converters::class)
+@TypeConverters(BreedConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun breedDao(): BreedDao

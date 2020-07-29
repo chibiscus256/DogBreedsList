@@ -9,8 +9,6 @@ import kotlin.collections.ArrayList
 @Entity(tableName = "breeds")
 data class Breed(
     @ColumnInfo(name = "name") var name: String = "",
-    @ColumnInfo(name = "subbreeds") var description: ArrayList<String>? = null,
+    @ColumnInfo(name = "subbreeds") var description: List<String>? = null,
     @PrimaryKey @ColumnInfo(name = "entryid") var id: String = UUID.randomUUID().toString()
-){
-
-}
+)

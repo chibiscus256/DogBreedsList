@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.dogbreedslist.databinding.FragmentBreedBinding
-import com.example.dogbreedslist.viewmodel.BreedListViewModel
+import com.example.dogbreedslist.ui.adapters.BreedAdapter
+import com.example.dogbreedslist.viewmodel.BreedViewModel
 import com.example.dogbreedslist.viewmodel.ViewModelFactory
 import javax.inject.Inject
+
 
 class BreedListFragment : Fragment() {
 
@@ -16,7 +18,7 @@ class BreedListFragment : Fragment() {
     lateinit var viewModelFactory: ViewModelFactory
 
     @Inject
-    lateinit var breedListViewModel: BreedListViewModel
+    lateinit var breedListViewModel: BreedViewModel
 
     private lateinit var binding: FragmentBreedBinding
 
@@ -28,17 +30,10 @@ class BreedListFragment : Fragment() {
         binding = FragmentBreedBinding.inflate(inflater, container, false)
         context ?: return binding.root
 
-        val adapter = BreedAdapter()
-        binding.plantList.adapter = adapter
-        subscribeUi(adapter)
+        val adapter = BreedAdapter(breedListViewModel)
+        binding.breedList.adapter = adapter
 
         setHasOptionsMenu(true)
         return binding.root
-    }
-
-    private fun subscribeUi(adapter: PlantAdapter) {
-        breedListViewModel.plants.observe(viewLifecycleOwner) { plants ->
-            adapter.submitList(plants)
-        }
     }
 }
