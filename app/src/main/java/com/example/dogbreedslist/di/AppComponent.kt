@@ -4,9 +4,11 @@ import android.content.Context
 import com.example.dogbreedslist.App
 import dagger.BindsInstance
 import dagger.Component
+import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
 
+@Singleton
 @Component(
     modules = [
         AndroidSupportInjectionModule::class,
@@ -14,19 +16,12 @@ import javax.inject.Singleton
         ErrorModule::class
     ]
 )
-@Singleton
-interface AppComponent {
+interface AppComponent : AndroidInjector<App>{
 
-    fun inject(app: App)
+    override fun inject(app: App)
 
-    @Component.Builder
-    interface Builder {
-        @BindsInstance
-        fun application(app: App): Builder
-
-        @BindsInstance
-        fun context(context: Context): Builder
-
-        fun build(): AppComponent
+    @Component.Factory
+    interface Factory {
+        fun create(@BindsInstance applicationContext: Context): AppComponent
     }
 }

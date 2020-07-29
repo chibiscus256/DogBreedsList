@@ -1,4 +1,4 @@
-package com.example.dogbreedslist.data.network
+package com.example.dogbreedslist.data.utils
 
 import androidx.room.TypeConverter
 import java.util.stream.Collectors
