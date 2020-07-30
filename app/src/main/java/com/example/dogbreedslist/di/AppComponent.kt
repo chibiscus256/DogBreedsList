@@ -1,7 +1,7 @@
 package com.example.dogbreedslist.di
 
 import android.content.Context
-import com.example.dogbreedslist.App
+import com.example.dogbreedslist.DblApp
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -16,9 +16,9 @@ import javax.inject.Singleton
         ErrorModule::class
     ]
 )
-interface AppComponent : AndroidInjector<App>{
+interface AppComponent : AndroidInjector<DblApp>{
 
-    override fun inject(app: App)
+    override fun inject(dblApp: DblApp)
 
     @Component.Factory
     interface Factory {

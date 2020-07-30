@@ -7,16 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.dogbreedslist.databinding.FragmentBreedBinding
+import com.example.dogbreedslist.di.DblViewModelFactory
 import com.example.dogbreedslist.ui.adapters.BreedAdapter
 import com.example.dogbreedslist.viewmodel.BreedViewModel
-import com.example.dogbreedslist.di.ViewModelFactory
 import javax.inject.Inject
 
 
 class BreedListFragment : Fragment() {
 
     @Inject
-    lateinit var viewModelFactory: ViewModelFactory
+    lateinit var viewModelFactory: DblViewModelFactory
+
     @Inject
     lateinit var breedListViewModel: BreedViewModel
 

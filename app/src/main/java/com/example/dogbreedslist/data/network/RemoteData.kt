@@ -1,6 +1,6 @@
 package com.example.dogbreedslist.data.network
 
-import com.example.dogbreedslist.App
+import com.example.dogbreedslist.DblApp
 import com.example.dogbreedslist.data.Resource
 import com.example.dogbreedslist.data.network.dto.BreedList
 import com.example.dogbreedslist.data.network.service.DogService
@@ -27,7 +27,7 @@ constructor(private val serviceGenerator: ServiceGenerator) : RemoteDataSource {
     }
 
     private suspend fun processCall(responseCall: suspend () -> Response<*>): Any? {
-        if (!isConnected(App.context)) {
+        if (!isConnected(DblApp.context)) {
             return NO_INTERNET_CONNECTION
         }
         return try {

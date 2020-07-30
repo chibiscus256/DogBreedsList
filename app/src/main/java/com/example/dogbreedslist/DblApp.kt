@@ -2,14 +2,15 @@ package com.example.dogbreedslist
 
 
 import android.content.Context
+import com.example.dogbreedslist.di.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 
-open class App : DaggerApplication() {
+open class DblApp : DaggerApplication() {
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
 
-        return DaggerApplicationComponent.factory().create(applicationContext)
+        return DaggerAppComponent.factory().create(applicationContext)
     }
 
     override fun onCreate() {

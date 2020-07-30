@@ -1,5 +1,6 @@
 package com.example.dogbreedslist.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,9 +12,10 @@ import com.example.dogbreedslist.databinding.FragmentViewPagerBinding
 import dagger.android.AndroidInjection
 
 class HomeViewPagerFragment : Fragment() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        AndroidInjection.inject(this)
+
     }
     override fun onCreateView(
         inflater: LayoutInflater,
