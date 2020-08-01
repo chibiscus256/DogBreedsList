@@ -1,4 +1,4 @@
-package com.example.dogbreedslist.ui.breeds
+package com.example.dogbreedslist.breeds
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

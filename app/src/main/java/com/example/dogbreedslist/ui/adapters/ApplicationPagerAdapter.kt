@@ -2,8 +2,8 @@ package com.example.dogbreedslist.ui.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.dogbreedslist.ui.breeds.BreedListFragment
-import com.example.dogbreedslist.ui.DogDetailFragment
+import com.example.dogbreedslist.breeds.BreedListFragment
+import com.example.dogbreedslist.favorites.DogDetailFragment
 
 const val DOG_PAGE_INDEX = 0
 const val DOGS_LIST_PAGE_INDEX = 1

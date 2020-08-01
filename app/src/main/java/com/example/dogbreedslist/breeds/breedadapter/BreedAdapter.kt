@@ -1,10 +1,10 @@
-package com.example.dogbreedslist.ui.breeds.breedadapter
+package com.example.dogbreedslist.breeds.breedadapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.dogbreedslist.data.network.dto.Breed
-import com.example.dogbreedslist.ui.breeds.BreedListViewModel
+import com.example.dogbreedslist.breeds.BreedListViewModel
 
 class BreedAdapter(private val viewModel: BreedListViewModel) :
     ListAdapter<Breed, BreedViewHolder>((BreedDiffCallback())) {

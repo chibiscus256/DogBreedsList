@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/view_pager_fragment"
         android:name="com.example.dogbreedslist.ui.HomeViewPagerFragment"
-        tools:layout="@layout/fragment_breed">
+        tools:layout="@layout/fragment_breedlist">
 
         <action
                 android:id="@+id/action_view_pager_fragment_to_plant_detail_fragment"
@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/dogs_list_fragment"
-        android:name="com.example.dogbreedslist.ui.breeds.BreedListFragment"
+        android:name="com.example.dogbreedslist.breeds.BreedListFragment"
         android:label="@string/dog_item_title"
         tools:layout="@layout/fragment_dog">
         <argument

@@ -1,4 +1,4 @@
-package com.example.dogbreedslist.ui.breeds
+package com.example.dogbreedslist.breeds
 
 import android.content.Context
 import android.os.Bundle
@@ -6,21 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.dogbreedslist.databinding.FragmentBreedBinding
+import com.example.dogbreedslist.databinding.FragmentBreedlistBinding
 import com.example.dogbreedslist.di.DblViewModelFactory
-import com.example.dogbreedslist.ui.breeds.breedadapter.BreedAdapter
+import com.example.dogbreedslist.breeds.breedadapter.BreedAdapter
 import javax.inject.Inject
 
 
 class BreedListFragment : Fragment() {
 
     @Inject
+    lateinit var breedListListViewModel: BreedListViewModel
+    @Inject
     lateinit var viewModelFactory: DblViewModelFactory
 
-    @Inject
-    lateinit var breedListListViewModel: BreedListViewModel
-
-    private lateinit var binding: FragmentBreedBinding
+    private lateinit var binding: FragmentBreedlistBinding
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -31,7 +30,7 @@ class BreedListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentBreedBinding.inflate(inflater, container, false)
+        binding = FragmentBreedlistBinding.inflate(inflater, container, false)
         context ?: return binding.root
 
         initializeViewModel()

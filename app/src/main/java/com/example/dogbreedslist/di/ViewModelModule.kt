@@ -2,7 +2,7 @@ package com.example.dogbreedslist.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.dogbreedslist.ui.breeds.BreedListViewModel
+import com.example.dogbreedslist.breeds.BreedListViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

@@ -11,8 +11,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [
-        AndroidSupportInjectionModule::class,
-        ViewModelModule::class
+        AndroidSupportInjectionModule::class, ViewModelModule::class, AppSubComponents::class
     ]
 )
 interface AppComponent : AndroidInjector<DblApp>{

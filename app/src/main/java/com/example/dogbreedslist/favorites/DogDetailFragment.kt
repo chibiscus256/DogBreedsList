@@ -1,4 +1,4 @@
-package com.example.dogbreedslist.ui
+package com.example.dogbreedslist.favorites
 
 import androidx.fragment.app.Fragment
 

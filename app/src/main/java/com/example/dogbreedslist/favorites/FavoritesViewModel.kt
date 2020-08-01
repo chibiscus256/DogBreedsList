@@ -1,4 +1,4 @@
-package com.example.dogbreedslist.ui.favorites
+package com.example.dogbreedslist.favorites
 
 import com.example.dogbreedslist.data.source.local.FavoritesRepository
 import javax.inject.Inject
