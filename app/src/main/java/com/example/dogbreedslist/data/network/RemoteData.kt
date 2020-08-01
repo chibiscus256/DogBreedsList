@@ -11,8 +11,9 @@ import retrofit2.Response
 import java.io.IOException
 import javax.inject.Inject
 
-class RemoteData @Inject
-constructor(private val serviceGenerator: ServiceGenerator) : RemoteDataSource {
+class RemoteData @Inject constructor(
+    private val serviceGenerator: ServiceGenerator
+) : RemoteDataSource {
 
     override suspend fun requestBreeds(): Resource<BreedList> {
         val dogService = serviceGenerator.createService(DogService::class.java)
