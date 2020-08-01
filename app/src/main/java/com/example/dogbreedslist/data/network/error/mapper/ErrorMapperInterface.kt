@@ -1,4 +1,4 @@
-package com.example.dogbreedslist.data.error.mapper
+package com.example.dogbreedslist.data.network.error.mapper
 
 interface ErrorMapperInterface {
     fun getErrorString(errorId: Int): String

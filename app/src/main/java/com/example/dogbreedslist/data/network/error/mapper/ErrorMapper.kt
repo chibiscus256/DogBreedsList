@@ -1,8 +1,8 @@
-package com.example.dogbreedslist.data.error.mapper
+package com.example.dogbreedslist.data.network.error.mapper
 
 import com.example.dogbreedslist.DblApp
 import com.example.dogbreedslist.R
-import com.example.dogbreedslist.data.error.Error
+import com.example.dogbreedslist.data.network.error.Error
 import javax.inject.Inject
 
 class ErrorMapper @Inject constructor() : ErrorMapperInterface {

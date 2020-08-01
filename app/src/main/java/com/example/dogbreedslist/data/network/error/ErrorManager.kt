@@ -1,6 +1,6 @@
-package com.example.dogbreedslist.data.error
+package com.example.dogbreedslist.data.network.error
 
-import com.example.dogbreedslist.data.error.mapper.ErrorMapper
+import com.example.dogbreedslist.data.network.error.mapper.ErrorMapper
 import javax.inject.Inject
 
 /**

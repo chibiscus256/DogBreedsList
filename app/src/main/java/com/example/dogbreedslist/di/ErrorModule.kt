@@ -1,9 +1,9 @@
 package com.example.dogbreedslist.di
 
-import com.example.dogbreedslist.data.error.ErrorFactory
-import com.example.dogbreedslist.data.error.ErrorManager
-import com.example.dogbreedslist.data.error.mapper.ErrorMapper
-import com.example.dogbreedslist.data.error.mapper.ErrorMapperInterface
+import com.example.dogbreedslist.data.network.error.ErrorFactory
+import com.example.dogbreedslist.data.network.error.ErrorManager
+import com.example.dogbreedslist.data.network.error.mapper.ErrorMapper
+import com.example.dogbreedslist.data.network.error.mapper.ErrorMapperInterface
 import dagger.Binds
 import dagger.Module
 import javax.inject.Singleton

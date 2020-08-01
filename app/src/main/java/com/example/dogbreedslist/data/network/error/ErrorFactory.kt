@@ -1,4 +1,4 @@
-package com.example.dogbreedslist.data.error
+package com.example.dogbreedslist.data.network.error
 
 
 interface ErrorFactory {
