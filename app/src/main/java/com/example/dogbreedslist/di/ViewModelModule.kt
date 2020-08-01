@@ -2,7 +2,7 @@ package com.example.dogbreedslist.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.dogbreedslist.viewmodel.BreedViewModel
+import com.example.dogbreedslist.ui.breeds.BreedListViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -12,8 +12,8 @@ import dagger.multibindings.IntoMap
 abstract class ViewModelModule {
     @Binds
     @IntoMap
-    @ViewModelKey(BreedViewModel::class)
-    abstract fun bindBreedListViewModel(breedListViewModel: BreedViewModel): ViewModel
+    @ViewModelKey(BreedListViewModel::class)
+    abstract fun bindBreedListViewModel(breedListListViewModel: BreedListViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: DblViewModelFactory): ViewModelProvider.Factory
