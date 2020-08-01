@@ -3,7 +3,7 @@ package com.example.dogbreedslist.ui.adapters
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.dogbreedslist.ui.breeds.BreedListFragment
-import com.example.dogbreedslist.ui.DogFragment
+import com.example.dogbreedslist.ui.DogDetailFragment
 
 const val DOG_PAGE_INDEX = 0
 const val DOGS_LIST_PAGE_INDEX = 1
@@ -13,7 +13,7 @@ class ApplicationPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragmen
      * Mapping of the ViewPager page indexes to their respective Fragments
      */
     private val tabFragmentsCreators: Map<Int, () -> Fragment> = mapOf(
-        DOG_PAGE_INDEX to { DogFragment() },
+        DOG_PAGE_INDEX to { DogDetailFragment() },
         DOGS_LIST_PAGE_INDEX to { BreedListFragment() }
     )
 
