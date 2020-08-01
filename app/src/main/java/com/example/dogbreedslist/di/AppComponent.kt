@@ -12,8 +12,7 @@ import javax.inject.Singleton
 @Component(
     modules = [
         AndroidSupportInjectionModule::class,
-        ViewModelModule::class,
-        ErrorModule::class
+        ViewModelModule::class
     ]
 )
 interface AppComponent : AndroidInjector<DblApp>{

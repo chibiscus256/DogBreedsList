@@ -3,12 +3,11 @@ package com.example.dogbreedslist.ui.breeds
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.dogbreedslist.data.network.dto.Breed
 import com.example.dogbreedslist.data.network.dto.BreedList
 import com.example.dogbreedslist.ui.base.BaseCallback
 import com.example.dogbreedslist.usecase.DblUseCase
 import javax.inject.Inject
-import com.example.dogbreedslist.data.network.error.Error
+import com.example.dogbreedslist.data.Error
 
 class BreedListViewModel @Inject constructor(dataUseCase: DblUseCase) : ViewModel() {
 

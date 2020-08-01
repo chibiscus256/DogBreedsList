@@ -1,19 +1,24 @@
-package com.example.dogbreedslist.data.network.error
+package com.example.dogbreedslist.data
 
 class Error {
     var description: String? = ""
-    var code: Int = NO_INTERNET_CONNECTION
+    var code: Int =
+        NO_INTERNET_CONNECTION
 
     constructor()
 
-    constructor(description: String = ErrorsMap.getValue(NO_INTERNET_CONNECTION), code: Int = NO_INTERNET_CONNECTION) {
+    constructor(description: String = ErrorsMap.getValue(
+        NO_INTERNET_CONNECTION
+    ), code: Int = NO_INTERNET_CONNECTION
+    ) {
         this.description = description
         this.code = code
     }
 
     constructor(exception: Exception) {
         this.description = exception.message
-        this.code = INTERNAL_SERVER_ERROR
+        this.code =
+            INTERNAL_SERVER_ERROR
     }
 
     companion object {

@@ -1,6 +1,6 @@
 package com.example.dogbreedslist.data.network
 
-import com.example.dogbreedslist.data.network.error.Error
+import com.example.dogbreedslist.data.Error
 
 class Data(var code: Int = 0, var error: Error? = null, var data: Any? = null) {
 

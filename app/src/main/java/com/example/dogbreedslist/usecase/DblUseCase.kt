@@ -6,8 +6,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import com.example.dogbreedslist.data.network.error.Error
-import com.example.dogbreedslist.data.network.error.Error.Companion.INTERNAL_SERVER_ERROR
+import com.example.dogbreedslist.data.Error
+import com.example.dogbreedslist.data.Error.Companion.INTERNAL_SERVER_ERROR
 import com.example.dogbreedslist.data.network.dto.BreedList
 import com.example.dogbreedslist.ui.base.BaseCallback
 import javax.inject.Inject
@@ -28,7 +28,10 @@ class DblUseCase @Inject constructor(
                     val data = serviceResponse.data
                     callback.onSuccess(data as BreedList)
                 } else {
-                    callback.onFail(serviceResponse?.error ?: Error(code = INTERNAL_SERVER_ERROR))
+                    callback.onFail(serviceResponse?.error ?: Error(
+                        code = INTERNAL_SERVER_ERROR
+                    )
+                    )
                 }
             } catch (e: Exception) {
                 callback.onFail(Error(e))
