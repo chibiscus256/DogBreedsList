@@ -5,13 +5,15 @@ import dagger.Subcomponent
 
 @ActivityScope
 @Subcomponent
-interface BreedsComponent {
+interface BreedListComponent {
 
     @Subcomponent.Factory
     interface Factory {
-        fun create(): BreedsComponent
+        fun create(): BreedListComponent
     }
 
     // Classes that can be injected by this Component
-    fun inject(activity: BreedsListActivity)
+    fun inject(activity: BreedListActivity)
+    fun inject(fragment: DogsPhotosFragment)
+    fun inject(fragment: SubbreedsListFragment)
 }

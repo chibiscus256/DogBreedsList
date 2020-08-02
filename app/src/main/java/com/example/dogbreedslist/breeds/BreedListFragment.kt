@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.dogbreedslist.databinding.FragmentBreedlistBinding
+import com.example.dogbreedslist.databinding.ItemBreedBinding
 import com.example.dogbreedslist.di.DblViewModelFactory
 import com.example.dogbreedslist.breeds.breedadapter.BreedAdapter
 import javax.inject.Inject
@@ -15,11 +15,11 @@ import javax.inject.Inject
 class BreedListFragment : Fragment() {
 
     @Inject
-    lateinit var breedListListViewModel: BreedListViewModel
+    lateinit var breedListViewModel: BreedListViewModel
     @Inject
     lateinit var viewModelFactory: DblViewModelFactory
 
-    private lateinit var binding: FragmentBreedlistBinding
+    private lateinit var binding: ItemBreedBinding
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -30,22 +30,22 @@ class BreedListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentBreedlistBinding.inflate(inflater, container, false)
+        binding = ItemBreedBinding.inflate(inflater, container, false)
         context ?: return binding.root
 
         initializeViewModel()
 
         val adapter =
             BreedAdapter(
-                breedListListViewModel
+                breedListViewModel
             )
-        binding.breedList.adapter = adapter
+        //binding.breedList.adapter = adapter
 
         setHasOptionsMenu(true)
         return binding.root
     }
 
     private fun initializeViewModel() {
-        breedListListViewModel = viewModelFactory.create(BreedListViewModel::class.java)
+        breedListViewModel = viewModelFactory.create(BreedListViewModel::class.java)
     }
 }

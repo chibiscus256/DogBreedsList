@@ -1,6 +1,6 @@
 package com.example.dogbreedslist.data.network
 
-import com.example.dogbreedslist.DblApp
+import com.example.dogbreedslist.App
 import com.example.dogbreedslist.data.Resource
 import com.example.dogbreedslist.data.network.dto.BreedList
 import com.example.dogbreedslist.data.network.service.DogService
@@ -28,7 +28,7 @@ class RemoteRepository @Inject constructor(
     }
 
     private suspend fun processCall(responseCall: suspend () -> Response<*>): Any? {
-        if (!isConnected(DblApp.context)) {
+        if (!isConnected(App.context)) {
             return NO_INTERNET_CONNECTION
         }
         return try {

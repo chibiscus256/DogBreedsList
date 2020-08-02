@@ -6,7 +6,7 @@
     <data>
         <variable
             name="breedViewModel"
-            type="com.example.dogbreedslist.ui.breeds.BreedListViewModel"/>
+            type="com.example.dogbreedslist.breeds.BreedListViewModel"/>
 
         <variable
             name="breed"
