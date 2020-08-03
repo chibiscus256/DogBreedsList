@@ -13,7 +13,6 @@ interface BreedListComponent {
     }
 
     // Classes that can be injected by this Component
-    fun inject(activity: BreedListActivity)
     fun inject(fragment: DogsPhotosFragment)
     fun inject(fragment: SubbreedsListFragment)
 }

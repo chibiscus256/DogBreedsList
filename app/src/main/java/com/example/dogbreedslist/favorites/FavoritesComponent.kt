@@ -10,6 +10,4 @@ interface FavoritesComponent {
     interface Factory{
         fun create(): FavoritesComponent
     }
-
-    fun inject(activity: FavoritesActivity)
 }

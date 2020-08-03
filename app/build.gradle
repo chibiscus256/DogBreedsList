@@ -62,6 +62,7 @@ dependencies {
     implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$rootProject.daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
+    "com.google.dagger:hilt-android-gradle-plugin:$rootProject.daggerVersion"
 
     //kotlin coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutinesVersion"
@@ -89,5 +90,7 @@ dependencies {
     kapt "androidx.room:room-compiler:$rootProject.roomVersion"
     implementation "androidx.room:room-ktx:$rootProject.roomVersion"
 
+    //work
     implementation "androidx.work:work-runtime-ktx:$rootProject.workVersion"
+
 }
