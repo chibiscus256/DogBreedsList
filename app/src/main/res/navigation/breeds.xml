@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/breeds">
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_breeds"
+    app:startDestination="@+id/breedsFragment">
 
+    <fragment
+        android:id="@+id/breedsFragment"
+        android:name="com.example.dogbreedslist.breeds.BreedListFragment"
+        android:label="@string/title_breeds"
+        tools:layout="@layout/fragment_breedlist">
+        <action
+            android:id="@+id/action_title_to_about"
+            app:destination="@id/dogsFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/dogsFragment"
+        android:name="com.example.dogbreedslist.breeds.DogsPhotosFragment"
+        android:label="@string/title_breed_photos"
+        tools:layout="@layout/fragment_dog"/>
 </navigation>

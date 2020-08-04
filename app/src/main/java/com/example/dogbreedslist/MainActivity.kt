@@ -3,8 +3,11 @@ package com.example.dogbreedslist
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
+import androidx.navigation.NavController
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.example.dogbreedslist.databinding.ActivityMainBinding
+import com.example.dogbreedslist.ui.navigation.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -14,6 +17,9 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity(), HasAndroidInjector {
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
+
+    private var currentNavController: LiveData<NavController>? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
@@ -33,7 +39,7 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
     private fun setupBottomNavigationBar() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
 
-        val navGraphIds = listOf(R.navigation.home, R.navigation.list, R.navigation.form)
+        val navGraphIds = listOf(R.navigation.breeds, R.navigation.favorites)
 
         // Setup the bottom navigation view with a list of navigation graphs
         val controller = bottomNavigationView.setupWithNavController(
@@ -51,7 +57,7 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return currentNavController.value?.navigateUp() ?: false
+        return currentNavController?.value?.navigateUp() ?: false
     }
 
     override fun androidInjector(): AndroidInjector<Any> = dispatchingAndroidInjector
