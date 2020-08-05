@@ -12,9 +12,7 @@ class BreedAdapter(private val viewModel: BreedListViewModel) :
     val mDogBreedList: ArrayList<Breed> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BreedViewHolder {
-        return BreedViewHolder.from(
-            parent
-        )
+        return BreedViewHolder.from(parent)
     }
 
     override fun getItemCount(): Int {

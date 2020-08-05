@@ -28,10 +28,7 @@ class DblUseCase @Inject constructor(
                     val data = serviceResponse.data
                     callback.onSuccess(data as BreedList)
                 } else {
-                    callback.onFail(serviceResponse?.error ?: Error(
-                        code = INTERNAL_SERVER_ERROR
-                    )
-                    )
+                    callback.onFail(serviceResponse?.error ?: Error(code = INTERNAL_SERVER_ERROR))
                 }
             } catch (e: Exception) {
                 callback.onFail(Error(e))

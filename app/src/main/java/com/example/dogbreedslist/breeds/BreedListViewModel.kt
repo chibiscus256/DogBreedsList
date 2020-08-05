@@ -14,6 +14,7 @@ class BreedListViewModel @Inject constructor(dataUseCase: DblUseCase) : ViewMode
     var noInterNetConnection: MutableLiveData<Boolean> = MutableLiveData()
     var showError: MutableLiveData<Error> = MutableLiveData()
     private var breedsUseCase: DblUseCase = dataUseCase
+
     private val _breedList = MutableLiveData<BreedList>()
     val breedList: LiveData<BreedList> = _breedList
 
