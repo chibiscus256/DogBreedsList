@@ -52,12 +52,18 @@ class BreedListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = viewLifecycleOwner
         initRecyclerView()
+        init()
+    }
+
+    fun init(){
+        breedListViewModel.getBreeds()
     }
 
     private fun initRecyclerView() {
 
-        breedListViewModel.breedList.observe(viewLifecycleOwner, Observer {
+        breedListViewModel.breedList.observe(viewLifecycleOwner, Observer {let {
             breedListAdapter.mDogBreedList
+        }
         })
     }
 

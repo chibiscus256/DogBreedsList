@@ -5,15 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.dogbreedslist.data.network.dto.BreedList
 import com.example.dogbreedslist.ui.base.BaseCallback
-import com.example.dogbreedslist.usecase.DblUseCase
+import com.example.dogbreedslist.usecase.GettingBreedsUseCase
 import javax.inject.Inject
 import com.example.dogbreedslist.data.Error
 
-class BreedListViewModel @Inject constructor(dataUseCase: DblUseCase) : ViewModel() {
+class BreedListViewModel @Inject constructor(dataUseCase: GettingBreedsUseCase) : ViewModel() {
 
     var noInterNetConnection: MutableLiveData<Boolean> = MutableLiveData()
     var showError: MutableLiveData<Error> = MutableLiveData()
-    private var breedsUseCase: DblUseCase = dataUseCase
+    private var breedsUseCase: GettingBreedsUseCase = dataUseCase
 
     private val _breedList = MutableLiveData<BreedList>()
     val breedList: LiveData<BreedList> = _breedList

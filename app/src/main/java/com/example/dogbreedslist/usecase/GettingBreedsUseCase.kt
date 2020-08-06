@@ -14,12 +14,12 @@ import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
 
-class DblUseCase @Inject constructor(
+class GettingBreedsUseCase @Inject constructor(
     private val dataRepository: DataSource,
     override val coroutineContext: CoroutineContext
-) : UseCase, CoroutineScope {
+) : CoroutineScope {
 
-    override fun getBreeds(callback: BaseCallback) {
+    fun getBreeds(callback: BaseCallback) {
         launch {
             try {
                 val serviceResponse: Data? =
