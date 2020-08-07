@@ -5,5 +5,5 @@ import com.example.dogbreedslist.data.Resource
 import com.example.dogbreedslist.data.network.dto.BreedList
 
 internal interface RemoteDataSource {
-    suspend fun requestBreeds(): LiveData<Resource<BreedList>>
+    suspend fun requestBreeds(): Resource<BreedList>
 }
