@@ -1,6 +1,7 @@
 package com.example.dogbreedslist
 
 import android.content.Context
+import com.example.dogbreedslist.di.AppInjector
 import com.example.dogbreedslist.di.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
@@ -12,5 +13,10 @@ open class App : DaggerApplication() {
     companion object {
         lateinit var context: Context
 
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        AppInjector.init(this)
     }
 }
