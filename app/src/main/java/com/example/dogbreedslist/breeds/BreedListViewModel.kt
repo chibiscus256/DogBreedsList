@@ -3,38 +3,28 @@ package com.example.dogbreedslist.breeds
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.dogbreedslist.data.DataRepositorySource
 import com.example.dogbreedslist.data.network.dto.BreedList
 import com.example.dogbreedslist.ui.base.BaseCallback
-import com.example.dogbreedslist.usecase.GettingBreedsUseCase
 import javax.inject.Inject
 import com.example.dogbreedslist.data.Error
+import com.example.dogbreedslist.data.Resource
+import com.example.dogbreedslist.data.network.RemoteData
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
-class BreedListViewModel @Inject constructor(dataUseCase: GettingBreedsUseCase) : ViewModel() {
+class BreedListViewModel @Inject constructor(private val dataRepository: DataRepositorySource) : ViewModel() {
 
-    var noInterNetConnection: MutableLiveData<Boolean> = MutableLiveData()
-    var showError: MutableLiveData<Error> = MutableLiveData()
-    private var breedsUseCase: GettingBreedsUseCase = dataUseCase
-
-    private val _breedList = MutableLiveData<BreedList>()
-    val breedList: LiveData<BreedList> = _breedList
+    private val _breedList = MutableLiveData<Resource<BreedList>>()
+    val breedList: LiveData<Resource<BreedList>> = _breedList
 
     fun getBreeds() {
-        breedsUseCase.getBreeds(callback)
-    }
-
-    private val callback = object : BaseCallback {
-
-        override fun onSuccess(data: Any) {
-            _breedList.postValue(data as BreedList)
-        }
-
-        override fun onFail(error: Error) {
-            if (error.code == Error.NO_INTERNET_CONNECTION) {
-                noInterNetConnection.postValue(true)
-            } else {
-                showError.postValue(error)
+        viewModelScope.launch {
+            _breedList.value = Resource.Loading()
+            dataRepository.requestBreeds().collect {
+                _breedList.value = it
             }
-
         }
     }
 }

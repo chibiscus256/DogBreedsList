@@ -55,7 +55,7 @@ class BreedListFragment : Fragment() {
         init()
     }
 
-    fun init(){
+    private fun init(){
         breedListViewModel.getBreeds()
     }
 

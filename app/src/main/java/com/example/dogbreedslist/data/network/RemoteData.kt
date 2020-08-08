@@ -8,11 +8,12 @@ import com.example.dogbreedslist.data.network.service.DogService
 import com.example.dogbreedslist.data.Error.Companion.NETWORK_ERROR
 import com.example.dogbreedslist.data.Error.Companion.NO_INTERNET_CONNECTION
 import com.example.dogbreedslist.utils.Network.Utils.isConnected
+import kotlinx.coroutines.flow.flow
 import retrofit2.Response
 import java.io.IOException
 import javax.inject.Inject
 
-class RemoteRepository @Inject constructor(
+class RemoteData @Inject constructor(
     private val serviceGenerator: ServiceGenerator
 ) : RemoteDataSource {
 
