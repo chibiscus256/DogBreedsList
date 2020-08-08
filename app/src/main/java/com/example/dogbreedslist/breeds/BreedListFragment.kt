@@ -10,11 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.dogbreedslist.R
 import com.example.dogbreedslist.databinding.ItemBreedBinding
 import com.example.dogbreedslist.di.DblViewModelFactory
 import com.example.dogbreedslist.breeds.breedadapter.BreedAdapter
 import com.example.dogbreedslist.databinding.FragmentBreedlistBinding
+import com.example.dogbreedslist.utils.autoCleared
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.fragment_breedlist.view.*
 import javax.inject.Inject
 
 
@@ -26,12 +29,8 @@ class BreedListFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: DblViewModelFactory
 
-    lateinit var binding: FragmentBreedlistBinding
+    var binding: FragmentBreedlistBinding by autoCleared()
     private lateinit var breedListAdapter: BreedAdapter
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
