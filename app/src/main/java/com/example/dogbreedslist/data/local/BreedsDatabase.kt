@@ -14,7 +14,7 @@ import com.example.dogbreedslist.data.network.dto.Breed
 @Database(entities = [Breed::class],
         version = 1, exportSchema = false)
 @TypeConverters(BreedConverter::class)
-abstract class AppDatabase : RoomDatabase() {
+abstract class BreedsDatabase : RoomDatabase() {
 
     abstract fun breedDao(): BreedDao
 
@@ -22,18 +22,16 @@ abstract class AppDatabase : RoomDatabase() {
 
         // For Singleton instantiation
         @Volatile
-        private var instance: AppDatabase? = null
+        private var instance: BreedsDatabase? = null
 
-        fun getInstance(context: Context): AppDatabase {
+        fun getInstance(context: Context): BreedsDatabase {
             return instance ?: synchronized(this) {
                 instance ?: buildDatabase(context).also { instance = it }
             }
         }
 
-        private fun buildDatabase(context: Context): AppDatabase {
-            return Room.databaseBuilder(context, AppDatabase::class.java, "dogbreeds-db")
-                    .addCallback(object : RoomDatabase.Callback() {
-                    })
+        private fun buildDatabase(context: Context): BreedsDatabase {
+            return Room.databaseBuilder(context, BreedsDatabase::class.java, "dogbreeds-db")
                     .build()
         }
     }

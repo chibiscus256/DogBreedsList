@@ -1,5 +1,6 @@
 package com.example.dogbreedslist.data
 
+import com.example.dogbreedslist.data.local.LocalData
 import com.example.dogbreedslist.data.network.RemoteData
 import com.example.dogbreedslist.data.network.dto.BreedList
 import kotlinx.coroutines.Dispatchers
@@ -14,11 +15,11 @@ import javax.inject.Inject
  */
 
 class DataRepository @Inject
-constructor(private val remoteRepository: RemoteData) : DataRepositorySource {
+constructor(internal val remoteData: RemoteData, localData: LocalData) : DataRepositorySource {
 
     override suspend fun requestBreeds(): Flow<Resource<BreedList>> {
         return flow {
-            emit(remoteRepository.requestBreeds())
+            emit(remoteData.requestBreeds())
         }.flowOn(Dispatchers.IO)
     }
 }
