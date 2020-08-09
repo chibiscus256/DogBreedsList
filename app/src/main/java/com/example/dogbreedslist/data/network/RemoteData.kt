@@ -14,11 +14,11 @@ import java.io.IOException
 import javax.inject.Inject
 
 class RemoteData @Inject constructor(
-    private val serviceGenerator: ServiceGenerator
+    private val serviceGenerator: ServiceGenerator,
+    private val dogService : DogService
 ) : RemoteDataSource {
 
     override suspend fun requestBreeds(): Resource<BreedList> {
-        val dogService = serviceGenerator.createService(DogService::class.java)
         return when (val response = processCall(dogService::getBreedList)) {
             is BreedList -> {
                 Resource.Success(response)
@@ -30,9 +30,9 @@ class RemoteData @Inject constructor(
     }
 
     private suspend fun processCall(responseCall: suspend () -> Response<*>): Any? {
-        if (!isConnected(App.context)) {
+/*        if (!isConnected(App.context)) {
             return NO_INTERNET_CONNECTION
-        }
+        }*/
         return try {
             val response = responseCall.invoke()
             val responseCode = response.code()

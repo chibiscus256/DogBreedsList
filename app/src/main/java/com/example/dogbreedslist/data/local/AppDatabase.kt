@@ -1,4 +1,4 @@
-package com.example.dogbreedslist.data.source.local
+package com.example.dogbreedslist.data.local
 
 import android.content.Context
 import androidx.room.Database

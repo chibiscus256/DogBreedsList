@@ -1,4 +1,4 @@
-package com.example.dogbreedslist.data.source.local
+package com.example.dogbreedslist.data.local
 
 import androidx.room.Dao
 import androidx.room.Query

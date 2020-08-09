@@ -1,5 +1,6 @@
 package com.example.dogbreedslist.breeds
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,7 +15,7 @@ import com.example.dogbreedslist.data.network.RemoteData
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class BreedListViewModel @Inject constructor(private val dataRepository: DataRepositorySource) : ViewModel() {
+class BreedListViewModel @ViewModelInject constructor(private val dataRepository: DataRepositorySource) : ViewModel() {
 
     private val _breedList = MutableLiveData<Resource<BreedList>>()
     val breedList: LiveData<Resource<BreedList>> = _breedList

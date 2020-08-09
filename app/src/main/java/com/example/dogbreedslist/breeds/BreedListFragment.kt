@@ -1,7 +1,5 @@
 package com.example.dogbreedslist.breeds
 
-import android.app.FragmentBreadCrumbs
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,31 +7,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.dogbreedslist.R
-import com.example.dogbreedslist.databinding.ItemBreedBinding
-import com.example.dogbreedslist.di.DblViewModelFactory
 import com.example.dogbreedslist.breeds.breedadapter.BreedAdapter
 import com.example.dogbreedslist.databinding.FragmentBreedlistBinding
 import com.example.dogbreedslist.utils.autoCleared
-import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_breedlist.view.*
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class BreedListFragment : Fragment() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val breedListViewModel: BreedListViewModel by viewModels()
 
     var binding: FragmentBreedlistBinding by autoCleared()
     private lateinit var breedListAdapter: BreedAdapter
-
-    private val breedListViewModel: BreedListViewModel by viewModels {
-        viewModelFactory
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

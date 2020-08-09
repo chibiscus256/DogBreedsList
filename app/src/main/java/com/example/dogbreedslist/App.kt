@@ -1,22 +1,8 @@
 package com.example.dogbreedslist
 
-import android.content.Context
-import com.example.dogbreedslist.di.AppInjector
-import com.example.dogbreedslist.di.DaggerAppComponent
-import dagger.android.AndroidInjector
-import dagger.android.support.DaggerApplication
+import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 
-open class App : DaggerApplication() {
-    private val applicationInjector = DaggerAppComponent.builder().application(this).build()
-    override fun applicationInjector(): AndroidInjector<out DaggerApplication> = applicationInjector
-
-    companion object {
-        lateinit var context: Context
-
-    }
-
-    override fun onCreate() {
-        super.onCreate()
-        AppInjector.init(this)
-    }
+@HiltAndroidApp
+open class App : Application() {
 }

@@ -1,6 +1,6 @@
 package com.example.dogbreedslist.favorites
 
-import com.example.dogbreedslist.data.source.local.FavoritesRepository
-import javax.inject.Inject
+import androidx.hilt.lifecycle.ViewModelInject
+import com.example.dogbreedslist.data.local.FavoritesData
 
-class FavoritesViewModel @Inject constructor(favoritesRepository: FavoritesRepository)
+class FavoritesViewModel @ViewModelInject constructor(favoritesRepository: FavoritesData)

@@ -63,13 +63,22 @@ dependencies {
     implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$rootProject.daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
+
     "com.google.dagger:hilt-android-gradle-plugin:$rootProject.daggerVersion"
+    implementation "androidx.fragment:fragment-ktx:$rootProject.ktxFragmentVersion"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$rootProject.hilt_jetpack_version"
+    kapt "androidx.hilt:hilt-compiler:$rootProject.hilt_jetpack_version"
+    kaptAndroidTest "androidx.hilt:hilt-compiler:$rootProject.hilt_jetpack_version"
 
     //Lifecycle
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-common-java8:$rootProject.lifecycle_version"
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+
+    //Stetho
+    implementation "com.facebook.stetho:stetho:$rootProject.stetho"
+    implementation "com.facebook.stetho:stetho-okhttp3:$rootProject.stetho"
 
     //kotlin coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutinesVersion"

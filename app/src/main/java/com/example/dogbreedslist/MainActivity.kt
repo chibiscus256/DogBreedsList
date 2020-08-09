@@ -11,11 +11,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(), HasAndroidInjector {
-    @Inject
-    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity() {
 
     private var currentNavController: LiveData<NavController>? = null
 
@@ -55,6 +55,4 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
     override fun onSupportNavigateUp(): Boolean {
         return currentNavController?.value?.navigateUp() ?: false
     }
-
-    override fun androidInjector(): AndroidInjector<Any> = dispatchingAndroidInjector
 }
