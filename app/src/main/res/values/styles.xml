@@ -1,7 +1,7 @@
 <resources>
 
 <!-- To see how these attributes are used, please visit https://material.io/develop/android/theming/color/ -->
-<style name="Base.Theme.DogBreedsList" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+<style name="Base.Theme.DogBreedsList" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
     <item name="colorPrimary">@color/dbl_green_500</item>
     <item name="colorOnPrimary">@color/dbl_yellow_500</item>
     <item name="colorPrimaryDark">@color/dbl_green_700</item>

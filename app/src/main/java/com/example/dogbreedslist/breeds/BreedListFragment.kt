@@ -28,7 +28,7 @@ class BreedListFragment : Fragment() {
         binding = FragmentBreedlistBinding.inflate(inflater, container, false)
         context ?: return binding.root
 
-        breedListAdapter = BreedAdapter(breedListViewModel)
+        //breedListAdapter = BreedAdapter(breedListViewModel)
         setHasOptionsMenu(true)
 
         return binding.root
@@ -38,18 +38,18 @@ class BreedListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = viewLifecycleOwner
         initRecyclerView()
-        init()
+        //init()
     }
 
-    private fun init(){
+/*    private fun init(){
         breedListViewModel.getBreeds()
-    }
+    }*/
 
     private fun initRecyclerView() {
 
-        breedListViewModel.breedList.observe(viewLifecycleOwner, Observer {let {
+/*        breedListViewModel.breedList.observe(viewLifecycleOwner, Observer {let {
             breedListAdapter.mDogBreedList
         }
-        })
+        })*/
     }
 }
