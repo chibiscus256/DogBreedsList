@@ -49,7 +49,7 @@ class BreedListFragment : Fragment() {
 
         breedListViewModel.breedList.observe(viewLifecycleOwner, Observer {
             let {
-                breedListAdapter.mDogBreedDataList
+                breedListAdapter.mDogBreedList
             }
         })
     }

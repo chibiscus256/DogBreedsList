@@ -5,4 +5,4 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class BreedList(@Json(name = "message")
-                  val message: List<BreedData> = listOf())
+                  val message: List<Breed> = listOf())

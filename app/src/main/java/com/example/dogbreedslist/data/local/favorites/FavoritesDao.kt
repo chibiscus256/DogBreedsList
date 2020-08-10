@@ -1,10 +1,8 @@
 package com.example.dogbreedslist.data.local.favorites
 
-import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.dogbreedslist.data.network.dto.BreedData
 
 interface FavoritesDao {
     @Query("SELECT * FROM favorites")

@@ -3,25 +3,26 @@ package com.example.dogbreedslist.breeds.breedadapter
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.example.dogbreedslist.data.network.dto.BreedData
+import com.example.dogbreedslist.data.network.dto.Breed
 import com.example.dogbreedslist.breeds.BreedListViewModel
+import com.example.dogbreedslist.data.local.breeds.BreedData
 
 class BreedAdapter(private val viewModel: BreedListViewModel) :
     ListAdapter<BreedData, BreedViewHolder>((BreedDiffCallback())) {
 
-    val mDogBreedDataList: ArrayList<BreedData> = ArrayList()
+    val mDogBreedList: ArrayList<Breed> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BreedViewHolder {
         return BreedViewHolder.from(parent)
     }
 
     override fun getItemCount(): Int {
-        return mDogBreedDataList.size
+        return mDogBreedList.size
     }
 
     override fun onBindViewHolder(holderBreed: BreedViewHolder, position: Int) {
         val item = getItem(position)
-        holderBreed.bind(viewModel, mDogBreedDataList[position])
+        holderBreed.bind(viewModel, mDogBreedList[position])
     }
 }
 
