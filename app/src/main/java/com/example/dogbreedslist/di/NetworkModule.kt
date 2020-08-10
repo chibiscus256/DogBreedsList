@@ -20,15 +20,16 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideRetrofit(@API okhttpClient: OkHttpClient): DogService {
+    fun provideRetrofit (@API okhttpClient: OkHttpClient): DogService {
         return Retrofit.Builder()
-            .baseUrl("https://rickandmortyapi.com/api/")
+            .baseUrl("https://dog.ceo/api/")
             .client(okhttpClient)
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
             .create(DogService::class.java)
     }
 
+    @API
     @Provides
     fun provideOkHttpClient(interceptor: HttpLoggingInterceptor): OkHttpClient =
         OkHttpClient.Builder().addInterceptor(interceptor)

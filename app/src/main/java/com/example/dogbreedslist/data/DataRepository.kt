@@ -9,15 +9,10 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
-
-/**
- * Created by AhmedEltaher
- */
-
 class DataRepository @Inject
-constructor(internal val remoteData: RemoteData, localData: LocalData) : DataRepositorySource {
+constructor(internal val remoteData: RemoteData, val localData: LocalData) {
 
-    override suspend fun requestBreeds(): Flow<Resource<BreedList>> {
+    suspend fun requestBreeds(): Flow<Resource<BreedList>> {
         return flow {
             emit(remoteData.requestBreeds())
         }.flowOn(Dispatchers.IO)

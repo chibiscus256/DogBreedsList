@@ -8,6 +8,7 @@ import com.example.dogbreedslist.data.network.service.DogService
 import com.example.dogbreedslist.data.Error.Companion.NETWORK_ERROR
 import com.example.dogbreedslist.data.Error.Companion.NO_INTERNET_CONNECTION
 import com.example.dogbreedslist.utils.Network.Utils.isConnected
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.flow
 import retrofit2.Response
 import java.io.IOException
@@ -29,7 +30,7 @@ class RemoteData @Inject constructor(
     }
 
     private suspend fun processCall(responseCall: suspend () -> Response<*>): Any? {
-/*        if (!isConnected(App.context)) {
+/*        if (!isConnected(@ApplicationContext context: Context)) {
             return NO_INTERNET_CONNECTION
         }*/
         return try {

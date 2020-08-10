@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.dogbreedslist.ui.adapters.ApplicationPagerAdapter
 import com.example.dogbreedslist.databinding.FragmentViewPagerBinding
-import dagger.android.AndroidInjection
 
 class HomeViewPagerFragment : Fragment() {
 
