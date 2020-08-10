@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.example.dogbreedslist.breeds.breedadapter.BreedAdapter
 import com.example.dogbreedslist.databinding.FragmentBreedlistBinding
@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class BreedListFragment : Fragment() {
 
-    private val breedListViewModel: BreedListViewModel by viewModels()
+    private val breedListViewModel: BreedListViewModel by activityViewModels()
 
     var binding: FragmentBreedlistBinding by autoCleared()
     private lateinit var breedListAdapter: BreedAdapter
