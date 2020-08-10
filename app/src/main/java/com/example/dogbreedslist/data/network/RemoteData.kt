@@ -1,7 +1,7 @@
 package com.example.dogbreedslist.data.network
 
 import com.example.dogbreedslist.data.Resource
-import com.example.dogbreedslist.data.network.dto.ApiResponse
+import com.example.dogbreedslist.data.network.dto.BreedList
 import com.example.dogbreedslist.data.network.service.DogService
 import com.example.dogbreedslist.data.Error.Companion.NETWORK_ERROR
 import retrofit2.Response
@@ -12,9 +12,9 @@ class RemoteData @Inject constructor(
     private val dogService : DogService
 ) : RemoteDataSource {
 
-    override suspend fun requestBreeds(): Resource<ApiResponse> {
+    override suspend fun requestBreeds(): Resource<BreedList> {
         return when (val response = processCall(dogService::getBreedList)) {
-            is ApiResponse -> {
+            is BreedList -> {
                 Resource.Success(response)
             }
             else -> {

@@ -2,7 +2,7 @@ package com.example.dogbreedslist.data
 
 import com.example.dogbreedslist.data.local.LocalData
 import com.example.dogbreedslist.data.network.RemoteData
-import com.example.dogbreedslist.data.network.dto.ApiResponse
+import com.example.dogbreedslist.data.network.dto.BreedList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -12,7 +12,7 @@ import javax.inject.Inject
 class DataRepository @Inject
 constructor(internal val remoteData: RemoteData, val localData: LocalData) {
 
-    suspend fun requestBreeds(): Flow<Resource<ApiResponse>> {
+    suspend fun requestBreeds(): Flow<Resource<BreedList>> {
         return flow {
             emit(remoteData.requestBreeds())
         }.flowOn(Dispatchers.IO)

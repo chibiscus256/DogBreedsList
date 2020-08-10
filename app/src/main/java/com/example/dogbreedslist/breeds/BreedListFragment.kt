@@ -47,9 +47,9 @@ class BreedListFragment : Fragment() {
 
     private fun initRecyclerView() {
 
-        breedListViewModel.apiResponse.observe(viewLifecycleOwner, Observer {
+        breedListViewModel.breedList.observe(viewLifecycleOwner, Observer {
             let {
-                breedListAdapter.mDogBreedList
+                breedListAdapter.mDogBreedDataList
             }
         })
     }

@@ -6,12 +6,14 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.dogbreedslist.data.BreedConverter
-import com.example.dogbreedslist.data.network.dto.Breed
+import com.example.dogbreedslist.data.local.breeds.BreedDao
+import com.example.dogbreedslist.data.local.favorites.FavoritesData
+import com.example.dogbreedslist.data.network.dto.BreedData
 
 /**
  * The Room database for this app
  */
-@Database(entities = [Breed::class],
+@Database(entities = [BreedData::class, FavoritesData::class],
         version = 1, exportSchema = false)
 @TypeConverters(BreedConverter::class)
 abstract class BreedsDatabase : RoomDatabase() {

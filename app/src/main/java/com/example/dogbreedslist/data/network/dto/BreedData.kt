@@ -5,13 +5,14 @@ import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.android.parcel.Parcelize
 import java.util.*
 
 @JsonClass(generateAdapter = true)
-@Entity(tableName = "breeds")
-data class Breed(
-    @ColumnInfo(name = "name") var name: String = "",
-    @ColumnInfo(name = "subbreeds") var subbreeds: List<String>? = null,
-    @PrimaryKey @ColumnInfo(name = "entryid") var id: String = UUID.randomUUID().toString()
-)
+@Parcelize
+data class BreedData(
+    @Json(name = "name") var name: String = "",
+    @Json(name = "subbreeds") var subbreeds: List<String>? = listOf()
+) : Parcelable
