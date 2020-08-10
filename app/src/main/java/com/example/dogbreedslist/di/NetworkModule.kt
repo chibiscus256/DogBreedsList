@@ -2,6 +2,7 @@ package com.example.dogbreedslist.di
 
 import com.example.dogbreedslist.BuildConfig
 import com.example.dogbreedslist.data.network.service.DogService
+import com.example.dogbreedslist.data.network.service.DogService.Companion.ENDPOINT
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import dagger.Module
 import dagger.Provides
@@ -22,7 +23,7 @@ object NetworkModule {
     @Provides
     fun provideRetrofit (@API okhttpClient: OkHttpClient): DogService {
         return Retrofit.Builder()
-            .baseUrl("https://dog.ceo/api/")
+            .baseUrl(ENDPOINT)
             .client(okhttpClient)
             .addConverterFactory(MoshiConverterFactory.create())
             .build()

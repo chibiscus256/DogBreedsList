@@ -1,15 +1,9 @@
 package com.example.dogbreedslist.data.network
 
-import androidx.lifecycle.LiveData
-import com.example.dogbreedslist.App
 import com.example.dogbreedslist.data.Resource
-import com.example.dogbreedslist.data.network.dto.BreedList
+import com.example.dogbreedslist.data.network.dto.ApiResponse
 import com.example.dogbreedslist.data.network.service.DogService
 import com.example.dogbreedslist.data.Error.Companion.NETWORK_ERROR
-import com.example.dogbreedslist.data.Error.Companion.NO_INTERNET_CONNECTION
-import com.example.dogbreedslist.utils.Network.Utils.isConnected
-import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.flow.flow
 import retrofit2.Response
 import java.io.IOException
 import javax.inject.Inject
@@ -18,9 +12,9 @@ class RemoteData @Inject constructor(
     private val dogService : DogService
 ) : RemoteDataSource {
 
-    override suspend fun requestBreeds(): Resource<BreedList> {
+    override suspend fun requestBreeds(): Resource<ApiResponse> {
         return when (val response = processCall(dogService::getBreedList)) {
-            is BreedList -> {
+            is ApiResponse -> {
                 Resource.Success(response)
             }
             else -> {
