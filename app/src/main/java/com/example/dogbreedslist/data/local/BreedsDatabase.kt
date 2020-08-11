@@ -7,19 +7,21 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.dogbreedslist.data.BreedConverter
 import com.example.dogbreedslist.data.local.breeds.BreedDao
+import com.example.dogbreedslist.data.local.breeds.BreedData
+import com.example.dogbreedslist.data.local.favorites.FavoritesDao
 import com.example.dogbreedslist.data.local.favorites.FavoritesData
-import com.example.dogbreedslist.data.network.dto.Breed
 
 /**
  * The Room database for this app
  */
-@Database(entities = [Breed::class, FavoritesData::class],
+@Database(entities = [BreedData::class, FavoritesData::class],
         version = 1, exportSchema = false)
 @TypeConverters(BreedConverter::class)
 abstract class BreedsDatabase : RoomDatabase() {
 
     abstract fun breedDao(): BreedDao
-
+    abstract fun favoritesDao(): FavoritesDao
+    
     companion object {
 
         // For Singleton instantiation
