@@ -8,8 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.example.dogbreedslist.breeds.breedadapter.BreedAdapter
+import com.example.dogbreedslist.data.Resource
+import com.example.dogbreedslist.data.network.dto.BreedList
 import com.example.dogbreedslist.databinding.FragmentBreedlistBinding
 import com.example.dogbreedslist.utils.autoCleared
+import com.example.dogbreedslist.utils.observe
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,29 +31,31 @@ class BreedListFragment : Fragment() {
         binding = FragmentBreedlistBinding.inflate(inflater, container, false)
         context ?: return binding.root
 
-        breedListAdapter = BreedAdapter(breedListViewModel)
         setHasOptionsMenu(true)
-
+        observe(breedListViewModel.breedList, ::handleList)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = viewLifecycleOwner
-        initRecyclerView()
         init()
+    }
+
+    private fun bindListData(breedList: BreedList) {
+        if (!(breedList.breeds.isNullOrEmpty())) {
+            val breedsAdapter = BreedAdapter(breedListViewModel, breedList.breeds)
+            binding.breedList.adapter = breedsAdapter
+        }
+    }
+
+    private fun handleList(breedList: Resource<BreedList>) {
+        when (breedList) {
+            is Resource.Success -> breedList.data?.let { bindListData(breedList = it) }
+        }
     }
 
     private fun init() {
         breedListViewModel.getBreeds()
-    }
-
-    private fun initRecyclerView() {
-
-        breedListViewModel.breedList.observe(viewLifecycleOwner, Observer {
-            let {
-                breedListAdapter.mDogBreedList
-            }
-        })
     }
 }

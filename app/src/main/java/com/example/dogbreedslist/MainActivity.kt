@@ -9,6 +9,7 @@ import androidx.navigation.NavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.dogbreedslist.databinding.ActivityMainBinding
 import com.example.dogbreedslist.ui.navigation.setupWithNavController
+import com.example.dogbreedslist.utils.observe
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
