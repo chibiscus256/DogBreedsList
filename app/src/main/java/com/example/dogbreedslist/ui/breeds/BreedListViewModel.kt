@@ -7,15 +7,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.dogbreedslist.data.DataRepository
 import com.example.dogbreedslist.data.Resource
-import com.example.dogbreedslist.data.network.dto.BreedList
+import com.example.dogbreedslist.data.network.dto.BreedsResponse
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.collect
 
 
 class BreedListViewModel @ViewModelInject constructor(private val dataRepository: DataRepository) : ViewModel() {
 
-    private val _breedList = MutableLiveData<Resource<BreedList>>()
-    val breedList: LiveData<Resource<BreedList>> = _breedList
+    private val _breedList = MutableLiveData<Resource<BreedsResponse>>()
+    val breedsResponse: LiveData<Resource<BreedsResponse>> = _breedList
 
     fun getBreeds() {
         viewModelScope.launch {

@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.dogbreedslist.ui.breeds.breedadapter.BreedAdapter
 import com.example.dogbreedslist.data.Resource
-import com.example.dogbreedslist.data.network.dto.BreedList
+import com.example.dogbreedslist.data.network.dto.BreedsResponse
 import com.example.dogbreedslist.databinding.FragmentBreedlistBinding
 import com.example.dogbreedslist.utils.autoCleared
 import com.example.dogbreedslist.utils.observe
@@ -20,7 +20,6 @@ class BreedListFragment : Fragment() {
     private val breedListViewModel: BreedListViewModel by activityViewModels()
 
     var binding: FragmentBreedlistBinding by autoCleared()
-    private lateinit var breedListAdapter: BreedAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,7 +30,7 @@ class BreedListFragment : Fragment() {
         context ?: return binding.root
 
         setHasOptionsMenu(true)
-        observe(breedListViewModel.breedList, ::handleList)
+        observe(breedListViewModel.breedsResponse, ::handleList)
         return binding.root
     }
 
@@ -41,16 +40,16 @@ class BreedListFragment : Fragment() {
         init()
     }
 
-    private fun bindListData(breedList: BreedList) {
-        if (!(breedList.breeds.isNullOrEmpty())) {
-            val breedsAdapter = BreedAdapter(breedListViewModel, breedList.breeds)
+    private fun bindListData(breedsResponse: BreedsResponse) {
+        if (!(breedsResponse.breeds.isNullOrEmpty())) {
+            val breedsAdapter = BreedAdapter(breedListViewModel, breedsResponse.breeds)
             binding.breedList.adapter = breedsAdapter
         }
     }
 
-    private fun handleList(breedList: Resource<BreedList>) {
-        when (breedList) {
-            is Resource.Success -> breedList.data?.let { bindListData(breedList = it) }
+    private fun handleList(breedsResponse: Resource<BreedsResponse>) {
+        when (breedsResponse) {
+            is Resource.Success -> breedsResponse.data?.let { bindListData(breedsResponse = it) }
         }
     }
 

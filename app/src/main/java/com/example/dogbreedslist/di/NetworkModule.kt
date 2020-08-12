@@ -1,9 +1,11 @@
 package com.example.dogbreedslist.di
 
 import com.example.dogbreedslist.BuildConfig
+import com.example.dogbreedslist.data.network.jsonadapters.BreedsMoshiAdapter
 import com.example.dogbreedslist.data.network.service.DogService
 import com.example.dogbreedslist.data.network.service.DogService.Companion.ENDPOINT
 import com.facebook.stetho.okhttp3.StethoInterceptor
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,7 +27,7 @@ object NetworkModule {
         return Retrofit.Builder()
             .baseUrl(ENDPOINT)
             .client(okhttpClient)
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(Moshi.Builder().add(BreedsMoshiAdapter()).build()))
             .build()
             .create(DogService::class.java)
     }

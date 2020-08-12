@@ -1,8 +1,8 @@
 package com.example.dogbreedslist.data.network
 
 import com.example.dogbreedslist.data.Resource
-import com.example.dogbreedslist.data.network.dto.BreedList
+import com.example.dogbreedslist.data.network.dto.BreedsResponse
 
 internal interface RemoteDataSource{
-    suspend fun requestBreeds(): Resource<BreedList>
+    suspend fun requestBreeds(): Resource<BreedsResponse>
 }

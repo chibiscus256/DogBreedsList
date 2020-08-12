@@ -25,7 +25,7 @@
         android:layout_marginBottom="@dimen/card_bottom_margin"
         android:onClick="@{clickListener}"
         app:cardElevation="@dimen/card_elevation"
-        app:cardBackgroundColor="@color/dbl_yellow_500"
+        app:cardBackgroundColor="@color/dbl_yellow_300"
         app:cardPreventCornerOverlap="false">
 
             <TextView

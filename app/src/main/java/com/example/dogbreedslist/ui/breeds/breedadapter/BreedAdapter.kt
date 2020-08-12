@@ -10,19 +10,16 @@ import com.example.dogbreedslist.data.local.breeds.BreedData
 class BreedAdapter(private val viewModel: BreedListViewModel, private val breeds: List<Breed>) :
     ListAdapter<BreedData, BreedViewHolder>((BreedDiffCallback())) {
 
-    val mDogBreedList: ArrayList<Breed> = ArrayList()
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BreedViewHolder {
         return BreedViewHolder.from(parent)
     }
 
     override fun getItemCount(): Int {
-        return mDogBreedList.size
+        return breeds.size
     }
 
     override fun onBindViewHolder(holderBreed: BreedViewHolder, position: Int) {
-        val item = getItem(position)
-        holderBreed.bind(viewModel, mDogBreedList[position])
+        holderBreed.bind(viewModel, breeds[position])
     }
 }
 

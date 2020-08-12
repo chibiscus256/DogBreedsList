@@ -4,5 +4,4 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class BreedList(@Json(name = "message")
-                  val breeds: List<Breed> = listOf())
+data class BreedsResponse(@Json(name = "message") val breeds: List<Breed>? = listOf())

@@ -23,9 +23,7 @@ class BreedViewHolder private constructor(val binding: ItemBreedBinding) :
         fun from(parent: ViewGroup): BreedViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
             val binding = ItemBreedBinding.inflate(layoutInflater, parent, false)
-            return BreedViewHolder(
-                binding
-            )
+            return BreedViewHolder(binding)
         }
     }
 }
