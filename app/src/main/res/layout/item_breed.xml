@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="breedViewModel"
-            type="com.example.dogbreedslist.breeds.BreedListViewModel"/>
+            name="breedListViewModel"
+            type="com.example.dogbreedslist.ui.breeds.BreedListViewModel" />
 
         <variable
             name="breed"
@@ -25,10 +25,11 @@
         android:layout_marginBottom="@dimen/card_bottom_margin"
         android:onClick="@{clickListener}"
         app:cardElevation="@dimen/card_elevation"
+        app:cardBackgroundColor="@color/dbl_yellow_500"
         app:cardPreventCornerOverlap="false">
 
             <TextView
-                android:id="@+id/plant_item_title"
+                android:id="@+id/breed_item_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_normal"

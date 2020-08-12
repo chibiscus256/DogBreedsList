@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/favoritesFragment"
-        android:name="com.example.dogbreedslist.favorites.FavoritesListFragment"
+        android:name="com.example.dogbreedslist.ui.favorites.FavoritesListFragment"
         android:label="@string/title_favorites"
         tools:layout="@layout/fragment_favorites">
         <action
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/favoritePhotosFragment"
-        android:name="com.example.dogbreedslist.favorites.FavoritesPhotosFragment"
+        android:name="com.example.dogbreedslist.ui.favorites.FavoritesPhotosFragment"
         android:label="@string/title_favorite_photos"
         tools:layout="@layout/fragment_favorite_photos"/>
 </navigation>

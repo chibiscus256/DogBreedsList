@@ -1,4 +1,4 @@
-package com.example.dogbreedslist.breeds
+package com.example.dogbreedslist.ui.breeds
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,8 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
-import com.example.dogbreedslist.breeds.breedadapter.BreedAdapter
+import com.example.dogbreedslist.ui.breeds.breedadapter.BreedAdapter
 import com.example.dogbreedslist.data.Resource
 import com.example.dogbreedslist.data.network.dto.BreedList
 import com.example.dogbreedslist.databinding.FragmentBreedlistBinding

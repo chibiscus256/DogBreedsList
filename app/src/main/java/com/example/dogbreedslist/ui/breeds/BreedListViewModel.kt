@@ -1,4 +1,4 @@
-package com.example.dogbreedslist.breeds
+package com.example.dogbreedslist.ui.breeds
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData

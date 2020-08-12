@@ -2,11 +2,12 @@
 <color name="dbl_black">#de000000</color>
 <color name="dbl_gray_50">#FAFAFA</color>
 <color name="dbl_gray_50_a600">#99fafafa</color>
-<color name="dbl_green_300">#6dc790</color>
-<color name="dbl_green_500">#49bb79</color>
-<color name="dbl_green_700">#005d2b</color>
+<color name="dbl_purple_300">#E181DC</color>
+<color name="dbl_purple_500">#CA4CD3</color>
+<color name="dbl_purple_700">#740B9A</color>
 <color name="dbl_green_900">#1a231e</color>
 <color name="dbl_white">#deffffff</color>
 <color name="dbl_yellow_300">#f8f99f</color>
 <color name="dbl_yellow_500">#ffff63</color>
+    <color name="bottom_nav_bar_color">#D5A13E</color>
 </resources>

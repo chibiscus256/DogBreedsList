@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.example.dogbreedslist.breeds.BreedListViewModel"/>
+            type="com.example.dogbreedslist.ui.breeds.BreedListViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +19,8 @@
             android:layout_height="match_parent"
             android:clipToPadding="false"
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-            tools:context="com.example.dogbreedslist.MainActivity" />
+            tools:context="com.example.dogbreedslist.MainActivity"
+            tools:listitem="@layout/item_breed"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/pb_loading"

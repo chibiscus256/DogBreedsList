@@ -1,4 +1,4 @@
-package com.example.dogbreedslist.breeds
+package com.example.dogbreedslist.ui.breeds
 
 import android.os.Bundle
 import android.view.LayoutInflater

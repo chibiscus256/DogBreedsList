@@ -10,6 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/thistle_pattern"
         android:orientation="vertical"
         tools:context="com.example.dogbreedslist.MainActivity">
 
@@ -29,6 +30,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/bottom_nav" />
+            app:menu="@menu/bottom_nav"
+            android:background="@color/dbl_yellow_300"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

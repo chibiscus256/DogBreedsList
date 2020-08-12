@@ -1,4 +1,4 @@
-package com.example.dogbreedslist.favorites
+package com.example.dogbreedslist.ui.favorites
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
