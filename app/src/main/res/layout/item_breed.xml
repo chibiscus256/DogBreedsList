@@ -29,11 +29,11 @@
         app:cardPreventCornerOverlap="false">
 
             <TextView
-                android:id="@+id/breed_item_title"
-                android:layout_width="0dp"
+                android:id="@+id/breed_item"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_normal"
-                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginBottom="@dimen/margin_small"
+                android:layout_marginTop="@dimen/margin_small"
                 android:text="@{breed.name}"
                 android:textAppearance="?attr/textAppearanceListItem"
                 android:gravity="center_horizontal"

@@ -45,5 +45,4 @@ object NetworkModule {
             level =
                 if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
         }
-
 }

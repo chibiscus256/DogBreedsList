@@ -4,33 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewmodel"
-            type="com.example.dogbreedslist.ui.breeds.BreedListViewModel"/>
+            type="com.example.dogbreedslist.ui.breeds.BreedListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/cl_breed_list">
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Konichiwa"
+                android:textSize="30dp" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/breed_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-            tools:context="com.example.dogbreedslist.MainActivity"
-            tools:listitem="@layout/item_breed"/>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/pb_loading"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clickable="true"
-            android:visibility="visible"
-            tools:visibility="visible">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/breed_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                tools:listitem="@layout/item_breed" />
 
             <ProgressBar
+                android:id="@+id/pb_loading"
                 style="?android:attr/progressBarStyleLarge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -40,6 +39,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
