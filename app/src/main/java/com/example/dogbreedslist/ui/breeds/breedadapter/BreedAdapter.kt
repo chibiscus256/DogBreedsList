@@ -18,8 +18,8 @@ class BreedAdapter(private val viewModel: BreedListViewModel, private val breeds
         return breeds.size
     }
 
-    override fun onBindViewHolder(holderBreed: BreedViewHolder, position: Int) {
-        holderBreed.bind(viewModel, breeds[position])
+    override fun onBindViewHolder(viewHolderBreed: BreedViewHolder, position: Int) {
+        viewHolderBreed.bind(viewModel, breeds[position])
     }
 }
 

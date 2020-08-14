@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupBottomNavigationBar() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
-
         val navGraphIds = listOf(R.navigation.breeds, R.navigation.favorites)
 
         // Setup the bottom navigation view with a list of navigation graphs
