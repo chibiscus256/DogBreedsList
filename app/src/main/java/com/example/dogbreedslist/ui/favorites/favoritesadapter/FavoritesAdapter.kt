@@ -12,9 +12,10 @@ import com.example.dogbreedslist.ui.favorites.FavoritesViewModel
 import kotlinx.android.synthetic.main.item_breed.view.*
 
 class FavoritesAdapter(
-    private var favoritesViewModel: FavoritesViewModel,
-    private var favorites: List<FavoritesData>
+    private var favoritesViewModel: FavoritesViewModel
 ) : RecyclerView.Adapter<FavoritesViewHolder>() {
+
+    private var favorites = ArrayList<FavoritesData>()
 
     private val onItemClickListener: View.OnClickListener =
         View.OnClickListener { TODO("Not yet implemented") }

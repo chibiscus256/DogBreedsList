@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dogbreedslist.R
 import com.example.dogbreedslist.binding.FragmentDataBindingComponent
 import com.example.dogbreedslist.data.Resource
+import com.example.dogbreedslist.data.local.breeds.BreedData
 import com.example.dogbreedslist.data.network.dto.BreedsResponse
 import com.example.dogbreedslist.databinding.FragmentBreedlistBinding
 import com.example.dogbreedslist.ui.breeds.breedadapter.BreedAdapter
@@ -24,9 +25,9 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class BreedListFragment : Fragment() {
 
+    private val breedList  = mutableListOf<BreedData>()
     private val breedListViewModel: BreedListViewModel by activityViewModels()
     var binding: FragmentBreedlistBinding by autoCleared()
-    var adapter by autoCleared<BreedAdapter>()
     var dataBindingComponent: DataBindingComponent = FragmentDataBindingComponent(this)
 
     override fun onCreateView(
@@ -59,7 +60,7 @@ class BreedListFragment : Fragment() {
 
     private fun bindListData(breedsResponse: BreedsResponse) {
         if (!(breedsResponse.breeds.isNullOrEmpty())) {
-            val breedsAdapter = BreedAdapter(breedListViewModel, breedsResponse.breeds)
+            val breedsAdapter = BreedAdapter(breedListViewModel, breedList)
             binding.breedList.adapter = breedsAdapter
             showDataView(true)
         } else {
@@ -74,10 +75,12 @@ class BreedListFragment : Fragment() {
 
     private fun showDataView(show: Boolean) {
         binding.clBreedList.visibility = if (show) View.VISIBLE else View.GONE
-        binding.pbLoading.toGone()
     }
 
     private fun handleList(breedsResponse: Resource<BreedsResponse>) {
+        breedsResponse.data?.breeds?.map {
+            breedList.add(BreedData(it.key, it.value))
+        }
         when (breedsResponse) {
             is Resource.Loading -> showLoadingView()
             is Resource.Success -> breedsResponse.data?.let { bindListData(breedsResponse = it) }

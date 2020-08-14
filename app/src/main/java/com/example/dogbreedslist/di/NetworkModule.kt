@@ -1,7 +1,6 @@
 package com.example.dogbreedslist.di
 
 import com.example.dogbreedslist.BuildConfig
-import com.example.dogbreedslist.data.network.jsonadapters.BreedsMoshiAdapter
 import com.example.dogbreedslist.data.network.service.DogService
 import com.example.dogbreedslist.data.network.service.DogService.Companion.ENDPOINT
 import com.facebook.stetho.okhttp3.StethoInterceptor
@@ -14,7 +13,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import javax.inject.Inject
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import javax.inject.Singleton
 
 @Module
@@ -23,15 +22,19 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideRetrofit (@API okhttpClient: OkHttpClient): DogService {
+    fun provideRetrofit(@API okhttpClient: OkHttpClient): DogService {
         return Retrofit.Builder()
             .baseUrl(ENDPOINT)
             .client(okhttpClient)
-            .addConverterFactory(MoshiConverterFactory.create(Moshi.Builder().add(BreedsMoshiAdapter()).build()))
+            .addConverterFactory(
+                MoshiConverterFactory.create(
+                    Moshi.Builder().add(KotlinJsonAdapterFactory())
+                        .build()
+                )
+            )
             .build()
             .create(DogService::class.java)
     }
-
     @API
     @Provides
     fun provideOkHttpClient(interceptor: HttpLoggingInterceptor): OkHttpClient =

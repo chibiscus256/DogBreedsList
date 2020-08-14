@@ -1,14 +1,16 @@
 package com.example.dogbreedslist.ui.breeds.breedadapter
 
+import android.util.ArrayMap
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.example.dogbreedslist.data.network.dto.Breed
 import com.example.dogbreedslist.ui.breeds.BreedListViewModel
 import com.example.dogbreedslist.data.local.breeds.BreedData
 
-class BreedAdapter(private val viewModel: BreedListViewModel, private val breeds: List<Breed>) :
-    ListAdapter<BreedData, BreedViewHolder>((BreedDiffCallback())) {
+class BreedAdapter(
+    private val viewModel: BreedListViewModel,
+    private val breeds: List<BreedData>
+) : ListAdapter<BreedData, BreedViewHolder>((BreedDiffCallback())) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BreedViewHolder {
         return BreedViewHolder.from(parent)
@@ -19,6 +21,7 @@ class BreedAdapter(private val viewModel: BreedListViewModel, private val breeds
     }
 
     override fun onBindViewHolder(viewHolderBreed: BreedViewHolder, position: Int) {
+
         viewHolderBreed.bind(viewModel, breeds[position])
     }
 }

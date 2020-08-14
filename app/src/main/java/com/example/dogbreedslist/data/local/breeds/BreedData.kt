@@ -8,6 +8,6 @@ import java.util.*
 @Entity(tableName = "breeds")
 data class BreedData @JvmOverloads constructor(
     @ColumnInfo(name = "name") var name: String = "",
-    @ColumnInfo(name = "subbreeds") var subbreeds: String = "",
+    @ColumnInfo(name = "subbreeds") var subbreeds: List<String> = listOf(),
     @PrimaryKey @ColumnInfo(name = "id") var id: String = UUID.randomUUID().toString()
 )
