@@ -28,7 +28,8 @@ object NetworkModule {
             .client(okhttpClient)
             .addConverterFactory(
                 MoshiConverterFactory.create(
-                    Moshi.Builder().add(KotlinJsonAdapterFactory())
+                    Moshi.Builder()
+                        .add(KotlinJsonAdapterFactory())
                         .build()
                 )
             )

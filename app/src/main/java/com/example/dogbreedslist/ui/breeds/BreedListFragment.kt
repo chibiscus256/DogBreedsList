@@ -78,13 +78,9 @@ class BreedListFragment : Fragment() {
     }
 
     private fun handleList(breedsResponse: Resource<BreedsResponse>) {
-        breedsResponse.data?.breeds?.map {
-            breedList.add(BreedData(it.key, it.value))
-        }
         when (breedsResponse) {
             is Resource.Loading -> showLoadingView()
             is Resource.Success -> breedsResponse.data?.let { bindListData(breedsResponse = it) }
         }
     }
-
 }
