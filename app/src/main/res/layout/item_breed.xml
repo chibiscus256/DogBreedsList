@@ -10,7 +10,7 @@
 
         <variable
             name="breed"
-            type="com.example.dogbreedslist.data.local.breeds.BreedData" />
+            type="com.example.dogbreedslist.data.network.dto.Breed" />
 
         <variable
             name="clickListener"

@@ -6,10 +6,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.dogbreedslist.ui.breeds.BreedListViewModel
 import com.example.dogbreedslist.data.local.breeds.BreedData
+import com.example.dogbreedslist.data.network.dto.Breed
 
 class BreedAdapter(
     private val viewModel: BreedListViewModel,
-    private val breeds: List<BreedData>
+    private val breeds: List<Breed>
 ) : ListAdapter<BreedData, BreedViewHolder>((BreedDiffCallback())) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BreedViewHolder {
