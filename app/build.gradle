@@ -94,7 +94,7 @@ dependencies {
     // Retrofit 2 - Networking
     implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
     implementation "com.squareup.retrofit2:converter-moshi:$rootProject.retrofitVersion"
-
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
 
     //Moshi
     implementation "com.squareup.moshi:moshi-kotlin:$rootProject.moshiVersion"
