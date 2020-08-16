@@ -1,6 +1,5 @@
 package com.example.dogbreedslist.data.network.dto
 
-import com.google.gson.annotations.SerializedName
-import org.json.JSONObject
+import com.squareup.moshi.Json
 
-data class BreedsResponse(@SerializedName(value = "message") val breeds: JSONObject?)
+data class BreedsResponse(@Json(name = "message") val breeds: Map<String, List<String>>)

@@ -4,6 +4,7 @@ import com.example.dogbreedslist.data.Resource
 import com.example.dogbreedslist.data.network.dto.BreedsResponse
 import com.example.dogbreedslist.data.network.service.DogService
 import com.example.dogbreedslist.data.Error.Companion.NETWORK_ERROR
+import com.example.dogbreedslist.data.network.dto.Breed
 import retrofit2.Response
 import java.io.IOException
 import javax.inject.Inject
@@ -12,10 +13,16 @@ class RemoteData @Inject constructor(
     private val dogService : DogService
 ) : RemoteDataSource {
 
-    override suspend fun requestBreeds(): Resource<BreedsResponse> {
+    // TODO: 17.08.2020 refactor to human look
+    override suspend fun requestBreeds(): Resource<List<Breed>> {
         return when (val response = processCall(dogService::getBreedList)) {
             is BreedsResponse -> {
-                Resource.Success(response)
+                Resource.Success(response.breeds.flatMap { (breed, subBreeds) ->
+                    subBreeds.ifEmpty { listOf(null) }
+                        .map { subBreed ->
+                            Breed(breed, subBreeds)
+                        }
+                })
             }
             else -> {
                 Resource.DataError(errorCode = response as Int)

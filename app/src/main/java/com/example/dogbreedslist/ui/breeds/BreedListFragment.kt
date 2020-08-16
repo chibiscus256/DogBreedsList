@@ -13,6 +13,7 @@ import com.example.dogbreedslist.R
 import com.example.dogbreedslist.binding.FragmentDataBindingComponent
 import com.example.dogbreedslist.data.Resource
 import com.example.dogbreedslist.data.local.breeds.BreedData
+import com.example.dogbreedslist.data.network.dto.Breed
 import com.example.dogbreedslist.data.network.dto.BreedsResponse
 import com.example.dogbreedslist.databinding.FragmentBreedlistBinding
 import com.example.dogbreedslist.ui.breeds.breedadapter.BreedAdapter
@@ -58,8 +59,8 @@ class BreedListFragment : Fragment() {
         breedListViewModel.getBreeds()
     }
 
-    private fun bindListData(breedsResponse: BreedsResponse) {
-        if (breedsResponse.breeds != null) {
+    private fun bindListData(breedsResponse: List<Breed>) {
+        if (!breedsResponse.isNullOrEmpty()) {
             val breedsAdapter = BreedAdapter(breedListViewModel, breedList)
             binding.breedList.adapter = breedsAdapter
             showDataView(true)
@@ -77,7 +78,7 @@ class BreedListFragment : Fragment() {
         binding.clBreedList.visibility = if (show) View.VISIBLE else View.GONE
     }
 
-    private fun handleList(breedsResponse: Resource<BreedsResponse>) {
+    private fun handleList(breedsResponse: Resource<List<Breed>>) {
         when (breedsResponse) {
             is Resource.Loading -> showLoadingView()
             is Resource.Success -> breedsResponse.data?.let { bindListData(breedsResponse = it) }
