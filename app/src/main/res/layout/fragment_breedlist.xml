@@ -13,13 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Konichiwa"
-            android:textSize="30dp" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_breed_list"
         android:layout_width="match_parent"

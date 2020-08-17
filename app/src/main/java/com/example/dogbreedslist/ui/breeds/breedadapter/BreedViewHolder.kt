@@ -15,8 +15,18 @@ class BreedViewHolder private constructor(val binding: ItemBreedBinding) :
         binding.apply{
             binding.breedListViewModel = viewModel
             breed = item
+            setClickListener { openSubbreeds(breed.subbreeds.isNullOrEmpty()) }
             executePendingBindings()
         }
+    }
+
+    fun openSubbreeds(isSubbreedsNotExist: Boolean){
+        if (isSubbreedsNotExist) openDogsPhotos()
+
+    }
+
+    fun openDogsPhotos(){
+
     }
 
     companion object {
