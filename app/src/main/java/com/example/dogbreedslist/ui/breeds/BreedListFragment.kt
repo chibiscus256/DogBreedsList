@@ -12,9 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dogbreedslist.R
 import com.example.dogbreedslist.binding.FragmentDataBindingComponent
 import com.example.dogbreedslist.data.Resource
-import com.example.dogbreedslist.data.local.breeds.BreedData
 import com.example.dogbreedslist.data.network.dto.Breed
-import com.example.dogbreedslist.data.network.dto.BreedsResponse
 import com.example.dogbreedslist.databinding.FragmentBreedlistBinding
 import com.example.dogbreedslist.ui.breeds.breedadapter.BreedAdapter
 import com.example.dogbreedslist.utils.autoCleared
@@ -26,7 +24,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class BreedListFragment : Fragment() {
 
-    private val breedList  = mutableListOf<BreedData>()
     private val breedListViewModel: BreedListViewModel by activityViewModels()
     var binding: FragmentBreedlistBinding by autoCleared()
     var dataBindingComponent: DataBindingComponent = FragmentDataBindingComponent(this)
@@ -75,6 +72,7 @@ class BreedListFragment : Fragment() {
     }
 
     private fun showDataView(show: Boolean) {
+        binding.pbLoading.toGone()
         binding.clBreedList.visibility = if (show) View.VISIBLE else View.GONE
     }
 
