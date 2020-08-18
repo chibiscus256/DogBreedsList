@@ -12,4 +12,5 @@
     <string name="cd_list">List of breeds</string>
     <string name="title_breed_photos">Breed photos</string>
     <string name="title_favorite_photos">Favorite photos</string>
+    <string name="title_subbreeds">subbreeds</string>
 </resources>

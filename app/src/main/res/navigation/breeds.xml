@@ -12,9 +12,23 @@
         android:label="@string/title_breeds"
         tools:layout="@layout/fragment_breedlist">
         <action
-            android:id="@+id/action_title_to_about"
+            android:id="@+id/action_breed_to_subbreed"
+            app:destination="@id/subbreedsFragment"/>
+        <action
+            android:id="@+id/action_breed_to_photos"
             app:destination="@id/dogsFragment"/>
     </fragment>
+
+    <fragment
+        android:id="@+id/subbreedsFragment"
+        android:name="com.example.dogbreedslist.ui.breeds.DogsPhotosFragment"
+        android:label="@string/title_subbreeds"
+        tools:layout="@layout/fragment_breedlist">
+        <action
+            android:id="@+id/action_breed_to_photos"
+            app:destination="@id/dogsFragment"/>
+    </fragment>
+
     <fragment
         android:id="@+id/dogsFragment"
         android:name="com.example.dogbreedslist.ui.breeds.DogsPhotosFragment"

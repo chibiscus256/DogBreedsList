@@ -26,7 +26,6 @@ class BreedListFragment : Fragment() {
 
     private val breedListViewModel: BreedListViewModel by activityViewModels()
     var binding: FragmentBreedlistBinding by autoCleared()
-    var dataBindingComponent: DataBindingComponent = FragmentDataBindingComponent(this)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,8 +36,7 @@ class BreedListFragment : Fragment() {
             inflater,
             R.layout.fragment_breedlist,
             container,
-            false,
-            dataBindingComponent
+            false
         )
         context ?: return binding.root
         observe(breedListViewModel.breedsResponse, ::handleList)
