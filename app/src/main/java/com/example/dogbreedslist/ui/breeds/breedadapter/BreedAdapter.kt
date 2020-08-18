@@ -1,6 +1,5 @@
 package com.example.dogbreedslist.ui.breeds.breedadapter
 
-import android.util.ArrayMap
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -22,7 +21,6 @@ class BreedAdapter(
     }
 
     override fun onBindViewHolder(viewHolderBreed: BreedViewHolder, position: Int) {
-
         viewHolderBreed.bind(viewModel, breeds[position])
     }
 }

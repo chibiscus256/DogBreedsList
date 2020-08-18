@@ -13,7 +13,6 @@ class RemoteData @Inject constructor(
     private val dogService: DogService
 ) : RemoteDataSource {
 
-    // TODO: 17.08.2020 refactor to human look
     override suspend fun requestBreeds(): Resource<List<Breed>> {
         return when (val response = processCall(dogService::getBreedList)) {
             is BreedsResponse -> {

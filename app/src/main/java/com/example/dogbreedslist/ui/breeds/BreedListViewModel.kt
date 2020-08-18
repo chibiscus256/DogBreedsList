@@ -11,6 +11,9 @@ import com.example.dogbreedslist.data.network.dto.Breed
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
+/**
+ * Shared ViewModel for breeds and subbreeds
+ */
 class BreedListViewModel @ViewModelInject constructor(private val dataRepository: DataRepository) : ViewModel() {
 
     private val _breedList = MutableLiveData<Resource<List<Breed>>>()

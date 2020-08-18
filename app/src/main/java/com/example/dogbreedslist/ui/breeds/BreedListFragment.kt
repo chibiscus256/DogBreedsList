@@ -4,13 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingComponent
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dogbreedslist.R
-import com.example.dogbreedslist.binding.FragmentDataBindingComponent
 import com.example.dogbreedslist.data.Resource
 import com.example.dogbreedslist.data.network.dto.Breed
 import com.example.dogbreedslist.databinding.FragmentBreedlistBinding
