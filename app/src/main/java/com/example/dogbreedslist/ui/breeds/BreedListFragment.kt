@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dogbreedslist.R
 import com.example.dogbreedslist.data.Resource
@@ -22,7 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class BreedListFragment : Fragment() {
 
-    private val breedListViewModel: BreedListViewModel by activityViewModels()
+    internal val breedListViewModel: BreedListViewModel by activityViewModels()
     var binding: FragmentBreedlistBinding by autoCleared()
 
     override fun onCreateView(

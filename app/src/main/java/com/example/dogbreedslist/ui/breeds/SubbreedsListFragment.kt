@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dogbreedslist.R
 import com.example.dogbreedslist.databinding.FragmentBreedlistBinding
 import com.example.dogbreedslist.utils.autoCleared
-import com.example.dogbreedslist.utils.observe
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,6 +34,7 @@ class SubbreedsListFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val breedListViewModel = ViewModelProvider(this).get(BreedListViewModel::class.java)
         initRecyclerView()
     }
 
