@@ -13,6 +13,10 @@
             type="com.example.dogbreedslist.data.network.dto.Breed" />
 
         <variable
+            name="subbreed"
+            type="String" />
+
+        <variable
             name="clickListener"
             type="android.view.View.OnClickListener"/>
     </data>

@@ -6,5 +6,5 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class Breed(
     @Json(name = "name") var name: String? = "",
-    @Json(name = "subbreeds") var subbreeds: List<String?> = listOf()
+    @Json(name = "subbreeds") var subbreeds: List<String>? = listOf()
 )

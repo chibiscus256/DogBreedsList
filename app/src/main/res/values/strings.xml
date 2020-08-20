@@ -6,11 +6,11 @@
     <string name="dog_item_title">Doge</string>
     <string name="no_internet">Please check your internet connection</string>
     <string name="network_error">Network error, could get data,please try again!</string>
-    <string name="title_breeds">List</string>
+    <string name="title_breeds">Breeds</string>
     <string name="title_favorites">Favorites</string>
     <string name="cd_favorites">Favorite photos</string>
     <string name="cd_list">List of breeds</string>
     <string name="title_breed_photos">Breed photos</string>
     <string name="title_favorite_photos">Favorite photos</string>
-    <string name="title_subbreeds">subbreeds</string>
+    <string name="title_subbreeds">Subbreeds</string>
 </resources>

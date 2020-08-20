@@ -30,10 +30,11 @@ class BreedViewHolder private constructor(val binding: ItemBreedBinding) :
             BreedListFragmentDirections.actionBreedToSubbreed(name)
         }
         direction?.let { view.findNavController().navigate(it) }
+        binding.breedListViewModel?._subbreedClicked?.postValue(breed.subbreeds)
     }
 
     fun openDogsPhotos(breed: Breed, view: View) {
-        val direction = breed.name?.let {name  -> BreedListFragmentDirections.actionBreedToPhotos(name)}
+        val direction = breed.name?.let {name -> BreedListFragmentDirections.actionBreedToPhotos(name)}
         direction?.let { view.findNavController().navigate(it) }
     }
 
