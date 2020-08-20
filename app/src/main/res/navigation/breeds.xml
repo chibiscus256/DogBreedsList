@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/list"
-    app:startDestination="@+id/breedsFragment">
+    app:startDestination="@id/breedListFragment"
+    android:id="@+id/list" >
 
     <fragment
-        android:id="@+id/breedsFragment"
+        android:id="@+id/breedListFragment"
         android:name="com.example.dogbreedslist.ui.breeds.BreedListFragment"
         android:label="@string/title_breeds"
         tools:layout="@layout/fragment_breedlist">
+
         <action
             android:id="@+id/action_breed_to_subbreed"
-            app:destination="@id/subbreedsFragment"/>
+            app:destination="@id/subbreedsFragment" />
+
         <action
             android:id="@+id/action_breed_to_photos"
-            app:destination="@id/dogsFragment"/>
+            app:destination="@id/dogsFragment" />
     </fragment>
 
     <fragment
@@ -24,14 +25,21 @@
         android:name="com.example.dogbreedslist.ui.breeds.DogsPhotosFragment"
         android:label="@string/title_subbreeds"
         tools:layout="@layout/fragment_breedlist">
+        <argument
+            android:name="name"
+            app:argType="string" />
         <action
-            android:id="@+id/action_breed_to_photos"
-            app:destination="@id/dogsFragment"/>
+            android:id="@+id/action_subbreed_to_photos"
+            app:destination="@id/dogsFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/dogsFragment"
         android:name="com.example.dogbreedslist.ui.breeds.DogsPhotosFragment"
         android:label="@string/title_breed_photos"
-        tools:layout="@layout/fragment_dog"/>
-</navigation>
+        tools:layout="@layout/fragment_dog">
+    <argument
+        android:name="name"
+        app:argType="string" />
+</fragment>
+    </navigation>
