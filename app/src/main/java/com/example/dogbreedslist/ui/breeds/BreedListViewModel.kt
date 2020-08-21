@@ -16,8 +16,6 @@ class BreedListViewModel @ViewModelInject constructor(private val dataRepository
     internal val _breedList = MutableLiveData<Resource<List<Breed>>>()
     val breedsResponse: LiveData<Resource<List<Breed>>> = _breedList
 
-    val _subbreedClicked =  MutableLiveData<List<String>>()
-
     fun getBreeds() {
         viewModelScope.launch {
             _breedList.value = Resource.Loading()

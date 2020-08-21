@@ -1,5 +1,6 @@
 package com.example.dogbreedslist.ui.breeds.breedadapter
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,9 +8,10 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dogbreedslist.data.network.dto.Breed
 import com.example.dogbreedslist.databinding.ItemBreedBinding
-import com.example.dogbreedslist.ui.breeds.BreedListFragment
 import com.example.dogbreedslist.ui.breeds.BreedListFragmentDirections
 import com.example.dogbreedslist.ui.breeds.BreedListViewModel
+import com.example.dogbreedslist.utils.TransferUtils
+import java.util.ArrayList
 
 class BreedViewHolder private constructor(val binding: ItemBreedBinding) :
     RecyclerView.ViewHolder(binding.root) {
@@ -26,16 +28,16 @@ class BreedViewHolder private constructor(val binding: ItemBreedBinding) :
 
     fun navigateToSubbreeds(isSubbreedsNotExist: Boolean, breed: Breed, view: View) {
         if (isSubbreedsNotExist) openDogsPhotos(breed, view)
-        val direction = breed.name?.let { name ->
-            BreedListFragmentDirections.actionBreedToSubbreed(name)
+        else {
+            val args = breed.subbreeds!!.toTypedArray()
+            val direction = BreedListFragmentDirections.actionBreedToSubbreed(args)
+            view.findNavController().navigate(direction)
         }
-        direction?.let { view.findNavController().navigate(it) }
-        binding.breedListViewModel?._subbreedClicked?.postValue(breed.subbreeds)
     }
 
     fun openDogsPhotos(breed: Breed, view: View) {
-        val direction = breed.name?.let {name -> BreedListFragmentDirections.actionBreedToPhotos(name)}
-        direction?.let { view.findNavController().navigate(it) }
+        val direction = breed.name.let { name -> BreedListFragmentDirections.actionBreedToPhotos(name)}
+        direction.let { view.findNavController().navigate(it) }
     }
 
     companion object {

@@ -1,6 +1,5 @@
 package com.example.dogbreedslist.ui.breeds
 
-import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.os.Bundle
@@ -8,23 +7,29 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dogbreedslist.R
 import com.example.dogbreedslist.databinding.FragmentBreedlistBinding
-import com.example.dogbreedslist.databinding.FragmentSubbreedlistBinding
 import com.example.dogbreedslist.ui.breeds.breedadapter.SubBreedAdapter
+import com.example.dogbreedslist.utils.TransferUtils
 import com.example.dogbreedslist.utils.autoCleared
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.ArrayList
 
 @AndroidEntryPoint
 class SubbreedsListFragment : Fragment() {
 
-    private val breedListViewModel = ViewModelProvider(this).get(BreedListViewModel::class.java)
-    var binding: FragmentSubbreedlistBinding by autoCleared()
+    var binding: FragmentBreedlistBinding by autoCleared()
+    lateinit var breedListViewModel: BreedListViewModel
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+    }
 
     override fun onResume() {
         super.onResume()
@@ -49,6 +54,10 @@ class SubbreedsListFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         Log.i(TAG, "subbreeds onDestroy")
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?){
+        super.onCreate(savedInstanceState)
 
     }
 
@@ -59,12 +68,13 @@ class SubbreedsListFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(
             inflater,
-            R.layout.fragment_subbreedlist,
+            R.layout.fragment_breedlist,
             container,
             false
         )
         context ?: return binding.root
-        println("============================================================================")
+        breedListViewModel = ViewModelProvider(this).get(BreedListViewModel::class.java)
+
         return binding.root
     }
 
@@ -74,10 +84,11 @@ class SubbreedsListFragment : Fragment() {
     }
 
     private fun initRecyclerView() {
+        val args = arguments?.getStringArray("subbreeds")
+        val list= args?.toList()
         val layoutManager = LinearLayoutManager(requireContext())
         binding.breedList.layoutManager = layoutManager
-        val subBreeds = breedListViewModel._subbreedClicked.value
-        val breedsAdapter = subBreeds?.let { SubBreedAdapter(breedListViewModel, it) }
+        val breedsAdapter = SubBreedAdapter(breedListViewModel, list as List<String>)
         binding.breedList.adapter = breedsAdapter
     }
 

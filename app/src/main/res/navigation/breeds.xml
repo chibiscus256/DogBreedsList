@@ -26,8 +26,8 @@
         android:label="@string/title_subbreeds"
         tools:layout="@layout/fragment_breedlist">
         <argument
-            android:name="name"
-            app:argType="string" />
+            android:name="subbreeds"
+            app:argType="string[]" />
         <action
             android:id="@+id/action_subbreed_to_photos"
             app:destination="@id/dogsFragment" />
