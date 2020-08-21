@@ -38,14 +38,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_small"
                 android:layout_marginTop="@dimen/margin_small"
-                android:text="@{breed.name}"
+                android:text="Iggy"
                 android:textAppearance="?attr/textAppearanceListItem"
                 android:gravity="center_horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                tools:text="Iggy"/>
+                tools:text="@{ (subbreed.length() &lt; 1) ? breed.name : subbreed}"/>
 
     </androidx.cardview.widget.CardView>
 
