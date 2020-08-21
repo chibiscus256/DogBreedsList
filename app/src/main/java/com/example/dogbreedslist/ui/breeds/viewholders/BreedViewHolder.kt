@@ -1,6 +1,5 @@
-package com.example.dogbreedslist.ui.breeds.breedadapter
+package com.example.dogbreedslist.ui.breeds.viewholders
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +9,6 @@ import com.example.dogbreedslist.data.network.dto.Breed
 import com.example.dogbreedslist.databinding.ItemBreedBinding
 import com.example.dogbreedslist.ui.breeds.BreedListFragmentDirections
 import com.example.dogbreedslist.ui.breeds.BreedListViewModel
-import com.example.dogbreedslist.utils.TransferUtils
-import java.util.ArrayList
 
 class BreedViewHolder private constructor(val binding: ItemBreedBinding) :
     RecyclerView.ViewHolder(binding.root) {

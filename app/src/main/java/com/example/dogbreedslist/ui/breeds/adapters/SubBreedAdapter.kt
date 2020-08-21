@@ -1,9 +1,9 @@
-package com.example.dogbreedslist.ui.breeds.breedadapter
+package com.example.dogbreedslist.ui.breeds.adapters
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.dogbreedslist.data.network.dto.Breed
 import com.example.dogbreedslist.ui.breeds.BreedListViewModel
+import com.example.dogbreedslist.ui.breeds.viewholders.SubBreedViewHolder
 
 class SubBreedAdapter(private val viewModel: BreedListViewModel,
                       private val subbreeds: List<String>): RecyclerView.Adapter<SubBreedViewHolder>(){

@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.example.dogbreedslist.ui.breeds.DogPhotosViewModel" />
@@ -15,7 +14,7 @@
         android:layout_height="match_parent">
 
         <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewpager"
+            android:id="@+id/photosViewPager"
             android:layout_width="match_parent"
             android:layout_height="350dp"
             app:layout_constraintBottom_toBottomOf="parent"

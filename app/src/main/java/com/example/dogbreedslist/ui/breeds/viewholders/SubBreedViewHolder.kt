@@ -1,13 +1,11 @@
-package com.example.dogbreedslist.ui.breeds.breedadapter
+package com.example.dogbreedslist.ui.breeds.viewholders
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.dogbreedslist.data.network.dto.Breed
 import com.example.dogbreedslist.databinding.ItemBreedBinding
-import com.example.dogbreedslist.ui.breeds.BreedListFragmentDirections
 import com.example.dogbreedslist.ui.breeds.BreedListViewModel
 import com.example.dogbreedslist.ui.breeds.SubbreedsListFragmentDirections
 

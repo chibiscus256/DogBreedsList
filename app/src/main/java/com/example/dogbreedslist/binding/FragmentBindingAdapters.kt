@@ -38,7 +38,7 @@ class FragmentBindingAdapters @Inject constructor(val fragment: Fragment) {
 
 @BindingAdapter ("subbreedsNumber")
 fun setSubbreedsNumber(view: TextView, number: Int){
-    if (number > 0) view.text = "$number subbreeds"
+    if (number > 0) view.text = "${number} subbreeds"
 }
 
 

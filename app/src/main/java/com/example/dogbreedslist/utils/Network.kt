@@ -3,6 +3,7 @@ package com.example.dogbreedslist.utils
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
+import dagger.hilt.android.qualifiers.ApplicationContext
 
 /**
  * Created by AhmedEltaher

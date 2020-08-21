@@ -7,17 +7,33 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.dogbreedslist.R
+import com.example.dogbreedslist.databinding.FragmentDogsPhotosBinding
+import com.example.dogbreedslist.utils.autoCleared
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DogsPhotosFragment : Fragment(){
+class DogsPhotosFragment : Fragment() {
+
+    var binding: FragmentDogsPhotosBinding by autoCleared()
+
+    private lateinit var dogsPhotosViewModel: DogPhotosViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding = FragmentDogsPhotosBinding.inflate(inflater, container, false)
+        initViewPager()
         return super.onCreateView(inflater, container, savedInstanceState)
     }
+
+    private fun initViewPager() {
+        val viewPager = binding.photosViewPager
+
+    }
+
     override fun onResume() {
         super.onResume()
         Log.i(ContentValues.TAG, "photos onResume")

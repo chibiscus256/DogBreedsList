@@ -7,19 +7,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dogbreedslist.R
 import com.example.dogbreedslist.databinding.FragmentBreedlistBinding
-import com.example.dogbreedslist.ui.breeds.breedadapter.SubBreedAdapter
-import com.example.dogbreedslist.utils.TransferUtils
+import com.example.dogbreedslist.ui.breeds.adapters.SubBreedAdapter
 import com.example.dogbreedslist.utils.autoCleared
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.ArrayList
 
 @AndroidEntryPoint
 class SubbreedsListFragment : Fragment() {

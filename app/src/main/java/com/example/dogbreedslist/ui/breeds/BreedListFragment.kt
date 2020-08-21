@@ -7,16 +7,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.dogbreedslist.R
 import com.example.dogbreedslist.data.Resource
 import com.example.dogbreedslist.data.network.dto.Breed
 import com.example.dogbreedslist.databinding.FragmentBreedlistBinding
-import com.example.dogbreedslist.ui.breeds.breedadapter.BreedAdapter
+import com.example.dogbreedslist.ui.breeds.adapters.BreedAdapter
 import com.example.dogbreedslist.utils.autoCleared
 import com.example.dogbreedslist.utils.observe
 import com.example.dogbreedslist.utils.toGone
