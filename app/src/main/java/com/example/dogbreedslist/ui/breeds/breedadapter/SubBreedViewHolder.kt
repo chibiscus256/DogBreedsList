@@ -3,9 +3,13 @@ package com.example.dogbreedslist.ui.breeds.breedadapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.dogbreedslist.data.network.dto.Breed
 import com.example.dogbreedslist.databinding.ItemBreedBinding
+import com.example.dogbreedslist.ui.breeds.BreedListFragmentDirections
 import com.example.dogbreedslist.ui.breeds.BreedListViewModel
+import com.example.dogbreedslist.ui.breeds.SubbreedsListFragmentDirections
 
 class SubBreedViewHolder private constructor(val binding: ItemBreedBinding) :
     RecyclerView.ViewHolder(binding.root) {
@@ -20,8 +24,9 @@ class SubBreedViewHolder private constructor(val binding: ItemBreedBinding) :
         }
     }
 
-    fun openDogsPhotos(subBreed: String, view: View) {
-        //val direction
+    fun openDogsPhotos(subbreed: String, view: View) {
+        val direction = SubbreedsListFragmentDirections.actionSubbreedToPhotos(subbreed)
+        view.findNavController().navigate(direction)
     }
 
     companion object {
