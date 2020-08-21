@@ -9,6 +9,7 @@ import com.example.dogbreedslist.data.network.dto.Breed
 import com.example.dogbreedslist.databinding.ItemBreedBinding
 import com.example.dogbreedslist.ui.breeds.BreedListFragmentDirections
 import com.example.dogbreedslist.ui.breeds.BreedListViewModel
+import com.example.dogbreedslist.utils.TransferUtils
 
 class BreedViewHolder private constructor(val binding: ItemBreedBinding) :
     RecyclerView.ViewHolder(binding.root) {
@@ -26,14 +27,14 @@ class BreedViewHolder private constructor(val binding: ItemBreedBinding) :
     private fun navigateToSubbreeds(isSubbreedsNotExist: Boolean, breed: Breed, view: View) {
         if (isSubbreedsNotExist) openDogsPhotos(breed, view)
         else {
-            val args = breed.subbreeds!!.toTypedArray()
-            val direction = BreedListFragmentDirections.actionBreedToSubbreed(args)
+            val subbreeds = breed.subbreeds!!.toTypedArray()
+            val direction = BreedListFragmentDirections.actionBreedToSubbreed(breedName = breed.name, subbreeds =  subbreeds)
             view.findNavController().navigate(direction)
         }
     }
 
     private fun openDogsPhotos(breed: Breed, view: View) {
-        val direction = breed.name.let { name -> BreedListFragmentDirections.actionBreedToPhotos(name)}
+        val direction = breed.name.let { name -> BreedListFragmentDirections.actionBreedToPhotos(breedName = name, subbreedName = TransferUtils.NO_SUBBREEDS)}
         direction.let { view.findNavController().navigate(it) }
     }
 

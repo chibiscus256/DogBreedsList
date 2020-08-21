@@ -5,6 +5,7 @@ import com.example.dogbreedslist.data.Error.Companion.NETWORK_ERROR
 import com.example.dogbreedslist.data.Error.Companion.NO_INTERNET_CONNECTION
 import com.example.dogbreedslist.data.Resource
 import com.example.dogbreedslist.data.network.dto.Breed
+import com.example.dogbreedslist.data.network.dto.BreedImages
 import com.example.dogbreedslist.data.network.dto.BreedsResponse
 import com.example.dogbreedslist.data.network.service.DogService
 import com.example.dogbreedslist.utils.Network.Utils.isConnected
