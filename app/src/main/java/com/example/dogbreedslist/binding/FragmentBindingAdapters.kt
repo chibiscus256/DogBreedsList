@@ -19,9 +19,11 @@ package com.example.dogbreedslist.binding
 import android.graphics.drawable.Drawable
 import androidx.fragment.app.Fragment
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestListener
+import com.example.dogbreedslist.data.network.dto.Breed
 import javax.inject.Inject
 
 /**
@@ -33,4 +35,10 @@ class FragmentBindingAdapters @Inject constructor(val fragment: Fragment) {
         Glide.with(fragment).load(url).listener(listener).into(imageView)
     }
 }
+
+@BindingAdapter ("subbreedsNumber")
+fun setSubbreedsNumber(view: TextView, number: Int){
+    if (number > 0) view.text = "$number subbreeds"
+}
+
 

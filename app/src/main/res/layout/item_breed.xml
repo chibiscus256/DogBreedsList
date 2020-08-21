@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="breedListViewModel"
             type="com.example.dogbreedslist.ui.breeds.BreedListViewModel" />
@@ -18,35 +19,52 @@
 
         <variable
             name="clickListener"
-            type="android.view.View.OnClickListener"/>
+            type="android.view.View.OnClickListener" />
     </data>
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/card_side_margin"
-        android:layout_marginEnd="@dimen/card_side_margin"
-        android:layout_marginBottom="@dimen/card_bottom_margin"
-        android:onClick="@{clickListener}"
-        app:cardElevation="@dimen/card_elevation"
-        app:cardBackgroundColor="@color/dbl_yellow_300"
-        app:cardPreventCornerOverlap="false">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/card_side_margin"
+            android:layout_marginEnd="@dimen/card_side_margin"
+            android:layout_marginBottom="@dimen/card_bottom_margin"
+            android:onClick="@{clickListener}"
+            app:cardBackgroundColor="@color/dbl_yellow_300"
+            app:cardElevation="@dimen/card_elevation"
+            app:cardPreventCornerOverlap="false">
 
-            <TextView
-                android:id="@+id/breed_item"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_small"
-                android:layout_marginTop="@dimen/margin_small"
-                android:text="Iggy"
-                android:textAppearance="?attr/textAppearanceListItem"
-                android:gravity="center_horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                tools:text="@{ (subbreed.length() &lt; 1) ? breed.name : subbreed}"/>
+                android:layout_height="match_parent"
+                android:padding="@dimen/margin_small">
 
-    </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/breed_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:gravity="start"
+                    android:text="Iggy"
+                    android:textAppearance="?attr/textAppearanceListItem"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="parent"
+                    tools:text="@{ (subbreed.length() &lt; 1) ? breed.name : subbreed}" />
+
+                <TextView
+                    android:id="@+id/nubmer_of_subreeds"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="end"
+                    android:text=""
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.526"
+                    app:subbreedsNumber="@{breed.subbreeds.size()}"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
 
 </layout>

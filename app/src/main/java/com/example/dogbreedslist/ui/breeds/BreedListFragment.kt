@@ -34,9 +34,8 @@ class BreedListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(
+        binding = FragmentBreedlistBinding.inflate(
             inflater,
-            R.layout.fragment_breedlist,
             container,
             false
         )
