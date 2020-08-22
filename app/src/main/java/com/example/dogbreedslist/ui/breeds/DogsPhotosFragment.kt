@@ -31,7 +31,6 @@ class DogsPhotosFragment : Fragment() {
 
     private fun initViewPager() {
         val viewPager = binding.photosViewPager
-
     }
 
     override fun onResume() {

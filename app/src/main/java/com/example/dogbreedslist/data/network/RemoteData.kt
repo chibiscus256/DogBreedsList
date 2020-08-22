@@ -1,14 +1,11 @@
 package com.example.dogbreedslist.data.network
 
-import com.example.dogbreedslist.App
 import com.example.dogbreedslist.data.Error.Companion.NETWORK_ERROR
-import com.example.dogbreedslist.data.Error.Companion.NO_INTERNET_CONNECTION
 import com.example.dogbreedslist.data.Resource
 import com.example.dogbreedslist.data.network.dto.Breed
 import com.example.dogbreedslist.data.network.dto.BreedImages
 import com.example.dogbreedslist.data.network.dto.BreedsResponse
 import com.example.dogbreedslist.data.network.service.DogService
-import com.example.dogbreedslist.utils.Network.Utils.isConnected
 import retrofit2.Response
 import java.io.IOException
 import javax.inject.Inject
@@ -20,12 +17,32 @@ class RemoteData @Inject constructor(
     override suspend fun requestBreeds(): Resource<List<Breed>> {
         return when (val response = processCall(dogService::getBreedList)) {
             is BreedsResponse -> {
-                Resource.Success(data = response.breeds.entries.map { (name, subs) -> Breed(name, subs) })
+                Resource.Success(data = response.breeds.entries.map { (name, subs) ->
+                    Breed(name, subs)
+                })
             }
             else -> {
                 Resource.DataError(errorCode = response as Int)
             }
         }
+    }
+
+    override suspend fun requestBreedImages(breed: String): Resource<BreedImages> {
+        return when (val response = processCall { (dogService::getBreedImages)(breed) }) {
+            is BreedImages -> {
+                Resource.Success(data = response)
+            }
+            else -> {
+                Resource.DataError(errorCode = response as Int)
+            }
+        }
+    }
+
+    override suspend fun requestSubBreedImages(
+        breed: String,
+        subBreed: String
+    ): Resource<BreedImages> {
+        TODO("implementation")
     }
 
     private suspend fun processCall(responseCall: suspend () -> Response<*>): Any? {

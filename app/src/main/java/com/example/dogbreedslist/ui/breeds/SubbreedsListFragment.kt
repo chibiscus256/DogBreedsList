@@ -25,6 +25,7 @@ class SubbreedsListFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        Log.i(TAG, "subbreeds onAttach")
     }
 
     override fun onResume() {
@@ -54,7 +55,6 @@ class SubbreedsListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -70,7 +70,6 @@ class SubbreedsListFragment : Fragment() {
         )
         context ?: return binding.root
         breedListViewModel = ViewModelProvider(this).get(BreedListViewModel::class.java)
-
         return binding.root
     }
 
@@ -90,5 +89,4 @@ class SubbreedsListFragment : Fragment() {
         )
         binding.breedList.adapter = breedsAdapter
     }
-
 }

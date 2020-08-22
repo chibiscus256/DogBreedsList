@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 
 class BreedListViewModel @ViewModelInject constructor(private val dataRepository: DataRepository) : ViewModel() {
 
-    internal val _breedList = MutableLiveData<Resource<List<Breed>>>()
+    private val _breedList = MutableLiveData<Resource<List<Breed>>>()
     val breedsResponse: LiveData<Resource<List<Breed>>> = _breedList
 
     fun getBreeds() {
