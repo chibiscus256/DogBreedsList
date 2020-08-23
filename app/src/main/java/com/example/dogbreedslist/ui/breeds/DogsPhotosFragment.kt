@@ -25,8 +25,9 @@ class DogsPhotosFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentDogsPhotosBinding.inflate(inflater, container, false)
+        context ?: return binding.root
         initViewPager()
-        return super.onCreateView(inflater, container, savedInstanceState)
+        return binding.root
     }
 
     private fun initViewPager() {
