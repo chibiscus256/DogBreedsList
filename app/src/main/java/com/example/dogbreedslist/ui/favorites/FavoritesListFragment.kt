@@ -37,6 +37,5 @@ class FavoritesListFragment : Fragment() {
     private fun initRecyclerView() {
         binding.rvFavoritesList.layoutManager = LinearLayoutManager(context)
         binding.rvFavoritesList.adapter = FavoritesAdapter(favoritesViewModel)
-        favoritesViewModel.prepareItems()
     }
 }

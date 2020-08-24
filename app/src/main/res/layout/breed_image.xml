@@ -2,12 +2,17 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="com.bumptech.glide.request.RequestListener"/>
+        <import type="android.graphics.drawable.Drawable"/>
         <variable
             name="clickListener"
             type="android.view.View.OnClickListener"/>
         <variable
-            name="viewModel"
-            type="com.example.dogbreedslist.ui.breeds.ItemPhotoViewModel"/>
+            name="imageUrl"
+            type="String"/>
+        <variable
+            name="imageRequestListener"
+            type="com.bumptech.glide.request.RequestListener&lt;Drawable>" />
     </data>
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -22,7 +27,8 @@
             android:layout_gravity="center"
             android:scaleType="centerCrop"
             android:src="@drawable/iggy"
-            app:imageUrl="@{photo.urls.small}"/>
+            app:imageRequestListener="@{imageRequestListener}"
+            app:imageUrl="@{imageUrl}"/>
 
     </FrameLayout>
 

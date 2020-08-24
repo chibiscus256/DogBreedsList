@@ -17,7 +17,7 @@ class BreedViewHolder private constructor(val binding: ItemBreedBinding) :
     fun bind(viewModel: BreedListViewModel, item: Breed) {
 
         binding.apply {
-            binding.breedListViewModel = viewModel
+            breedListViewModel = viewModel
             breed = item
             setClickListener { navigateToSubbreeds(breed?.subbreeds.isNullOrEmpty(), item, it) }
             executePendingBindings()
