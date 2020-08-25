@@ -17,6 +17,7 @@ class DogsPhotosAdapter constructor(private val context: Context) : PagerAdapter
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val imageBinding : BreedImageBinding =
             DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.breed_image, container, false)
+        imageBinding.imageUrl = photos[position]
         container.addView(imageBinding.root)
         return imageBinding.root
     }
