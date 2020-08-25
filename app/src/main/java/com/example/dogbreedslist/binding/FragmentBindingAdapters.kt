@@ -22,6 +22,7 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestListener
 import javax.inject.Inject
 
@@ -29,10 +30,13 @@ import javax.inject.Inject
  * Binding adapters that work with a fragment instance.
  */
 
-class FragmentBindingAdapters @Inject constructor(val fragment: Fragment) {
-    @BindingAdapter(value = ["imageUrl", "imageRequestListener"], requireAll = false)
-    fun bindImage(imageView: ImageView, url: String?, listener: RequestListener<Drawable?>?) {
-        Glide.with(fragment).load(url).listener(listener).into(imageView)
+@BindingAdapter("imageUrl")
+fun bindImageFromUrl(view: ImageView, imageUrl: String?) {
+    if (!imageUrl.isNullOrEmpty()) {
+        Glide.with(view.context)
+            .load(imageUrl)
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .into(view)
     }
 }
 

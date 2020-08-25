@@ -22,9 +22,7 @@ constructor(private val remoteData: RemoteData, val localData: LocalData) {
         }
     }
 
-    suspend fun requestBreedImages(breed: String): LiveData<Resource<BreedImages>> {
-        return liveData(Dispatchers.IO) {
-            emit(remoteData.requestBreedImages(breed))
-        }
+    suspend fun requestBreedImages(breed: String): Resource<BreedImages> {
+        return remoteData.requestBreedImages(breed)
     }
 }

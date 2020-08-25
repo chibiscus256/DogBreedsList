@@ -69,7 +69,6 @@ class BreedListFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         Log.i(ContentValues.TAG, "breeds onDestroy")
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -103,7 +102,7 @@ class BreedListFragment : Fragment() {
         binding.clBreedList.visibility = if (show) View.VISIBLE else View.GONE
     }
 
-    fun handleList(breedsResponse: Resource<List<Breed>>) {
+    private fun handleList(breedsResponse: Resource<List<Breed>>) {
         when (breedsResponse) {
             is Resource.Loading -> showLoadingView()
             is Resource.Success -> breedsResponse.data?.let { bindListData(breedsResponse = it) }
