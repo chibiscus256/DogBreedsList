@@ -10,14 +10,18 @@ import com.example.dogbreedslist.data.Resource
 import com.example.dogbreedslist.data.network.dto.BreedImages
 import kotlinx.coroutines.launch
 
-class DogPhotosViewModel @ViewModelInject constructor(val dataRepository: DataRepository) : ViewModel() {
+class DogPhotosViewModel @ViewModelInject constructor(val dataRepository: DataRepository) :
+    ViewModel() {
 
     private val _photos = MutableLiveData<Resource<BreedImages>>()
     val photos: LiveData<Resource<BreedImages>> = _photos
 
-    fun getPhotos(breed: String) {
+    fun getPhotos(breed: String, subbreed: String) {
         viewModelScope.launch {
-            _photos.postValue(dataRepository.requestBreedImages(breed))
+            if (subbreed !== "no subbreeds") {
+                _photos.postValue(dataRepository.requestSubbreedImages(breed, subbreed))
+            } else
+                _photos.postValue(dataRepository.requestBreedImages(breed))
         }
     }
 }

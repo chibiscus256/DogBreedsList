@@ -23,7 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class BreedListFragment : Fragment() {
 
-    val breedListViewModel: BreedListViewModel by activityViewModels()
+    private val breedListViewModel: BreedListViewModel by activityViewModels()
     var binding: FragmentBreedlistBinding by autoCleared()
 
     override fun onCreateView(

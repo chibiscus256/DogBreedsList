@@ -7,7 +7,7 @@ import com.example.dogbreedslist.ui.breeds.viewholders.SubBreedViewHolder
 
 class SubBreedAdapter(private val viewModel: BreedListViewModel,
                       private val subbreeds: List<String>,
-                      private val breedName: String?): RecyclerView.Adapter<SubBreedViewHolder>(){
+                      private val breedName: String): RecyclerView.Adapter<SubBreedViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubBreedViewHolder {
         return SubBreedViewHolder.from(parent)
     }
@@ -17,6 +17,6 @@ class SubBreedAdapter(private val viewModel: BreedListViewModel,
     }
 
     override fun onBindViewHolder(viewHolderBreed: SubBreedViewHolder, position: Int) {
-        viewHolderBreed.bind(viewModel, subbreeds[position], breedName!!)
+        viewHolderBreed.bind(viewModel, subbreeds[position], breedName)
     }
 }

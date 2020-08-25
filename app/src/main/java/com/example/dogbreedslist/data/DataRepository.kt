@@ -25,4 +25,8 @@ constructor(private val remoteData: RemoteData, val localData: LocalData) {
     suspend fun requestBreedImages(breed: String): Resource<BreedImages> {
         return remoteData.requestBreedImages(breed)
     }
+
+    suspend fun requestSubbreedImages(breed: String, subbreed: String): Resource<BreedImages> {
+        return remoteData.requestSubBreedImages(breed, subbreed)
+    }
 }

@@ -19,35 +19,34 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DogPhotosFragment : Fragment() {
 
-    var binding: FragmentDogsPhotosBinding by autoCleared()
     val dogPhotosViewModel: DogPhotosViewModel by activityViewModels()
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentDogsPhotosBinding.inflate(inflater, container, false)
+        val binding = FragmentDogsPhotosBinding.inflate(inflater, container, false)
         context ?: return binding.root
-        initViewPager()
-        dogPhotosViewModel.getPhotos(arguments?.getString("breedName").toString())
+        initViewPager(binding)
+        dogPhotosViewModel.getPhotos(
+            arguments?.getString("breedName").toString(),
+            arguments?.getString("subbreedName").toString()
+        )
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
-    private fun initViewModel(adapter: DogsPhotosAdapter){
-        dogPhotosViewModel.photos.observe(viewLifecycleOwner, Observer<Resource<BreedImages>>{
-                images -> images?.let{
+    private fun initViewModel(adapter: DogsPhotosAdapter) {
+        dogPhotosViewModel.photos.observe(
+            viewLifecycleOwner,
+            Observer<Resource<BreedImages>> { images ->
+                images?.let {
                     adapter.setImages(it.data)
                 }
-        })
+            })
     }
 
-    private fun initViewPager(){
+    private fun initViewPager(binding: FragmentDogsPhotosBinding) {
         val viewPager = binding.photosViewPager
         val imageAdapter = context?.let { DogsPhotosAdapter(it) }
         viewPager.adapter = imageAdapter

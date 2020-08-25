@@ -17,13 +17,13 @@ class SubBreedViewHolder private constructor(val binding: ItemBreedBinding) :
         binding.apply {
             binding.breedListViewModel = viewModel
             subbreed = item
-            setClickListener { openDogsPhotos(item, it) }
+            setClickListener { openDogsPhotos(item, it, breedName) }
             executePendingBindings()
         }
     }
 
-    fun openDogsPhotos(subbreed: String, view: View) {
-        val direction = SubbreedsListFragmentDirections.actionSubbreedToPhotos(binding.breed?.name.toString(), subbreed)
+    fun openDogsPhotos(subbreed: String, view: View, breedName: String) {
+        val direction = SubbreedsListFragmentDirections.actionSubbreedToPhotos(breedName, subbreed)
         view.findNavController().navigate(direction)
     }
 

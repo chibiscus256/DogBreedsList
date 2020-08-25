@@ -85,8 +85,9 @@ class SubbreedsListFragment : Fragment() {
         binding.breedList.layoutManager = layoutManager
         val breedsAdapter = SubBreedAdapter(breedListViewModel,
             list as List<String>,
-            arguments?.getString("breedName")
+            arguments?.getString("breedName").toString()
         )
+        val aa = arguments?.getString("breedName")
         binding.breedList.adapter = breedsAdapter
     }
 }

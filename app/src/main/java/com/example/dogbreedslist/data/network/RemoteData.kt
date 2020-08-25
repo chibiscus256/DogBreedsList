@@ -42,7 +42,15 @@ class RemoteData @Inject constructor(
         breed: String,
         subBreed: String
     ): Resource<BreedImages> {
-        TODO("implementation")
+        return when (val response =
+            processCall { (dogService::getSubBreedImages)(breed, subBreed) }) {
+            is BreedImages -> {
+                Resource.Success(data = response)
+            }
+            else -> {
+                Resource.DataError(errorCode = response as Int)
+            }
+        }
     }
 
     private suspend fun processCall(responseCall: suspend () -> Response<*>): Any? {

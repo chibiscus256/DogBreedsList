@@ -55,7 +55,6 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
     implementation "com.google.android.material:material:$rootProject.materialVersion"
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation "androidx.fragment:fragment-ktx:$rootProject.ktxFragmentVersion"
     testImplementation "junit:junit:$rootProject.junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$rootProject.testExtJunit"
@@ -95,7 +94,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
     implementation "com.squareup.retrofit2:converter-moshi:$rootProject.retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
-
+    implementation 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
 
     //Moshi
     implementation "com.squareup.moshi:moshi-kotlin:$rootProject.moshiVersion"
@@ -123,5 +122,4 @@ dependencies {
     //Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$rootProject.navigationVersion"
-
 }
