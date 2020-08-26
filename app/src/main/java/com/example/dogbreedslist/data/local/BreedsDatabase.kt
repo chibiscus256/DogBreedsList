@@ -9,12 +9,12 @@ import com.example.dogbreedslist.data.BreedConverter
 import com.example.dogbreedslist.data.local.breeds.BreedDao
 import com.example.dogbreedslist.data.local.breeds.BreedData
 import com.example.dogbreedslist.data.local.favorites.FavoritesDao
-import com.example.dogbreedslist.data.local.favorites.FavoritesData
+import com.example.dogbreedslist.data.local.favorites.FavoriteData
 
 /**
  * The Room database for this app
  */
-@Database(entities = [BreedData::class, FavoritesData::class],
+@Database(entities = [BreedData::class, FavoriteData::class],
         version = 1, exportSchema = false)
 @TypeConverters(BreedConverter::class)
 abstract class BreedsDatabase : RoomDatabase() {

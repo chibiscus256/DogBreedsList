@@ -6,16 +6,15 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dogbreedslist.R
-import com.example.dogbreedslist.data.local.favorites.FavoritesData
+import com.example.dogbreedslist.data.local.favorites.FavoriteData
 import com.example.dogbreedslist.databinding.ItemBreedBinding
 import com.example.dogbreedslist.ui.favorites.FavoritesViewModel
-import kotlinx.android.synthetic.main.item_breed.view.*
 
 class FavoritesAdapter(
     private var favoritesViewModel: FavoritesViewModel
 ) : RecyclerView.Adapter<FavoritesViewHolder>() {
 
-    private var favorites = ArrayList<FavoritesData>()
+    private var favorites = ArrayList<FavoriteData>()
 
     private val onItemClickListener: View.OnClickListener =
         View.OnClickListener { TODO("Not yet implemented") }

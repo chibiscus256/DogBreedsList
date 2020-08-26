@@ -23,12 +23,16 @@
 
         <ImageView
             android:id="@+id/btn_love"
-            android:layout_width="49dp"
-            android:layout_height="45dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_normal"
             android:src="@drawable/ic_love"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.891"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/photosViewPager"
+            app:layout_constraintVertical_bias="0.297" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

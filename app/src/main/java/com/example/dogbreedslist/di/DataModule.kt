@@ -7,14 +7,21 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import javax.inject.Singleton
 
 @Module
 @InstallIn(ApplicationComponent::class)
 class DataModule {
+
+
     @Singleton
     @Provides
-    fun provideDataRepository(remoteDataSource: RemoteData,
-                              localDataSource: LocalData) =
-            DataRepository(remoteDataSource, localDataSource)
+    fun provideDataRepository(remoteDataSource: RemoteData, localDataSource: LocalData) =
+        DataRepository(remoteDataSource, localDataSource)
+
+    @Singleton
+    @Provides
+    fun provideIoDispatcher() = Dispatchers.IO
 }
