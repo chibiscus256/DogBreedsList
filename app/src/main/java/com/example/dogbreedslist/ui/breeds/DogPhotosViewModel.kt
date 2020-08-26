@@ -18,10 +18,10 @@ class DogPhotosViewModel @ViewModelInject constructor(val dataRepository: DataRe
 
     fun getPhotos(breed: String, subbreed: String) {
         viewModelScope.launch {
-            if (subbreed !== "no subbreeds") {
-                _photos.postValue(dataRepository.requestSubbreedImages(breed, subbreed))
-            } else
+            if (subbreed == "no subbreeds") {
                 _photos.postValue(dataRepository.requestBreedImages(breed))
+            } else
+                _photos.postValue(dataRepository.requestSubbreedImages(breed, subbreed))
         }
     }
 }

@@ -1,9 +1,6 @@
 package com.example.dogbreedslist.ui.breeds
 
-import android.content.ContentValues.TAG
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +12,7 @@ import com.example.dogbreedslist.R
 import com.example.dogbreedslist.databinding.FragmentBreedlistBinding
 import com.example.dogbreedslist.ui.breeds.adapters.SubBreedAdapter
 import com.example.dogbreedslist.utils.autoCleared
+import com.example.dogbreedslist.utils.setTitle
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,40 +20,6 @@ class SubbreedsListFragment : Fragment() {
 
     var binding: FragmentBreedlistBinding by autoCleared()
     lateinit var breedListViewModel: BreedListViewModel
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        Log.i(TAG, "subbreeds onAttach")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.i(TAG, "subbreeds onResume")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.i(TAG, "subbreeds onStop")
-    }
-
-    override fun onStart() {
-        super.onStart()
-        Log.i(TAG, "subbreeds onStart")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.i(TAG, "subbreeds onPause")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.i(TAG, "subbreeds onDestroy")
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?){
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -75,19 +39,20 @@ class SubbreedsListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initRecyclerView()
+        subscribeUi()
     }
 
-    private fun initRecyclerView() {
-        val args = arguments?.getStringArray("subbreeds")
-        val list= args?.toList()
+    private fun subscribeUi() {
+        val list = arguments?.getStringArray("subbreeds")?.toList()
+        val name = arguments?.getString("breedName").toString()
+        setTitle(name.capitalize())
         val layoutManager = LinearLayoutManager(requireContext())
         binding.breedList.layoutManager = layoutManager
-        val breedsAdapter = SubBreedAdapter(breedListViewModel,
+        val breedsAdapter = SubBreedAdapter(
+            breedListViewModel,
             list as List<String>,
-            arguments?.getString("breedName").toString()
+            name
         )
-        val aa = arguments?.getString("breedName")
         binding.breedList.adapter = breedsAdapter
     }
 }
