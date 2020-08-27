@@ -10,7 +10,7 @@ import com.example.dogbreedslist.data.Resource
 import com.example.dogbreedslist.data.network.dto.BreedImages
 import kotlinx.coroutines.launch
 
-class DogPhotosViewModel @ViewModelInject constructor(val dataRepository: DataRepository) :
+class DogPhotosViewModel @ViewModelInject constructor(private val dataRepository: DataRepository) :
     ViewModel() {
 
     private val _photos = MutableLiveData<Resource<BreedImages>>()

@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.dogbreedslist.data.DataRepository
-import com.example.dogbreedslist.data.DataRepositorySource
 import com.example.dogbreedslist.data.Resource
 import com.example.dogbreedslist.data.network.dto.Breed
 import kotlinx.coroutines.flow.collect

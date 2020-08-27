@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.viewpager.widget.ViewPager
 import com.example.dogbreedslist.data.Resource
 import com.example.dogbreedslist.data.network.dto.BreedImages
 import com.example.dogbreedslist.databinding.FragmentDogsPhotosBinding
@@ -14,11 +15,11 @@ import com.example.dogbreedslist.ui.breeds.adapters.DogsPhotosAdapter
 import com.example.dogbreedslist.utils.setTitle
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class DogPhotosFragment : Fragment() {
 
     val dogPhotosViewModel: DogPhotosViewModel by activityViewModels()
+    private lateinit var currentImageUrl : String
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,9 +28,8 @@ class DogPhotosFragment : Fragment() {
     ): View? {
         val binding = FragmentDogsPhotosBinding.inflate(inflater, container, false)
         context ?: return binding.root
-        initViewPager(binding)
+        initViewPager(binding, dogPhotosViewModel)
         setTitle(getTitleText().capitalize())
-        dogPhotosViewModel.getPhotos(getBreedName(), getSubbreedName())
         return binding.root
     }
 
@@ -56,12 +56,32 @@ class DogPhotosFragment : Fragment() {
                     adapter.setImages(it.data)
                 }
             })
+        dogPhotosViewModel.getPhotos(getBreedName(), getSubbreedName())
     }
 
-    private fun initViewPager(binding: FragmentDogsPhotosBinding) {
+    private fun initViewPager(binding: FragmentDogsPhotosBinding, viewModel: DogPhotosViewModel) {
         val viewPager = binding.photosViewPager
         val imageAdapter = context?.let { DogsPhotosAdapter(it) }
         viewPager.adapter = imageAdapter
-        imageAdapter?.let { initViewModel(it) }
+        if (imageAdapter != null) {
+            initViewModel(imageAdapter)
+        }
+        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onPageSelected(position: Int) {
+                currentImageUrl = viewModel.photos.value?.data?.images!![position]
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {
+                TODO("Not yet implemented")
+            }
+        })
     }
 }

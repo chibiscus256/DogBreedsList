@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.dogbreedslist.R
 import dagger.hilt.android.AndroidEntryPoint
 
+
 @AndroidEntryPoint
 class FavoritesPhotosFragment : Fragment(){
     override fun onCreateView(

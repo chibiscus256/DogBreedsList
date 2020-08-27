@@ -15,7 +15,7 @@ import com.example.dogbreedslist.databinding.BreedImageBinding
 import java.lang.System.currentTimeMillis
 
 
-class DogsPhotosAdapter constructor(private val context: Context) : PagerAdapter() {
+class DogsPhotosAdapter(private val context: Context) : PagerAdapter() {
 
     var photos: List<String> = listOf()
 
@@ -34,6 +34,7 @@ class DogsPhotosAdapter constructor(private val context: Context) : PagerAdapter
             .signature(ObjectKey(currentTimeMillis().toString()))
             .diskCacheStrategy(DiskCacheStrategy.NONE)
             .skipMemoryCache(true)
+            .placeholder(R.drawable.iggy)
             .into(imageView)
         container.addView(imageBinding.root)
         return imageBinding.root

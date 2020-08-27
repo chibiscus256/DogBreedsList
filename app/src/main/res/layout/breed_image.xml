@@ -3,9 +3,6 @@
 
     <data>
 
-        <variable
-            name="clickListener"
-            type="android.view.View.OnClickListener"/>
     </data>
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
