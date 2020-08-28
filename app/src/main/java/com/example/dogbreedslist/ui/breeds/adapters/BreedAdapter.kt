@@ -9,7 +9,6 @@ import com.example.dogbreedslist.data.network.dto.Breed
 import com.example.dogbreedslist.ui.breeds.viewholders.BreedViewHolder
 
 class BreedAdapter(
-    private val viewModel: BreedListViewModel,
     private val breeds: List<Breed>
 ) : ListAdapter<BreedData, BreedViewHolder>((BreedDiffCallback())) {
 
@@ -26,7 +25,7 @@ class BreedAdapter(
     }
 
     override fun onBindViewHolder(viewHolderBreed: BreedViewHolder, position: Int) {
-        viewHolderBreed.bind(viewModel, breeds[position])
+        viewHolderBreed.bind(breeds[position])
     }
 }
 

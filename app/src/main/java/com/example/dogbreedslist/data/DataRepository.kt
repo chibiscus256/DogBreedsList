@@ -38,7 +38,11 @@ constructor(private val remoteData: RemoteData, private val localData: LocalData
         TODO("Not yet implemented")
     }
 
-    override suspend fun getPhotosOfBreed(breed: String): FavoriteData? {
-        TODO("Not yet implemented")
+    override suspend fun getPhotosOfBreed(breed: String): List<String> {
+        return localData.getPhotosOfBreed(breed)
+    }
+
+    override suspend fun getFavoritesBreeds(): List<String> {
+        return localData.getFavoritesBreeds()
     }
 }

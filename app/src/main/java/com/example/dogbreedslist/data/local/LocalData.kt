@@ -7,10 +7,24 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class LocalData @Inject constructor(private val favoritesDao: FavoritesDao,
-                                    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO) {
+class LocalData @Inject constructor(
+    private val favoritesDao: FavoritesDao,
+    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
+) {
 
-    suspend fun addFavorite(favorite: FavoriteData) = withContext(ioDispatcher){
+    suspend fun addFavorite(favorite: FavoriteData) = withContext(ioDispatcher) {
         favoritesDao.insert(favorite)
+    }
+
+    suspend fun getFavorites() = withContext(ioDispatcher) {
+        favoritesDao.getFavorites()
+    }
+
+    suspend fun getPhotosOfBreed(breedName: String) = withContext(ioDispatcher) {
+        favoritesDao.getPhotosOfBreed(breedName)
+    }
+
+    suspend fun getFavoritesBreeds() = withContext(ioDispatcher) {
+        favoritesDao.getFavoritesBreeds()
     }
 }

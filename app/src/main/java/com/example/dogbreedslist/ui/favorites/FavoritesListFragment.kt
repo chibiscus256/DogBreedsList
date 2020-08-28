@@ -17,7 +17,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class FavoritesListFragment : Fragment() {
 
     lateinit var adapter: FavoritesAdapter
-    private var binding: FragmentFavoritesBinding by autoCleared()
     private val favoritesViewModel : FavoritesViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -25,8 +24,7 @@ class FavoritesListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentFavoritesBinding.inflate(inflater, container, false)
-        return binding.root
+        return inflater.inflate(R.layout.fragment_breedlist, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -35,7 +33,6 @@ class FavoritesListFragment : Fragment() {
     }
 
     private fun initRecyclerView() {
-        binding.rvFavoritesList.layoutManager = LinearLayoutManager(context)
-        binding.rvFavoritesList.adapter = FavoritesAdapter(favoritesViewModel)
+
     }
 }

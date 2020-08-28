@@ -14,10 +14,9 @@ import com.example.dogbreedslist.utils.TransferUtils
 class BreedViewHolder private constructor(val binding: ItemBreedBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(viewModel: BreedListViewModel, item: Breed) {
+    fun bind(item: Breed) {
 
         binding.apply {
-            breedListViewModel = viewModel
             breed = item
             setClickListener { navigateToSubbreeds(breed?.subbreeds.isNullOrEmpty(), item, it) }
             executePendingBindings()

@@ -12,10 +12,9 @@ import com.example.dogbreedslist.ui.breeds.SubbreedsListFragmentDirections
 class SubBreedViewHolder private constructor(val binding: ItemBreedBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(viewModel: BreedListViewModel, item: String, breedName: String) {
+    fun bind(item: String, breedName: String) {
 
         binding.apply {
-            binding.breedListViewModel = viewModel
             subbreed = item
             setClickListener { openDogsPhotos(item, it, breedName) }
             executePendingBindings()

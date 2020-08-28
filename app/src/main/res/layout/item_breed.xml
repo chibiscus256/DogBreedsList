@@ -6,10 +6,6 @@
     <data>
 
         <variable
-            name="breedListViewModel"
-            type="com.example.dogbreedslist.ui.breeds.BreedListViewModel" />
-
-        <variable
             name="breed"
             type="com.example.dogbreedslist.data.network.dto.Breed" />
 

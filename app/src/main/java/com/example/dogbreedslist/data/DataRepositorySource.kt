@@ -11,5 +11,6 @@ interface DataRepositorySource {
     suspend fun requestSubbreedImages(breed: String, subbreed: String): Resource<BreedImages>
     suspend fun addFavorite(favorite: FavoriteData)
     suspend fun deleteFavorite(favorites: List<FavoriteData>)
-    suspend fun getPhotosOfBreed(breed: String): FavoriteData?
+    suspend fun getPhotosOfBreed(breed: String): List<String>
+    suspend fun getFavoritesBreeds(): List<String>
 }

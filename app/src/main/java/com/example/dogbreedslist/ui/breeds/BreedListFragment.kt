@@ -84,7 +84,7 @@ class BreedListFragment : Fragment() {
 
     fun bindListData(breedsResponse: List<Breed>) {
         if (!breedsResponse.isNullOrEmpty()) {
-            val breedsAdapter = BreedAdapter(breedListViewModel, breedsResponse)
+            val breedsAdapter = BreedAdapter(breedsResponse)
             binding.breedList.adapter = breedsAdapter
             showDataView(true)
         } else {
