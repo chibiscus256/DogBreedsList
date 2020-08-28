@@ -8,6 +8,6 @@ import java.util.*
 @Entity(tableName = "favorites")
 data class FavoriteData @JvmOverloads constructor(
     @ColumnInfo(name = "name") var name: String = "",
-    @ColumnInfo(name = "photo") var photosList: String? = null,
+    @ColumnInfo(name = "photo") var photoUrl: String? = null,
     @PrimaryKey @ColumnInfo(name = "id") var id: String = UUID.randomUUID().toString()
 )
