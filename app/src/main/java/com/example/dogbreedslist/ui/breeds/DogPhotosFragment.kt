@@ -43,6 +43,7 @@ class DogPhotosFragment : Fragment() {
     }
 
     private fun like() {
+        val cv = FavoriteData(name = getBreedInfo(), photoUrl = currentImageUrl)
         dogPhotosViewModel.addToFavorites(FavoriteData(name = getBreedInfo(), photoUrl = currentImageUrl))
         Toast.makeText(context, "Added to your favorites", Toast.LENGTH_LONG).show()
     }

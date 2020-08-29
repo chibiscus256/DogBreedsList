@@ -21,13 +21,13 @@ class FavoritesViewModel @ViewModelInject constructor(private val favoritesRepos
 
     fun fetchFavorites() {
         viewModelScope.launch {
-            _favoritesPhotos.postValue(favoritesRepository.getFavoritesBreeds())
+            _favoritesBreeds.postValue(favoritesRepository.getFavoritesBreeds())
         }
     }
 
     fun fetchPhotos(breedName: String) {
         viewModelScope.launch {
-            _favoritesBreeds.postValue(favoritesRepository.getPhotosOfBreed(breedName))
+            _favoritesPhotos.postValue(favoritesRepository.getPhotosOfBreed(breedName))
         }
     }
 }
