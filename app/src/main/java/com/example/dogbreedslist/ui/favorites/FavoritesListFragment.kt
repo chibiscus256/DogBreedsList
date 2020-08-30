@@ -33,21 +33,16 @@ class FavoritesListFragment : Fragment() {
             false
         )
         context ?: return binding.root
+        favoritesViewModel.fetchFavorites()
+
         subscribeUI()
         return binding.root
 
         //return inflater.inflate(R.layout.fragment_breedlist, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
     private fun subscribeUI() {
-        favoritesViewModel.fetchFavorites()
-
         val layoutManager = LinearLayoutManager(requireContext())
-        favoritesViewModel.fetchFavorites()
         binding.breedList.layoutManager = layoutManager
         val favoritesAdapter = FavoriteAdapter()
         binding.breedList.adapter = favoritesAdapter

@@ -27,10 +27,10 @@ class RemoteData @Inject constructor(
         }
     }
 
-    override suspend fun requestBreedImages(breed: String): Resource<BreedImages> {
+    override suspend fun requestBreedImages(breed: String): Resource<List<String>> {
         return when (val response = processCall { (dogService::getBreedImages)(breed) }) {
             is BreedImages -> {
-                Resource.Success(data = response)
+                Resource.Success(data = response.images)
             }
             else -> {
                 Resource.DataError(errorCode = response as Int)
@@ -41,11 +41,11 @@ class RemoteData @Inject constructor(
     override suspend fun requestSubBreedImages(
         breed: String,
         subBreed: String
-    ): Resource<BreedImages> {
+    ): Resource<List<String>> {
         return when (val response =
             processCall { (dogService::getSubBreedImages)(breed, subBreed) }) {
             is BreedImages -> {
-                Resource.Success(data = response)
+                Resource.Success(data = response.images)
             }
             else -> {
                 Resource.DataError(errorCode = response as Int)

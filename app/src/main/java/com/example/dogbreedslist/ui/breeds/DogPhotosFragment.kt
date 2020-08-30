@@ -65,9 +65,9 @@ class DogPhotosFragment : Fragment() {
     private fun initViewModel(adapter: DogPhotoAdapter) {
         dogPhotosViewModel.photos.observe(
             viewLifecycleOwner,
-            Observer<Resource<BreedImages>> { images ->
+            Observer<Resource<List<String>>> { images ->
                 images?.let {
-                    adapter.setImages(it.data)
+                    adapter.setImages(it.data!!)
                 }
             })
         dogPhotosViewModel.getPhotos(getBreedName(), getSubbreedName())
@@ -88,7 +88,7 @@ class DogPhotosFragment : Fragment() {
                 positionOffset: Float,
                 positionOffsetPixels: Int
             ) {
-                currentImageUrl = viewModel.photos.value?.data?.images!![position]
+                currentImageUrl = viewModel.photos.value?.data!![position]
             }
 
             override fun onPageSelected(position: Int) {}

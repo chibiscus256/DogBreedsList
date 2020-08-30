@@ -7,6 +7,6 @@ import com.example.dogbreedslist.data.network.dto.BreedsResponse
 
 internal interface RemoteDataSource {
     suspend fun requestBreeds(): Resource<List<Breed>>
-    suspend fun requestBreedImages(breed: String): Resource<BreedImages>
-    suspend fun requestSubBreedImages(breed: String, subBreed: String): Resource<BreedImages>
+    suspend fun requestBreedImages(breed: String): Resource<List<String>>
+    suspend fun requestSubBreedImages(breed: String, subBreed: String): Resource<List<String>>
 }

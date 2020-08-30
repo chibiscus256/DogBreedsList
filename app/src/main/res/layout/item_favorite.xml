@@ -9,7 +9,7 @@
             type="String" />
 
         <variable
-            name="subbreed"
+            name="photos"
             type="String" />
 
         <variable

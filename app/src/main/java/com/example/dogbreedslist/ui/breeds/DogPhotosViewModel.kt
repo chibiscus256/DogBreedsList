@@ -16,8 +16,8 @@ import kotlinx.coroutines.launch
 class DogPhotosViewModel @ViewModelInject constructor(private val dataRepository: DataRepository) :
     ViewModel() {
 
-    private val _photos = MutableLiveData<Resource<BreedImages>>()
-    val photos: LiveData<Resource<BreedImages>> = _photos
+    private val _photos = MutableLiveData<Resource<List<String>>>()
+    val photos: LiveData<Resource<List<String>>> = _photos
 
     fun getPhotos(breed: String, subbreed: String) {
         viewModelScope.launch {

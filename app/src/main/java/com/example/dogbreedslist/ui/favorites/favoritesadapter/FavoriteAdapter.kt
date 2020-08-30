@@ -19,7 +19,6 @@ class FavoriteAdapter : ListAdapter<String, FavoriteViewHolder>(DiffCallback()) 
     }
 
     override fun onBindViewHolder(viewHolderBreed: FavoriteViewHolder, position: Int) {
-        val qawef = getItem(position)
         viewHolderBreed.bind(getItem(position))
     }
 }

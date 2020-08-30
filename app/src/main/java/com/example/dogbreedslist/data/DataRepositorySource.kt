@@ -7,8 +7,8 @@ import kotlinx.coroutines.flow.Flow
 
 interface DataRepositorySource {
     suspend fun requestBreeds(): Flow<Resource<List<Breed>>>
-    suspend fun requestBreedImages(breed: String): Resource<BreedImages>
-    suspend fun requestSubbreedImages(breed: String, subbreed: String): Resource<BreedImages>
+    suspend fun requestBreedImages(breed: String): Resource<List<String>>
+    suspend fun requestSubbreedImages(breed: String, subbreed: String): Resource<List<String>>
     suspend fun addFavorite(favorite: FavoriteData)
     suspend fun deleteFavorite(favorites: List<FavoriteData>)
     suspend fun getPhotosOfBreed(breed: String): List<String>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/favorites"
@@ -12,12 +11,16 @@
         android:label="@string/title_favorites"
         tools:layout="@layout/fragment_favorites">
         <action
-            android:id="@+id/action_title_to_about"
-            app:destination="@id/favoritePhotosFragment"/>
+            android:id="@+id/action_list_to_photos"
+            app:destination="@id/favoritePhotosFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoritePhotosFragment"
         android:name="com.example.dogbreedslist.ui.favorites.FavoritesPhotosFragment"
         android:label="@string/title_favorite_photos"
-        tools:layout="@layout/fragment_dogs_photos"/>
+        tools:layout="@layout/fragment_dogs_photos">
+        <argument
+            android:name="breedName"
+            app:argType="string" />
+    </fragment>
 </navigation>

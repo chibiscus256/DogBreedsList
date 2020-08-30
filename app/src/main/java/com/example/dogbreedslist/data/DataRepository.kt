@@ -19,14 +19,14 @@ constructor(private val remoteData: RemoteData, private val localData: LocalData
         }
     }
 
-    override suspend fun requestBreedImages(breed: String): Resource<BreedImages> {
+    override suspend fun requestBreedImages(breed: String): Resource<List<String>> {
         return remoteData.requestBreedImages(breed)
     }
 
     override suspend fun requestSubbreedImages(
         breed: String,
         subbreed: String
-    ): Resource<BreedImages> {
+    ): Resource<List<String>> {
         return remoteData.requestSubBreedImages(breed, subbreed)
     }
 

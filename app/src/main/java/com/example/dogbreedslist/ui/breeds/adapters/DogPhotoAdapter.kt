@@ -57,8 +57,8 @@ class DogPhotoAdapter(private val context: Context) : PagerAdapter() {
         return view == `object`
     }
 
-    fun setImages(breedImages: BreedImages?) {
-        if (breedImages != null) photos = breedImages.images
+    fun setImages(breedImages: List<String>) {
+        if (breedImages != null) photos = breedImages
         notifyDataSetChanged()
     }
 
