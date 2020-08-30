@@ -13,4 +13,5 @@ interface DataRepositorySource {
     suspend fun deleteFavorite(favorites: List<FavoriteData>)
     suspend fun getPhotosOfBreed(breed: String): List<String>
     suspend fun getFavoritesBreeds(): List<String>
+    suspend fun getFavorites(): Array<String>
 }

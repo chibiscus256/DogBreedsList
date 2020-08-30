@@ -1,9 +1,6 @@
 package com.example.dogbreedslist.ui.favorites
 
-import android.content.ContentValues
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,7 +30,7 @@ class FavoritesListFragment : Fragment() {
             false
         )
         context ?: return binding.root
-        favoritesViewModel.fetchFavorites()
+        favoritesViewModel.fetchFavoritesBreeds()
 
         subscribeUI()
         return binding.root
@@ -52,35 +49,4 @@ class FavoritesListFragment : Fragment() {
                 favoritesAdapter.submitList(it)
             })
     }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        Log.i(ContentValues.TAG, "favorites onAttach")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.i(ContentValues.TAG, "favorites onResume")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.i(ContentValues.TAG, "favorites onStop")
-    }
-
-    override fun onStart() {
-        super.onStart()
-        Log.i(ContentValues.TAG, "favorites onStart")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.i(ContentValues.TAG, "favorites onPause")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.i(ContentValues.TAG, "favorites onDestroy")
-    }
-
 }

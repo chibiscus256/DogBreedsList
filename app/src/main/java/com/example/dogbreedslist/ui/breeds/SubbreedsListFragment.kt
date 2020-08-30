@@ -40,10 +40,10 @@ class SubbreedsListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        subscribeUi()
+        initUi()
     }
 
-    private fun subscribeUi() {
+    private fun initUi() {
         val list = arguments?.getStringArray("subbreeds")?.toList()
         val name = arguments?.getString("breedName").toString()
         setTitle(name.capitalize())

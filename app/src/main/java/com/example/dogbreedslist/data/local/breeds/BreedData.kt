@@ -5,9 +5,13 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.util.*
 
+/*
+Завел табличку под лайки, потому что, наверное, очень затратно для каждой ячейки списка считать,
+сколько фотографий определенной породы у нас есть. Теперь на каждый лайк/дизлайк по 3 запроса к БД,
+но как лучше, не знаю
+*/
 @Entity(tableName = "breeds")
 data class BreedData @JvmOverloads constructor(
-    @ColumnInfo(name = "name") var name: String = "",
-    @ColumnInfo(name = "subbreeds") var subbreeds: List<String> = listOf(),
-    @PrimaryKey @ColumnInfo(name = "id") var id: String = UUID.randomUUID().toString()
+    @PrimaryKey @ColumnInfo(name = "name") var name: String = "",
+    @ColumnInfo(name = "likes") var likes: Int = 0
 )

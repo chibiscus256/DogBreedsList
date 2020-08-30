@@ -1,5 +1,7 @@
 package com.example.dogbreedslist.data.local
 
+import com.example.dogbreedslist.data.local.breeds.BreedDao
+import com.example.dogbreedslist.data.local.breeds.BreedData
 import com.example.dogbreedslist.data.local.favorites.FavoritesDao
 import com.example.dogbreedslist.data.local.favorites.FavoriteData
 import kotlinx.coroutines.CoroutineDispatcher
@@ -9,11 +11,20 @@ import javax.inject.Inject
 
 class LocalData @Inject constructor(
     private val favoritesDao: FavoritesDao,
+    private val breedDao: BreedDao,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {
 
     suspend fun addFavorite(favorite: FavoriteData) = withContext(ioDispatcher) {
         favoritesDao.insert(favorite)
+        breedDao.addBreed(BreedData(name = favorite.name, likes = 0))
+        breedDao.incrementLikes(favorite.name)
+    }
+
+    suspend fun deleteFavorite(favorite: FavoriteData) = withContext(ioDispatcher) {
+        favoritesDao.deleteFavorite(favorite.photoUrl!!)
+        breedDao.decrementLikes(favorite.name)
+        breedDao.deleteFavorite()
     }
 
     suspend fun getFavorites() = withContext(ioDispatcher) {
@@ -25,6 +36,6 @@ class LocalData @Inject constructor(
     }
 
     suspend fun getFavoritesBreeds() = withContext(ioDispatcher) {
-        favoritesDao.getFavoritesBreeds()
+        breedDao.getFavoritesBreeds()
     }
 }

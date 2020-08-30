@@ -5,8 +5,10 @@ import com.example.dogbreedslist.data.local.favorites.FavoriteData
 import com.example.dogbreedslist.data.network.RemoteData
 import com.example.dogbreedslist.data.network.dto.Breed
 import com.example.dogbreedslist.data.network.dto.BreedImages
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class DataRepository @Inject
@@ -32,6 +34,10 @@ constructor(private val remoteData: RemoteData, private val localData: LocalData
 
     override suspend fun addFavorite(favorite: FavoriteData) {
         return localData.addFavorite(favorite)
+    }
+
+    override suspend fun getFavorites(): Array<String> {
+        return localData.getFavorites()
     }
 
     override suspend fun deleteFavorite(favorites: List<FavoriteData>) {
