@@ -14,8 +14,7 @@ import com.example.dogbreedslist.data.network.dto.BreedImages
 import com.example.dogbreedslist.databinding.BreedImageBinding
 import java.lang.System.currentTimeMillis
 
-
-class DogsPhotosAdapter(private val context: Context) : PagerAdapter() {
+class DogPhotoAdapter(private val context: Context) : PagerAdapter() {
 
     var photos: List<String> = listOf()
 
@@ -38,6 +37,12 @@ class DogsPhotosAdapter(private val context: Context) : PagerAdapter() {
             .into(imageView)
         container.addView(imageBinding.root)
         return imageBinding.root
+        TODO("prevent Glide caching, methods called here does not help")
+        /*
+        Я не знаю, почему Glide продолжает кешировать объем данных в 2 фотографии, воткнутые методы не делают, что должны,
+        гугл и профильные чаты не помогли. Смотрел в пример с собачаками на MVP, там все клево и без
+        методов, я не знаю, почему
+        */
     }
 
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {

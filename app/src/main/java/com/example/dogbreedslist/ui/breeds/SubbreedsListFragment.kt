@@ -34,6 +34,7 @@ class SubbreedsListFragment : Fragment() {
         )
         context ?: return binding.root
         breedListViewModel = ViewModelProvider(this).get(BreedListViewModel::class.java)
+
         return binding.root
     }
 

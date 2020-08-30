@@ -44,4 +44,9 @@ fun setSubbreedsNumber(view: TextView, number: Int){
     if (number > 0) view.text = "${number} subbreeds"
 }
 
+@BindingAdapter ("photosNumber")
+fun setPhotosNumber(view: TextView, number: Int){
+    view.text = "${number} photos"
+}
+
 

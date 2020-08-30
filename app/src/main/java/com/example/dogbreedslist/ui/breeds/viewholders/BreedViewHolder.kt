@@ -15,7 +15,6 @@ class BreedViewHolder private constructor(val binding: ItemBreedBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: Breed) {
-
         binding.apply {
             breed = item
             setClickListener { navigateToSubbreeds(breed?.subbreeds.isNullOrEmpty(), item, it) }

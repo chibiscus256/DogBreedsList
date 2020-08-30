@@ -1,6 +1,5 @@
 package com.example.dogbreedslist.usecase
 
-
 /*
 class GettingBreedsUseCase @Inject constructor(
     private val dataRepository: DataSource,

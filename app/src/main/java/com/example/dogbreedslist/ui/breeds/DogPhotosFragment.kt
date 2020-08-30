@@ -13,7 +13,7 @@ import com.example.dogbreedslist.data.Resource
 import com.example.dogbreedslist.data.local.favorites.FavoriteData
 import com.example.dogbreedslist.data.network.dto.BreedImages
 import com.example.dogbreedslist.databinding.FragmentDogsPhotosBinding
-import com.example.dogbreedslist.ui.breeds.adapters.DogsPhotosAdapter
+import com.example.dogbreedslist.ui.breeds.adapters.DogPhotoAdapter
 import com.example.dogbreedslist.utils.setTitle
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -43,7 +43,6 @@ class DogPhotosFragment : Fragment() {
     }
 
     private fun like() {
-        val cv = FavoriteData(name = getBreedInfo(), photoUrl = currentImageUrl)
         dogPhotosViewModel.addToFavorites(FavoriteData(name = getBreedInfo(), photoUrl = currentImageUrl))
         Toast.makeText(context, "Added to your favorites", Toast.LENGTH_LONG).show()
     }
@@ -63,7 +62,7 @@ class DogPhotosFragment : Fragment() {
             getSubbreedName()
     }
 
-    private fun initViewModel(adapter: DogsPhotosAdapter) {
+    private fun initViewModel(adapter: DogPhotoAdapter) {
         dogPhotosViewModel.photos.observe(
             viewLifecycleOwner,
             Observer<Resource<BreedImages>> { images ->
@@ -76,7 +75,7 @@ class DogPhotosFragment : Fragment() {
 
     private fun initViewPager(binding: FragmentDogsPhotosBinding, viewModel: DogPhotosViewModel) {
         val viewPager = binding.photosViewPager
-        val imageAdapter = context?.let { DogsPhotosAdapter(it) }
+        val imageAdapter = context?.let { DogPhotoAdapter(it) }
 
         viewPager.adapter = imageAdapter
         if (imageAdapter != null) {
