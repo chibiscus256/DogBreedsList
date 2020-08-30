@@ -22,7 +22,7 @@ class RemoteData @Inject constructor(
                 })
             }
             else -> {
-                Resource.DataError(errorCode = response as Int)
+                Resource.DataError(errorCode = response.toString())
             }
         }
     }
@@ -33,7 +33,7 @@ class RemoteData @Inject constructor(
                 Resource.Success(data = response.images)
             }
             else -> {
-                Resource.DataError(errorCode = response as Int)
+                Resource.DataError(errorCode = response.toString())
             }
         }
     }
@@ -48,7 +48,7 @@ class RemoteData @Inject constructor(
                 Resource.Success(data = response.images)
             }
             else -> {
-                Resource.DataError(errorCode = response as Int)
+                Resource.DataError(errorCode = response.toString())
             }
         }
     }

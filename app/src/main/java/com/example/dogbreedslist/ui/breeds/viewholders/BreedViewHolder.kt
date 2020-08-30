@@ -8,8 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dogbreedslist.data.network.dto.Breed
 import com.example.dogbreedslist.databinding.ItemBreedBinding
 import com.example.dogbreedslist.ui.breeds.BreedListFragmentDirections
-import com.example.dogbreedslist.ui.breeds.BreedListViewModel
-import com.example.dogbreedslist.utils.TransferUtils
 
 class BreedViewHolder private constructor(val binding: ItemBreedBinding) :
     RecyclerView.ViewHolder(binding.root) {
@@ -32,7 +30,7 @@ class BreedViewHolder private constructor(val binding: ItemBreedBinding) :
     }
 
     private fun openDogsPhotos(breed: Breed, view: View) {
-        val direction = breed.name.let { name -> BreedListFragmentDirections.actionBreedToPhotos(breedName = name, subbreedName = TransferUtils.NO_SUBBREEDS)}
+        val direction = breed.name.let { name -> BreedListFragmentDirections.actionBreedToPhotos(breedName = name, subbreedName = "no subbreeds")}
         direction.let { view.findNavController().navigate(it) }
     }
 

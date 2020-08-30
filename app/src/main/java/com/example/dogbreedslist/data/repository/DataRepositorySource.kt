@@ -1,8 +1,8 @@
-package com.example.dogbreedslist.data
+package com.example.dogbreedslist.data.repository
 
+import com.example.dogbreedslist.data.Resource
 import com.example.dogbreedslist.data.local.favorites.FavoriteData
 import com.example.dogbreedslist.data.network.dto.Breed
-import com.example.dogbreedslist.data.network.dto.BreedImages
 import kotlinx.coroutines.flow.Flow
 
 interface DataRepositorySource {

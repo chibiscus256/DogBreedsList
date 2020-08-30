@@ -1,13 +1,12 @@
 package com.example.dogbreedslist.di
 
-import com.example.dogbreedslist.data.DataRepository
+import com.example.dogbreedslist.data.repository.DataRepository
 import com.example.dogbreedslist.data.local.LocalData
 import com.example.dogbreedslist.data.network.RemoteData
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Singleton
 
