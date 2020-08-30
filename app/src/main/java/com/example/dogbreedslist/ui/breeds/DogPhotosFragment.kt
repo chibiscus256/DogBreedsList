@@ -8,12 +8,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
 import com.example.dogbreedslist.R
 import com.example.dogbreedslist.data.Resource
 import com.example.dogbreedslist.data.local.favorites.FavoriteData
 import com.example.dogbreedslist.databinding.FragmentDogsPhotosBinding
 import com.example.dogbreedslist.ui.breeds.adapters.DogPhotoAdapter
+import com.example.dogbreedslist.ui.favorites.FavoritesViewModel
 import com.example.dogbreedslist.utils.setTitle
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_dogs_photos.*
@@ -21,7 +23,7 @@ import kotlinx.android.synthetic.main.fragment_dogs_photos.*
 @AndroidEntryPoint
 class DogPhotosFragment : Fragment() {
 
-    private val dogPhotosViewModel: DogPhotosViewModel by activityViewModels()
+    private lateinit var dogPhotosViewModel: DogPhotosViewModel
     private lateinit var currentImageUrl : String
     private lateinit var binding: FragmentDogsPhotosBinding
     private var attractivenessOfPicture: Boolean = false
@@ -33,16 +35,21 @@ class DogPhotosFragment : Fragment() {
     ): View? {
         binding = FragmentDogsPhotosBinding.inflate(inflater, container, false)
         context ?: return binding.root
-        init()
-        return binding.root
-    }
 
-    private fun init(){
-        initViewPager(binding, dogPhotosViewModel)
+        val imageAdapter = context?.let { DogPhotoAdapter(it) }
+        if (imageAdapter != null) {
+            initViewModel(imageAdapter)
+            initViewPager(binding, dogPhotosViewModel, imageAdapter)
+        }
+        dogPhotosViewModel.getPhotos(getBreedName(), getSubbreedName())
+
         setTitle(getBreedInfo().capitalize())
         binding.apply {
             setClickListener { indicateAttitude(attractivenessOfPicture)} }
+
+        return binding.root
     }
+
 
     private fun indicateAttitude(prettiness: Boolean) {
         if (!prettiness) like() else {
@@ -80,6 +87,7 @@ class DogPhotosFragment : Fragment() {
     }
 
     private fun initViewModel(adapter: DogPhotoAdapter) {
+        dogPhotosViewModel = ViewModelProvider(this).get(DogPhotosViewModel::class.java)
         dogPhotosViewModel.photos.observe(
             viewLifecycleOwner,
             Observer<Resource<List<String>>> { images ->
@@ -87,17 +95,11 @@ class DogPhotosFragment : Fragment() {
                     adapter.setImages(it.data!!)
                 }
             })
-        dogPhotosViewModel.getPhotos(getBreedName(), getSubbreedName())
     }
 
-    private fun initViewPager(binding: FragmentDogsPhotosBinding, viewModel: DogPhotosViewModel) {
+    private fun initViewPager(binding: FragmentDogsPhotosBinding, viewModel: DogPhotosViewModel, adapter: DogPhotoAdapter) {
         val viewPager = binding.photosViewPager
-        val imageAdapter = context?.let { DogPhotoAdapter(it) }
-
-        viewPager.adapter = imageAdapter
-        if (imageAdapter != null) {
-            initViewModel(imageAdapter)
-        }
+        viewPager.adapter = adapter
 
         viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
             override fun onPageScrolled(

@@ -12,6 +12,7 @@ import androidx.viewpager.widget.ViewPager
 import com.example.dogbreedslist.databinding.FragmentDogsPhotosBinding
 import com.example.dogbreedslist.ui.breeds.DogPhotosViewModel
 import com.example.dogbreedslist.ui.breeds.adapters.DogPhotoAdapter
+import com.example.dogbreedslist.utils.setTitle
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,7 +37,7 @@ class FavoritesPhotosFragment : Fragment() {
             initViewPager(binding, favoritesViewModel, imageAdapter)
         }
         favoritesViewModel.fetchPhotos(name)
-
+        setTitle(name.capitalize())
         return binding.root
     }
 
