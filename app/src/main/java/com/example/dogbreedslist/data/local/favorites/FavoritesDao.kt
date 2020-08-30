@@ -15,7 +15,7 @@ interface FavoritesDao {
     @Query("SELECT photo FROM Favorites WHERE name = :breed")
     suspend fun getPhotosOfBreed(breed: String): List<String>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun insert(favorite: FavoriteData)
 
     @Query("DELETE FROM favorites WHERE photo = :photo")

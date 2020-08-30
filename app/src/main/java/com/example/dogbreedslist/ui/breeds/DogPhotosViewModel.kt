@@ -28,6 +28,12 @@ class DogPhotosViewModel @ViewModelInject constructor(private val dataRepository
         }
     }
 
+    fun deleteFavorite(favorite: FavoriteData){
+        viewModelScope.launch {
+            dataRepository.deleteFavorite(favorite)
+        }
+    }
+
     fun addToFavorites(favorite: FavoriteData) {
         viewModelScope.launch {
             dataRepository.addFavorite(favorite)

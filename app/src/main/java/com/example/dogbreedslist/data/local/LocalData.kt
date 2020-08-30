@@ -17,7 +17,7 @@ class LocalData @Inject constructor(
 
     suspend fun addFavorite(favorite: FavoriteData) = withContext(ioDispatcher) {
         favoritesDao.insert(favorite)
-        breedDao.addBreed(BreedData(name = favorite.name, likes = 0))
+        breedDao.insert(BreedData(name = favorite.name, likes = 0))
         breedDao.incrementLikes(favorite.name)
     }
 

@@ -19,8 +19,8 @@ interface BreedDao{
     @Query("UPDATE breeds SET likes = likes - 1 WHERE name = :name")
     suspend fun decrementLikes(name: String)
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun addBreed(breed: BreedData)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    suspend fun insert(breed: BreedData)
 
     @Query("DELETE FROM breeds WHERE likes = 0")
     suspend fun deleteFavorite()

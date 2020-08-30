@@ -40,8 +40,8 @@ constructor(private val remoteData: RemoteData, private val localData: LocalData
         return localData.getFavorites()
     }
 
-    override suspend fun deleteFavorite(favorites: List<FavoriteData>) {
-        TODO("Not yet implemented")
+    override suspend fun deleteFavorite(favorite: FavoriteData) {
+        return localData.deleteFavorite(favorite)
     }
 
     override suspend fun getPhotosOfBreed(breed: String): List<String> {
