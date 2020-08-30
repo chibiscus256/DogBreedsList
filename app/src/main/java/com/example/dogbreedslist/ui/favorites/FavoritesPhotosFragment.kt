@@ -30,18 +30,25 @@ class FavoritesPhotosFragment : Fragment() {
         context ?: return binding.root
 
         val imageAdapter = context?.let { DogPhotoAdapter(it) }
+        val name = arguments?.getString("breedName").toString()
+        if (imageAdapter != null) {
+            initViewModel(imageAdapter)
+            initViewPager(binding, favoritesViewModel, imageAdapter)
+        }
+        favoritesViewModel.fetchPhotos(name)
 
+        return binding.root
+    }
+
+    private fun initViewModel(imageAdapter: DogPhotoAdapter){
         favoritesViewModel = ViewModelProvider(this).get(FavoritesViewModel::class.java)
         favoritesViewModel.favoritesPhotos.observe(
             viewLifecycleOwner,
             Observer<List<String>> { images ->
                 images.let {
-                    imageAdapter?.setImages(it)
+                    imageAdapter.setImages(it)
                 }
             })
-        //favoritesViewModel.fetchPhotos()
-
-        return binding.root
     }
 
     private fun initViewPager(
