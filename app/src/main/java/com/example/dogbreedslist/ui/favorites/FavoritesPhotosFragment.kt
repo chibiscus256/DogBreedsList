@@ -32,10 +32,12 @@ class FavoritesPhotosFragment : Fragment() {
 
         val imageAdapter = context?.let { DogPhotoAdapter(it) }
         val name = arguments?.getString("breedName").toString()
+
         if (imageAdapter != null) {
             initViewModel(imageAdapter)
             initViewPager(binding, favoritesViewModel, imageAdapter)
         }
+
         favoritesViewModel.fetchPhotos(name)
         setTitle(name.capitalize())
         return binding.root
