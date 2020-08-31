@@ -42,8 +42,8 @@ constructor(private val remoteData: RemoteData, private val localData: LocalData
         return localData.deleteFavorite(favorite)
     }
 
-    override suspend fun getPhotosOfBreed(breed: String): List<String> {
-        return localData.getPhotosOfBreed(breed)
+    override suspend fun getPhotosOfBreedFromLocal(breed: String): List<String> {
+        return localData.getPhotosOfBreedFromLocal(breed)
     }
 
     override suspend fun getFavoritesBreeds(): List<String> {

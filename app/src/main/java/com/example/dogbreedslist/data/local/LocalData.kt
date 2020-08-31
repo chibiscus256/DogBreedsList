@@ -27,11 +27,15 @@ class LocalData @Inject constructor(
         breedDao.deleteFavorite()
     }
 
+    suspend fun getBreedsAndLikes() = withContext(ioDispatcher){
+        breedDao.getBreedsAndLikes()
+    }
+
     suspend fun getFavorites() = withContext(ioDispatcher) {
         favoritesDao.getFavorites()
     }
 
-    suspend fun getPhotosOfBreed(breedName: String) = withContext(ioDispatcher) {
+    suspend fun getPhotosOfBreedFromLocal(breedName: String) = withContext(ioDispatcher) {
         favoritesDao.getPhotosOfBreed(breedName)
     }
 

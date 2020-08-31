@@ -40,7 +40,7 @@ class FavoritesViewModel @ViewModelInject constructor(private val favoritesRepos
 
     fun fetchPhotos(breedName: String) {
         viewModelScope.launch {
-            _favoritesPhotos.postValue(favoritesRepository.getPhotosOfBreed(breedName))
+            _favoritesPhotos.postValue(favoritesRepository.getPhotosOfBreedFromLocal(breedName))
         }
     }
 }

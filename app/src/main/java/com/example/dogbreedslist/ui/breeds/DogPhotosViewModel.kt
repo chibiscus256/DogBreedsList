@@ -16,16 +16,22 @@ class DogPhotosViewModel @ViewModelInject constructor(private val dataRepository
     private val _photos = MutableLiveData<Resource<List<String>>>()
     val photos: LiveData<Resource<List<String>>> = _photos
 
-    fun getPhotos(breed: String, subbreed: String) {
+    private val _storedPhotos = MutableLiveData<List<String>>()
+    val storedPhotos: LiveData<List<String>> = _storedPhotos
+
+    fun fetchPhotos(breed: String, subbreed: String) {
         viewModelScope.launch {
             if (subbreed == "no subbreeds") {
                 _photos.postValue(dataRepository.requestBreedImages(breed))
-            } else
+                _storedPhotos.postValue(dataRepository.getPhotosOfBreedFromLocal(breed))
+            } else {
                 _photos.postValue(dataRepository.requestSubbreedImages(breed, subbreed))
+                _storedPhotos.postValue(dataRepository.getPhotosOfBreedFromLocal(subbreed))
+            }
         }
     }
 
-    fun deleteFavorite(favorite: FavoriteData){
+    fun deleteFavorite(favorite: FavoriteData) {
         viewModelScope.launch {
             dataRepository.deleteFavorite(favorite)
         }

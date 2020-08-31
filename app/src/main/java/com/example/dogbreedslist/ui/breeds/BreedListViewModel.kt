@@ -14,15 +14,16 @@ import kotlinx.coroutines.launch
 // TODO: 26.08.2020 provide source instead of repo and understand how
 class BreedListViewModel @ViewModelInject constructor(private val dataRepository: DataRepository) : ViewModel() {
 
-    private val _breedList = MutableLiveData<Resource<List<Breed>>>()
-    val breedsResponse: LiveData<Resource<List<Breed>>> = _breedList
+    private val _fetchedBreeds = MutableLiveData<Resource<List<Breed>>>()
+    val breedsResponse: LiveData<Resource<List<Breed>>> = _fetchedBreeds
 
     fun getBreeds() {
         viewModelScope.launch {
-            _breedList.value = Resource.Loading()
+            _fetchedBreeds.value = Resource.Loading()
             dataRepository.requestBreeds().collect{
-                _breedList.value = it
+                _fetchedBreeds.value = it
             }
         }
     }
+
 }

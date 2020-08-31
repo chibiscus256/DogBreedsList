@@ -19,9 +19,10 @@ interface BreedDao{
     @Query("UPDATE breeds SET likes = likes - 1 WHERE name = :name")
     suspend fun decrementLikes(name: String)
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(breed: BreedData)
 
+    //Это я не нашел, как удалить запись, если у нее лайков меньше 0
     @Query("DELETE FROM breeds WHERE likes = 0")
     suspend fun deleteFavorite()
 }

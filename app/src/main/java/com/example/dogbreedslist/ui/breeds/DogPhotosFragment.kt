@@ -5,28 +5,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
+import androidx.databinding.adapters.ViewBindingAdapter.setClickListener
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
-import com.example.dogbreedslist.R
 import com.example.dogbreedslist.data.Resource
 import com.example.dogbreedslist.data.local.favorites.FavoriteData
 import com.example.dogbreedslist.databinding.FragmentDogsPhotosBinding
 import com.example.dogbreedslist.ui.breeds.adapters.DogPhotoAdapter
-import com.example.dogbreedslist.ui.favorites.FavoritesViewModel
 import com.example.dogbreedslist.utils.setTitle
+import com.example.dogbreedslist.utils.toGone
+import com.example.dogbreedslist.utils.toVisible
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_dogs_photos.*
 
 @AndroidEntryPoint
 class DogPhotosFragment : Fragment() {
 
     private lateinit var dogPhotosViewModel: DogPhotosViewModel
-    private lateinit var currentImageUrl : String
+    private lateinit var currentImageUrl: String
     private lateinit var binding: FragmentDogsPhotosBinding
-    private var attractivenessOfPicture: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,35 +40,54 @@ class DogPhotosFragment : Fragment() {
             initViewModel(imageAdapter)
             initViewPager(binding, dogPhotosViewModel, imageAdapter)
         }
-        dogPhotosViewModel.getPhotos(getBreedName(), getSubbreedName())
+        dogPhotosViewModel.fetchPhotos(getBreedName(), getSubbreedName())
 
         setTitle(getBreedInfo().capitalize())
         binding.apply {
-            setClickListener { indicateAttitude(attractivenessOfPicture)} }
+            setClickListener { declareAttitude() }
+        }
 
         return binding.root
     }
 
-
-    private fun indicateAttitude(prettiness: Boolean) {
-        if (!prettiness) like() else {
-            unlike()
+    private fun declareAttitude() {
+        if (binding.btnUnlove.isVisible) addToFavorites() else {
+            removeFromFavorites()
         }
     }
 
-    private fun like() {
-        dogPhotosViewModel.addToFavorites(FavoriteData(name = getBreedInfo(), photoUrl = currentImageUrl))
+    private fun addToFavorites() {
+        like()
+        dogPhotosViewModel.addToFavorites(
+            FavoriteData(
+                name = getBreedInfo(),
+                photoUrl = currentImageUrl
+            )
+        )
         Toast.makeText(context, "Added to your favorites", Toast.LENGTH_SHORT).show()
-        btn_love.setImageResource(R.drawable.ic_love)
-        attractivenessOfPicture = true
     }
 
-    private fun unlike(){
-        dogPhotosViewModel.deleteFavorite(FavoriteData(name = getBreedInfo(), photoUrl = currentImageUrl))
+    private fun removeFromFavorites() {
+        unlike()
+        dogPhotosViewModel.deleteFavorite(
+            FavoriteData(
+                name = getBreedInfo(),
+                photoUrl = currentImageUrl
+            )
+        )
         Toast.makeText(context, "Removed from your favorites", Toast.LENGTH_SHORT).show()
-        btn_love.setImageResource(R.drawable.ic_love_border)
-        attractivenessOfPicture = false
     }
+
+    private fun unlike() {
+        binding.btnUnlove.toVisible()
+        binding.btnLove.toGone()
+    }
+
+    private fun like() {
+        binding.btnLove.toVisible()
+        binding.btnUnlove.toGone()
+    }
+
 
     fun getBreedName(): String {
         return arguments?.getString("breedName").toString()
@@ -97,17 +115,27 @@ class DogPhotosFragment : Fragment() {
             })
     }
 
-    private fun initViewPager(binding: FragmentDogsPhotosBinding, viewModel: DogPhotosViewModel, adapter: DogPhotoAdapter) {
+    private fun initViewPager(
+        binding: FragmentDogsPhotosBinding,
+        viewModel: DogPhotosViewModel,
+        adapter: DogPhotoAdapter
+    ) {
         val viewPager = binding.photosViewPager
         viewPager.adapter = adapter
 
-        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(
                 position: Int,
                 positionOffset: Float,
                 positionOffsetPixels: Int
             ) {
-                currentImageUrl = viewModel.photos.value?.data!![position]
+                unlike()
+                val currentItemUrl = viewModel.photos.value?.data!![position]
+                val storedPhotos = dogPhotosViewModel.storedPhotos.value
+                currentImageUrl = currentItemUrl
+                if (storedPhotos != null && storedPhotos.contains(currentItemUrl)) {
+                    like()
+                }
             }
 
             override fun onPageSelected(position: Int) {}
