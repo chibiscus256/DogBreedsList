@@ -41,36 +41,6 @@ class BreedListFragment : Fragment() {
         return binding.root
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        Log.i(ContentValues.TAG, "breeds onAttach")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.i(ContentValues.TAG, "breeds onResume")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.i(ContentValues.TAG, "breeds onStop")
-    }
-
-    override fun onStart() {
-        super.onStart()
-        Log.i(ContentValues.TAG, "breeds onStart")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.i(ContentValues.TAG, "breeds onPause")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.i(ContentValues.TAG, "breeds onDestroy")
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()

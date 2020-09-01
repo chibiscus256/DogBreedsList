@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.dogbreedslist.data.local.favorites.FavoriteData
 import com.example.dogbreedslist.data.repository.DataRepository
 import dagger.hilt.android.scopes.ActivityScoped
 import kotlinx.coroutines.Dispatchers
@@ -26,6 +27,12 @@ class FavoritesViewModel @ViewModelInject constructor(private val favoritesRepos
     fun fetchFavoritesBreeds() {
         viewModelScope.launch {
             _favoritesBreeds.postValue(favoritesRepository.getFavoritesBreeds())
+        }
+    }
+
+    fun deleteFavoritePhoto(favorite: FavoriteData){
+        viewModelScope.launch {
+            favoritesRepository.deleteFavorite(favorite)
         }
     }
 

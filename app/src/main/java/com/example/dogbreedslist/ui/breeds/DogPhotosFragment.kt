@@ -26,6 +26,7 @@ class DogPhotosFragment : Fragment() {
     private lateinit var dogPhotosViewModel: DogPhotosViewModel
     private lateinit var currentImageUrl: String
     private lateinit var binding: FragmentDogsPhotosBinding
+    private var storedPhotos : MutableList<String>? = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,40 +42,43 @@ class DogPhotosFragment : Fragment() {
             initViewPager(binding, dogPhotosViewModel, imageAdapter)
         }
         dogPhotosViewModel.fetchPhotos(getBreedName(), getSubbreedName())
+        storedPhotos = dogPhotosViewModel.storedPhotos as MutableList<String>
 
         setTitle(getBreedInfo().capitalize())
         binding.apply {
-            setClickListener { declareAttitude() }
+            setClickListener { declareAttitude(currentImageUrl) }
         }
 
         return binding.root
     }
 
-    private fun declareAttitude() {
-        if (binding.btnUnlove.isVisible) addToFavorites() else {
-            removeFromFavorites()
+    private fun declareAttitude(url: String) {
+        if (binding.btnUnlove.isVisible) addToFavorites(url) else {
+            removeFromFavorites(url)
         }
     }
 
-    private fun addToFavorites() {
+    private fun addToFavorites(url: String) {
         like()
         dogPhotosViewModel.addToFavorites(
             FavoriteData(
                 name = getBreedInfo(),
-                photoUrl = currentImageUrl
+                photoUrl = url
             )
         )
+        storedPhotos?.add(url)
         Toast.makeText(context, "Added to your favorites", Toast.LENGTH_SHORT).show()
     }
 
-    private fun removeFromFavorites() {
+    private fun removeFromFavorites(url: String) {
         unlike()
         dogPhotosViewModel.deleteFavorite(
             FavoriteData(
                 name = getBreedInfo(),
-                photoUrl = currentImageUrl
+                photoUrl = url
             )
         )
+        storedPhotos?.remove(url)
         Toast.makeText(context, "Removed from your favorites", Toast.LENGTH_SHORT).show()
     }
 
@@ -131,16 +135,19 @@ class DogPhotosFragment : Fragment() {
             ) {
                 unlike()
                 val currentItemUrl = viewModel.photos.value?.data!![position]
-                val storedPhotos = dogPhotosViewModel.storedPhotos.value
                 currentImageUrl = currentItemUrl
-                if (storedPhotos != null && storedPhotos.contains(currentItemUrl)) {
+                if (storedPhotos != null && storedPhotos!!.contains(currentImageUrl)) {
                     like()
                 }
             }
 
-            override fun onPageSelected(position: Int) {}
+            override fun onPageSelected(position: Int) {
 
-            override fun onPageScrollStateChanged(state: Int) {}
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {
+
+            }
         })
     }
 }
