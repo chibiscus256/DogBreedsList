@@ -41,7 +41,9 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
+            android:background="@color/dbl_yellow_500"
             android:id="@+id/tv_no_data"
+            android:padding="7dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/no_data"
