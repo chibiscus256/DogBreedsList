@@ -1,10 +1,13 @@
 package com.example.dogbreedslist.ui.favorites
 
+import android.content.Context
 import android.os.Bundle
+import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -18,7 +21,12 @@ import com.example.dogbreedslist.utils.setTitle
 import com.example.dogbreedslist.utils.toGone
 import com.example.dogbreedslist.utils.toVisible
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.internal.notifyAll
+
+/*Решил без наследования какого-нибудь BasePhotosFragment, потому что думаю, что поведение фрагментов
+* с хранящимися фото и загруженными может и отличаться, врдуг отредактировать ументь захотим или плиточкой хранить,
+* но тут много кода дублируется, да*/
 
 @AndroidEntryPoint
 class FavoritesPhotosFragment : Fragment() {
@@ -26,6 +34,7 @@ class FavoritesPhotosFragment : Fragment() {
     private lateinit var binding: FragmentDogsPhotosBinding
     private lateinit var currentImageUrl: String
     private lateinit var favoritesViewModel: FavoritesViewModel
+    private var storedPhotos : MutableList<String> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,7 +50,6 @@ class FavoritesPhotosFragment : Fragment() {
             initViewModel(imageAdapter)
             initViewPager(binding, favoritesViewModel, imageAdapter)
         }
-
         favoritesViewModel.fetchPhotos(getBreedName())
         initUI(getBreedName())
 
@@ -53,18 +61,20 @@ class FavoritesPhotosFragment : Fragment() {
     }
 
     private fun initUI(title: String) {
+        activity?.bottom_nav?.toGone()
         setTitle(title.capitalize())
         binding.apply {
             btnLove.toVisible()
-            setClickListener { unlike() }
+            setClickListener { unlike(currentImageUrl) }
         }
     }
 
-    private fun unlike(){
+    private fun unlike(url: String){
         favoritesViewModel.deleteFavoritePhoto(
-            FavoriteData(name = getBreedName(), photoUrl = currentImageUrl)
+            FavoriteData(name = getBreedName(), photoUrl = url)
         )
         Toast.makeText(context, "Removed from your favorites", Toast.LENGTH_SHORT).show()
+        storedPhotos.remove(url)
         binding.btnLove.toGone()
     }
 
@@ -77,7 +87,6 @@ class FavoritesPhotosFragment : Fragment() {
                     imageAdapter.setImages(it)
                 }
             })
-
     }
 
     private fun initViewPager(
@@ -86,8 +95,8 @@ class FavoritesPhotosFragment : Fragment() {
         adapter: DogPhotoAdapter
     ) {
         val viewPager = binding.photosViewPager
-
         viewPager.adapter = adapter
+
         viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(
                 position: Int,
@@ -101,8 +110,9 @@ class FavoritesPhotosFragment : Fragment() {
             }
 
             override fun onPageScrollStateChanged(state: Int) {
-
+                if (currentImageUrl in favoritesViewModel.favoritesPhotos.value!!) binding.btnLove.toVisible()
             }
+
         })
     }
 }

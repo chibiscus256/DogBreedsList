@@ -19,6 +19,7 @@ import com.example.dogbreedslist.utils.setTitle
 import com.example.dogbreedslist.utils.toGone
 import com.example.dogbreedslist.utils.toVisible
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_main.*
 
 @AndroidEntryPoint
 class DogPhotosFragment : Fragment() {
@@ -26,7 +27,6 @@ class DogPhotosFragment : Fragment() {
     private lateinit var dogPhotosViewModel: DogPhotosViewModel
     private lateinit var currentImageUrl: String
     private lateinit var binding: FragmentDogsPhotosBinding
-    private var storedPhotos : MutableList<String>? = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,16 +41,21 @@ class DogPhotosFragment : Fragment() {
             initViewModel(imageAdapter)
             initViewPager(binding, dogPhotosViewModel, imageAdapter)
         }
-        dogPhotosViewModel.fetchPhotos(getBreedName(), getSubbreedName())
-        storedPhotos = dogPhotosViewModel.storedPhotos as MutableList<String>
+        initUI()
 
+        dogPhotosViewModel.fetchPhotos(getBreedName(), getSubbreedName())
+        return binding.root
+    }
+
+    private fun initUI() {
         setTitle(getBreedInfo().capitalize())
+        activity?.bottom_nav?.toGone()
         binding.apply {
             setClickListener { declareAttitude(currentImageUrl) }
         }
 
-        return binding.root
     }
+
 
     private fun declareAttitude(url: String) {
         if (binding.btnUnlove.isVisible) addToFavorites(url) else {
@@ -66,7 +71,6 @@ class DogPhotosFragment : Fragment() {
                 photoUrl = url
             )
         )
-        storedPhotos?.add(url)
         Toast.makeText(context, "Added to your favorites", Toast.LENGTH_SHORT).show()
     }
 
@@ -78,7 +82,6 @@ class DogPhotosFragment : Fragment() {
                 photoUrl = url
             )
         )
-        storedPhotos?.remove(url)
         Toast.makeText(context, "Removed from your favorites", Toast.LENGTH_SHORT).show()
     }
 
@@ -136,9 +139,6 @@ class DogPhotosFragment : Fragment() {
                 unlike()
                 val currentItemUrl = viewModel.photos.value?.data!![position]
                 currentImageUrl = currentItemUrl
-                if (storedPhotos != null && storedPhotos!!.contains(currentImageUrl)) {
-                    like()
-                }
             }
 
             override fun onPageSelected(position: Int) {

@@ -2,6 +2,7 @@ package com.example.dogbreedslist.data.local.favorites
 
 import androidx.collection.ArrayMap
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -14,6 +15,10 @@ interface FavoritesDao {
 
     @Query("SELECT photo FROM Favorites WHERE name = :breed")
     suspend fun getPhotosOfBreed(breed: String): List<String>
+
+    /*Проверяем, выставлять ли лайк*/
+    @Query("SELECT EXISTS(SELECT 1 FROM favorites WHERE photo = :photo LIMIT 1)")
+    fun isLoved(photo: String): LiveData<Boolean>
 
     @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun insert(favorite: FavoriteData)

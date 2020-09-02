@@ -1,5 +1,7 @@
 package com.example.dogbreedslist.data.repository
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.dogbreedslist.data.Resource
 import com.example.dogbreedslist.data.local.LocalData
 import com.example.dogbreedslist.data.local.favorites.FavoriteData
@@ -44,6 +46,10 @@ constructor(private val remoteData: RemoteData, private val localData: LocalData
 
     override suspend fun getPhotosOfBreedFromLocal(breed: String): List<String> {
         return localData.getPhotosOfBreedFromLocal(breed)
+    }
+
+    override fun isLoved(url: String): LiveData<Boolean> {
+        return localData.isLoved(url)
     }
 
     override suspend fun getFavoritesBreeds(): List<String> {

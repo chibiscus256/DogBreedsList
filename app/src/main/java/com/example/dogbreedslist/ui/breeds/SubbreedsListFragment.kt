@@ -13,7 +13,9 @@ import com.example.dogbreedslist.databinding.FragmentBreedlistBinding
 import com.example.dogbreedslist.ui.breeds.adapters.SubBreedAdapter
 import com.example.dogbreedslist.utils.autoCleared
 import com.example.dogbreedslist.utils.setTitle
+import com.example.dogbreedslist.utils.toVisible
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_main.*
 
 @AndroidEntryPoint
 class SubbreedsListFragment : Fragment() {
@@ -34,6 +36,7 @@ class SubbreedsListFragment : Fragment() {
         )
         context ?: return binding.root
         breedListViewModel = ViewModelProvider(this).get(BreedListViewModel::class.java)
+        activity?.bottom_nav?.toVisible()
 
         return binding.root
     }

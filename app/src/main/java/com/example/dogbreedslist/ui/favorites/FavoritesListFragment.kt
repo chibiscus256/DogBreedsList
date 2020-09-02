@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dogbreedslist.databinding.FragmentBreedlistBinding
 import com.example.dogbreedslist.ui.favorites.favoritesadapter.FavoriteAdapter
 import com.example.dogbreedslist.utils.autoCleared
+import com.example.dogbreedslist.utils.toVisible
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_main.*
 
 @AndroidEntryPoint
 class FavoritesListFragment : Fragment() {
@@ -31,17 +33,15 @@ class FavoritesListFragment : Fragment() {
         )
         context ?: return binding.root
         favoritesViewModel.fetchFavoritesBreeds()
-
-        subscribeUI()
+        initUi()
         return binding.root
-
-        //return inflater.inflate(R.layout.fragment_breedlist, container, false)
     }
 
-    private fun subscribeUI() {
+    private fun initUi() {
+        activity?.bottom_nav?.toVisible()
         val layoutManager = LinearLayoutManager(requireContext())
         binding.breedList.layoutManager = layoutManager
-        val favoritesAdapter = FavoriteAdapter()
+        val favoritesAdapter = FavoriteAdapter(favoritesViewModel)
         binding.breedList.adapter = favoritesAdapter
         favoritesViewModel.favoritesBreeds.observe(
             viewLifecycleOwner,

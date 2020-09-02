@@ -19,6 +19,7 @@ import com.example.dogbreedslist.utils.observe
 import com.example.dogbreedslist.utils.toGone
 import com.example.dogbreedslist.utils.toVisible
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_main.*
 
 @AndroidEntryPoint
 class BreedListFragment : Fragment() {
@@ -38,6 +39,7 @@ class BreedListFragment : Fragment() {
         )
         context ?: return binding.root
         observe(breedListViewModel.breedsResponse, ::handleList)
+        activity?.bottom_nav?.toVisible()
         return binding.root
     }
 

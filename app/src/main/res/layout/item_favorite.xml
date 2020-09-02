@@ -9,8 +9,8 @@
             type="String" />
 
         <variable
-            name="photos"
-            type="String" />
+            name="photosCount"
+            type="int" />
 
         <variable
             name="clickListener"
@@ -57,7 +57,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.526"
-                app:photosNumber="@{2}"/>
+                app:photosNumber="@{photosCount}"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>

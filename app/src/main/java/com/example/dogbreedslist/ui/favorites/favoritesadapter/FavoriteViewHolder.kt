@@ -6,15 +6,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dogbreedslist.databinding.ItemFavoriteBinding
 import com.example.dogbreedslist.ui.breeds.SubbreedsListFragmentDirections
 import com.example.dogbreedslist.ui.favorites.FavoritesListFragmentDirections
+import com.example.dogbreedslist.ui.favorites.FavoritesViewModel
 import org.jetbrains.annotations.NotNull
 
 class FavoriteViewHolder(val binding: ItemFavoriteBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: String) {
+    fun bind(item: String, viewModel: FavoritesViewModel) {
         binding.apply{
             setClickListener { toFavoritesPhotos(it, item) }
             breedName = item
+            //photosCount = viewModel.favoritesPhotos.value?.size!!
             executePendingBindings()
         }
     }

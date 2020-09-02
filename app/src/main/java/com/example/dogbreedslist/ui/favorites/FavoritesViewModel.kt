@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 @ActivityScoped
-class FavoritesViewModel @ViewModelInject constructor(private val favoritesRepository: DataRepository) :
+class FavoritesViewModel @ViewModelInject constructor(private val dataRepository: DataRepository) :
     ViewModel() {
 
     private val _favoritesPhotos = MutableLiveData<List<String>>()
@@ -26,19 +26,19 @@ class FavoritesViewModel @ViewModelInject constructor(private val favoritesRepos
 
     fun fetchFavoritesBreeds() {
         viewModelScope.launch {
-            _favoritesBreeds.postValue(favoritesRepository.getFavoritesBreeds())
+            _favoritesBreeds.postValue(dataRepository.getFavoritesBreeds())
         }
     }
 
     fun deleteFavoritePhoto(favorite: FavoriteData){
         viewModelScope.launch {
-            favoritesRepository.deleteFavorite(favorite)
+            dataRepository.deleteFavorite(favorite)
         }
     }
 
     fun fetchAllFavoritesNames() {
         viewModelScope.launch {
-            val favoritesArray = favoritesRepository.getFavorites()
+            val favoritesArray = dataRepository.getFavorites()
             val sorted =
                 withContext(Dispatchers.Default) { favoritesArray.sortedWith(compareBy {it}) }
             _favoritesList.postValue(sorted)
@@ -47,7 +47,7 @@ class FavoritesViewModel @ViewModelInject constructor(private val favoritesRepos
 
     fun fetchPhotos(breedName: String) {
         viewModelScope.launch {
-            _favoritesPhotos.postValue(favoritesRepository.getPhotosOfBreedFromLocal(breedName))
+            _favoritesPhotos.postValue(dataRepository.getPhotosOfBreedFromLocal(breedName))
         }
     }
 }

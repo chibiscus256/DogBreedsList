@@ -1,5 +1,6 @@
 package com.example.dogbreedslist.data.repository
 
+import androidx.lifecycle.LiveData
 import com.example.dogbreedslist.data.Resource
 import com.example.dogbreedslist.data.local.favorites.FavoriteData
 import com.example.dogbreedslist.data.network.dto.Breed
@@ -14,4 +15,5 @@ interface DataRepositorySource {
     suspend fun getPhotosOfBreedFromLocal(breed: String): List<String>
     suspend fun getFavoritesBreeds(): List<String>
     suspend fun getFavorites(): Array<String>
+    fun isLoved(url: String): LiveData<Boolean>
 }
