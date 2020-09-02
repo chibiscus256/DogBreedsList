@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -20,6 +22,7 @@ import com.example.dogbreedslist.utils.toGone
 import com.example.dogbreedslist.utils.toVisible
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
+import java.lang.Error
 
 @AndroidEntryPoint
 class BreedListFragment : Fragment() {
@@ -66,18 +69,21 @@ class BreedListFragment : Fragment() {
 
     internal fun showLoadingView() {
         binding.pbLoading.toVisible()
+        binding.tvNoData.toGone()
         binding.clBreedList.toGone()
     }
 
     private fun showDataView(show: Boolean) {
         binding.pbLoading.toGone()
-        binding.clBreedList.visibility = if (show) View.VISIBLE else View.GONE
+        binding.clBreedList.visibility = if (show) VISIBLE else GONE
+        binding.tvNoData.visibility = if (show) GONE else VISIBLE
     }
 
     private fun handleList(breedsResponse: Resource<List<Breed>>) {
         when (breedsResponse) {
             is Resource.Loading -> showLoadingView()
             is Resource.Success -> breedsResponse.data?.let { bindListData(breedsResponse = it) }
+            is Resource.DataError -> showDataView(false)
         }
     }
 

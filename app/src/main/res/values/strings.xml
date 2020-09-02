@@ -14,4 +14,5 @@
     <string name="title_favorite_photos">Favorite photos</string>
     <string name="title_subbreeds">Subbreeds</string>
     <string name="share_dog_image">посмотри какая милая собачка</string>
+    <string name="no_data">No data acquired; check your Internet connection and try again later</string>
 </resources>
