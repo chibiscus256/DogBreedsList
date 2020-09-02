@@ -1,9 +1,7 @@
 package com.example.dogbreedslist.ui.breeds
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.databinding.adapters.ViewBindingAdapter.setClickListener
@@ -11,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
+import com.example.dogbreedslist.R
 import com.example.dogbreedslist.data.Resource
 import com.example.dogbreedslist.data.local.favorites.FavoriteData
 import com.example.dogbreedslist.databinding.FragmentDogsPhotosBinding
@@ -42,6 +41,7 @@ class DogPhotosFragment : Fragment() {
             initViewPager(binding, dogPhotosViewModel, imageAdapter)
         }
         initUI()
+        setHasOptionsMenu(true)
 
         dogPhotosViewModel.fetchPhotos(getBreedName(), getSubbreedName())
         return binding.root
@@ -56,6 +56,9 @@ class DogPhotosFragment : Fragment() {
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_dogs_collection, menu)
+    }
 
     private fun declareAttitude(url: String) {
         if (binding.btnUnlove.isVisible) addToFavorites(url) else {

@@ -3,9 +3,7 @@ package com.example.dogbreedslist.ui.favorites
 import android.content.Context
 import android.os.Bundle
 import android.util.AttributeSet
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
@@ -13,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
+import com.example.dogbreedslist.R
 import com.example.dogbreedslist.data.local.favorites.FavoriteData
 import com.example.dogbreedslist.databinding.FragmentDogsPhotosBinding
 import com.example.dogbreedslist.ui.breeds.DogPhotosViewModel
@@ -52,8 +51,13 @@ class FavoritesPhotosFragment : Fragment() {
         }
         favoritesViewModel.fetchPhotos(getBreedName())
         initUI(getBreedName())
+        setHasOptionsMenu(true)
 
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_dogs_collection, menu)
     }
 
     fun getBreedName(): String{
