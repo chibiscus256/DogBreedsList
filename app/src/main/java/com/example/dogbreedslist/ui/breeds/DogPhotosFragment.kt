@@ -14,6 +14,7 @@ import com.example.dogbreedslist.data.Resource
 import com.example.dogbreedslist.data.local.favorites.FavoriteData
 import com.example.dogbreedslist.databinding.FragmentDogsPhotosBinding
 import com.example.dogbreedslist.ui.breeds.adapters.DogPhotoAdapter
+import com.example.dogbreedslist.utils.intentShareText
 import com.example.dogbreedslist.utils.setTitle
 import com.example.dogbreedslist.utils.toGone
 import com.example.dogbreedslist.utils.toVisible
@@ -58,6 +59,17 @@ class DogPhotosFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_dogs_collection, menu)
+    }
+
+    @Suppress("DEPRECATION")
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_share -> {
+                intentShareText(requireActivity(), getString(R.string.share_dog_image))
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun declareAttitude(url: String) {
