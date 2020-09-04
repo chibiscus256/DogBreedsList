@@ -1,23 +1,19 @@
-package com.example.dogbreedslist.ui.breeds
+package com.example.dogbreedslist.ui.photos
 
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
-import androidx.core.view.isVisible
-import androidx.databinding.adapters.ViewBindingAdapter.setClickListener
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
 import com.example.dogbreedslist.R
 import com.example.dogbreedslist.data.Resource
 import com.example.dogbreedslist.data.local.favorites.FavoriteData
 import com.example.dogbreedslist.databinding.FragmentDogsPhotosBinding
-import com.example.dogbreedslist.ui.breeds.adapters.DogPhotoAdapter
 import com.example.dogbreedslist.utils.intentShareText
 import com.example.dogbreedslist.utils.setTitle
 import com.example.dogbreedslist.utils.toGone
-import com.example.dogbreedslist.utils.toVisible
+import com.example.dogbreedslist.viewmodel.DogPhotosViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -43,8 +39,8 @@ class DogPhotosFragment : Fragment() {
         }
         initUI()
         setHasOptionsMenu(true)
-
         dogPhotosViewModel.fetchPhotos(getBreedName(), getSubbreedName())
+
         return binding.root
     }
 
@@ -52,9 +48,8 @@ class DogPhotosFragment : Fragment() {
         setTitle(getBreedInfo().capitalize())
         activity?.bottom_nav?.toGone()
         binding.apply {
-            setClickListener { declareAttitude(currentImageUrl) }
-        }
 
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -72,14 +67,14 @@ class DogPhotosFragment : Fragment() {
         }
     }
 
-    private fun declareAttitude(url: String) {
+/*    private fun declareAttitude(url: String) {
         if (binding.btnUnlove.isVisible) addToFavorites(url) else {
             removeFromFavorites(url)
         }
-    }
+    }*/
 
     private fun addToFavorites(url: String) {
-        like()
+        //like()
         dogPhotosViewModel.addToFavorites(
             FavoriteData(
                 name = getBreedInfo(),
@@ -90,7 +85,7 @@ class DogPhotosFragment : Fragment() {
     }
 
     private fun removeFromFavorites(url: String) {
-        unlike()
+        //unlike()
         dogPhotosViewModel.deleteFavorite(
             FavoriteData(
                 name = getBreedInfo(),
@@ -100,7 +95,7 @@ class DogPhotosFragment : Fragment() {
         Toast.makeText(context, "Removed from your favorites", Toast.LENGTH_SHORT).show()
     }
 
-    private fun unlike() {
+/*    private fun unlike() {
         binding.btnUnlove.toVisible()
         binding.btnLove.toGone()
     }
@@ -108,7 +103,7 @@ class DogPhotosFragment : Fragment() {
     private fun like() {
         binding.btnLove.toVisible()
         binding.btnUnlove.toGone()
-    }
+    }*/
 
 
     fun getBreedName(): String {
@@ -131,7 +126,7 @@ class DogPhotosFragment : Fragment() {
         dogPhotosViewModel.photos.observe(
             viewLifecycleOwner,
             Observer<Resource<List<String>>> { images ->
-                images?.let {
+                images.let {
                     adapter.setImages(it.data!!)
                 }
             })
@@ -151,17 +146,15 @@ class DogPhotosFragment : Fragment() {
                 positionOffset: Float,
                 positionOffsetPixels: Int
             ) {
-                unlike()
+                //unlike()
                 val currentItemUrl = viewModel.photos.value?.data!![position]
                 currentImageUrl = currentItemUrl
             }
 
             override fun onPageSelected(position: Int) {
-
             }
 
             override fun onPageScrollStateChanged(state: Int) {
-
             }
         })
     }

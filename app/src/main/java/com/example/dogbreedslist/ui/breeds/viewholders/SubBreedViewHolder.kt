@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dogbreedslist.databinding.ItemBreedBinding
-import com.example.dogbreedslist.ui.breeds.BreedListViewModel
 import com.example.dogbreedslist.ui.breeds.SubbreedsListFragmentDirections
 
 class SubBreedViewHolder private constructor(val binding: ItemBreedBinding) :

@@ -1,4 +1,4 @@
-package com.example.dogbreedslist.ui.favorites
+package com.example.dogbreedslist.viewmodel
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
@@ -13,11 +13,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 @ActivityScoped
-class FavoritesViewModel @ViewModelInject constructor(private val dataRepository: DataRepository) :
+class FavoritesViewModel @ViewModelInject constructor(private val repository: DataRepository) :
     ViewModel() {
 
-    private val _favoritesPhotos = MutableLiveData<List<String>>()
-    val favoritesPhotos: LiveData<List<String>> = _favoritesPhotos
+    //val isFavorite: LiveData<Boolean> = repository.isLoved(url)
+
 
     private val _favoritesBreeds = MutableLiveData<List<String>>()
     val favoritesBreeds: LiveData<List<String>> = _favoritesBreeds
@@ -26,28 +26,23 @@ class FavoritesViewModel @ViewModelInject constructor(private val dataRepository
 
     fun fetchFavoritesBreeds() {
         viewModelScope.launch {
-            _favoritesBreeds.postValue(dataRepository.getFavoritesBreeds())
+            _favoritesBreeds.postValue(repository.getFavoritesBreeds())
         }
     }
 
     fun deleteFavoritePhoto(favorite: FavoriteData){
         viewModelScope.launch {
-            dataRepository.deleteFavorite(favorite)
+            repository.deleteFavorite(favorite)
         }
     }
 
     fun fetchAllFavoritesNames() {
         viewModelScope.launch {
-            val favoritesArray = dataRepository.getFavorites()
+            val favoritesArray = repository.getFavorites()
             val sorted =
                 withContext(Dispatchers.Default) { favoritesArray.sortedWith(compareBy {it}) }
             _favoritesList.postValue(sorted)
         }
     }
 
-    fun fetchPhotos(breedName: String) {
-        viewModelScope.launch {
-            _favoritesPhotos.postValue(dataRepository.getPhotosOfBreedFromLocal(breedName))
-        }
-    }
 }

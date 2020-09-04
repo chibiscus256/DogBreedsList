@@ -38,7 +38,7 @@
 
     <fragment
         android:id="@+id/dogsFragment"
-        android:name="com.example.dogbreedslist.ui.breeds.DogPhotosFragment"
+        android:name="com.example.dogbreedslist.ui.photos.DogPhotosFragment"
         android:label="@string/title_breed_photos"
         tools:layout="@layout/fragment_dogs_photos">
         <argument

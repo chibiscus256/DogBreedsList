@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dogbreedslist.R
 import com.example.dogbreedslist.databinding.FragmentBreedlistBinding
 import com.example.dogbreedslist.ui.breeds.adapters.SubBreedAdapter
+import com.example.dogbreedslist.viewmodel.BreedListViewModel
 import com.example.dogbreedslist.utils.autoCleared
 import com.example.dogbreedslist.utils.setTitle
 import com.example.dogbreedslist.utils.toVisible

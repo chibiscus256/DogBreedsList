@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.example.dogbreedslist.ui.breeds.BreedListViewModel" />
+            type="com.example.dogbreedslist.viewmodel.BreedListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

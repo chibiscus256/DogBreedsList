@@ -1,4 +1,4 @@
-package com.example.dogbreedslist.ui.breeds.adapters
+package com.example.dogbreedslist.ui.photos
 
 import android.content.Context
 import android.view.LayoutInflater

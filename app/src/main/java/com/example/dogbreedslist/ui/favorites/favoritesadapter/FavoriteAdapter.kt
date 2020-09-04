@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.dogbreedslist.databinding.ItemFavoriteBinding
 import com.example.dogbreedslist.ui.breeds.adapters.DiffCallback
-import com.example.dogbreedslist.ui.favorites.FavoritesViewModel
+import com.example.dogbreedslist.viewmodel.FavoritesViewModel
 
 /*Хотел адаптером списка понравившихся пород сделать SubbreedAdapter, но список начинал отображаться только
 после второго попадания на FavoritresFragment (т.к в первый раз RecyclerView инициировалось пустым).

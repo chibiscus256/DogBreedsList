@@ -4,10 +4,8 @@ import android.view.View
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dogbreedslist.databinding.ItemFavoriteBinding
-import com.example.dogbreedslist.ui.breeds.SubbreedsListFragmentDirections
 import com.example.dogbreedslist.ui.favorites.FavoritesListFragmentDirections
-import com.example.dogbreedslist.ui.favorites.FavoritesViewModel
-import org.jetbrains.annotations.NotNull
+import com.example.dogbreedslist.viewmodel.FavoritesViewModel
 
 class FavoriteViewHolder(val binding: ItemFavoriteBinding) :
     RecyclerView.ViewHolder(binding.root) {
