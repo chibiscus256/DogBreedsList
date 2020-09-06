@@ -11,7 +11,7 @@ class FavoriteViewHolder(val binding: ItemFavoriteBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: String, viewModel: FavoritesViewModel) {
-        binding.apply{
+        binding.apply {
             setClickListener { toFavoritesPhotos(it, item) }
             breedName = item
             //photosCount = viewModel.favoritesPhotos.value?.size!!
@@ -20,7 +20,10 @@ class FavoriteViewHolder(val binding: ItemFavoriteBinding) :
     }
 
     private fun toFavoritesPhotos(view: View, breedName: String) {
-        val direction = FavoritesListFragmentDirections.actionListToPhotos(breedName)
+        val direction = FavoritesListFragmentDirections.actionListToPhotos(
+            fragmentFlag = true,
+            breedName = breedName
+        )
         view.findNavController().navigate(direction)
     }
 }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
 import com.example.dogbreedslist.R
@@ -32,15 +33,15 @@ class DogPhotosFragment : Fragment() {
         binding = FragmentDogsPhotosBinding.inflate(inflater, container, false)
         context ?: return binding.root
 
+        val isFavorite = arguments?.getBoolean("fragmentFlag") as Boolean
+
         val imageAdapter = context?.let { DogPhotoAdapter(it) }
         if (imageAdapter != null) {
-            initViewModel(imageAdapter)
+            initViewModel(imageAdapter, isFavorite)
             initViewPager(binding, dogPhotosViewModel, imageAdapter)
         }
         initUI()
         setHasOptionsMenu(true)
-        dogPhotosViewModel.fetchPhotos(getBreedName(), getSubbreedName())
-
         return binding.root
     }
 
@@ -105,7 +106,6 @@ class DogPhotosFragment : Fragment() {
         binding.btnUnlove.toGone()
     }*/
 
-
     fun getBreedName(): String {
         return arguments?.getString("breedName").toString()
     }
@@ -121,15 +121,28 @@ class DogPhotosFragment : Fragment() {
             getSubbreedName()
     }
 
-    private fun initViewModel(adapter: DogPhotoAdapter) {
+    private fun initViewModel(adapter: DogPhotoAdapter, isFavorite: Boolean) {
         dogPhotosViewModel = ViewModelProvider(this).get(DogPhotosViewModel::class.java)
-        dogPhotosViewModel.photos.observe(
-            viewLifecycleOwner,
-            Observer<Resource<List<String>>> { images ->
-                images.let {
-                    adapter.setImages(it.data!!)
-                }
-            })
+        if (isFavorite) {
+            dogPhotosViewModel.photos.observe(
+                viewLifecycleOwner,
+                Observer<Resource<List<String>>> { images ->
+                    images.let {
+                        adapter.setImages(it.data!!)
+                    }
+                })
+            dogPhotosViewModel.fetchPhotos(getBreedName(), getSubbreedName())
+            dogPhotosViewModel.fetchPhotosFromLocal(getBreedInfo())
+        } else {
+            dogPhotosViewModel.favoritesPhotos.observe(
+                viewLifecycleOwner,
+                Observer<List<String>> { images ->
+                    images.let {
+                        adapter.setImages(it)
+                    }
+                })
+        }
+        dogPhotosViewModel.fetchPhotosFromLocal(getBreedInfo())
     }
 
     private fun initViewPager(
@@ -146,7 +159,6 @@ class DogPhotosFragment : Fragment() {
                 positionOffset: Float,
                 positionOffsetPixels: Int
             ) {
-                //unlike()
                 val currentItemUrl = viewModel.photos.value?.data!![position]
                 currentImageUrl = currentItemUrl
             }

@@ -26,6 +26,9 @@
         android:label="@string/title_subbreeds"
         tools:layout="@layout/fragment_breedlist">
         <argument
+            android:name="fragment_flag"
+            app:argType="boolean" />
+        <argument
             android:name="breedName"
             app:argType="string" />
         <argument
@@ -41,6 +44,9 @@
         android:name="com.example.dogbreedslist.ui.photos.DogPhotosFragment"
         android:label="@string/title_breed_photos"
         tools:layout="@layout/fragment_dogs_photos">
+        <argument
+            android:name="fragment_flag"
+            app:argType="boolean" />
         <argument
             android:name="breedName"
             app:argType="string" />

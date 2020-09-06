@@ -24,13 +24,17 @@ class BreedViewHolder private constructor(val binding: ItemBreedBinding) :
         if (isSubbreedsNotExist) openDogsPhotos(breed, view)
         else {
             val subbreeds = breed.subbreeds!!.toTypedArray()
-            val direction = BreedListFragmentDirections.actionBreedToSubbreed(breedName = breed.name, subbreeds =  subbreeds)
+            val direction = BreedListFragmentDirections.actionBreedToSubbreed(
+                breedName = breed.name,
+                subbreeds = subbreeds,
+                fragmentFlag = false
+            )
             view.findNavController().navigate(direction)
         }
     }
 
     private fun openDogsPhotos(breed: Breed, view: View) {
-        val direction = breed.name.let { name -> BreedListFragmentDirections.actionBreedToPhotos(breedName = name, subbreedName = "no subbreeds")}
+        val direction = breed.name.let { name -> BreedListFragmentDirections.actionBreedToPhotos(breedName = name, subbreedName = "no subbreeds", fragmentFlag = false)}
         direction.let { view.findNavController().navigate(it) }
     }
 

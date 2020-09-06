@@ -31,6 +31,13 @@ class DogPhotosViewModel @ViewModelInject constructor(private val repository: Da
         }
     }
 
+    fun fetchPhotosFromLocal(breed: String){
+        viewModelScope.launch {
+            _favoritesPhotos.postValue(repository.getPhotosOfBreedFromLocal(breed))
+        }
+    }
+
+    fun isItemFavorite(url: String): LiveData<Boolean> = repository.isLoved(url)
 
     fun deleteFavorite(favorite: FavoriteData) {
         viewModelScope.launch {

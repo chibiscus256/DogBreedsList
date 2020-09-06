@@ -16,9 +16,6 @@ import kotlinx.coroutines.withContext
 class FavoritesViewModel @ViewModelInject constructor(private val repository: DataRepository) :
     ViewModel() {
 
-    //val isFavorite: LiveData<Boolean> = repository.isLoved(url)
-
-
     private val _favoritesBreeds = MutableLiveData<List<String>>()
     val favoritesBreeds: LiveData<List<String>> = _favoritesBreeds
 
