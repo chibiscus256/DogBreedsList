@@ -34,7 +34,13 @@ class BreedViewHolder private constructor(val binding: ItemBreedBinding) :
     }
 
     private fun openDogsPhotos(breed: Breed, view: View) {
-        val direction = breed.name.let { name -> BreedListFragmentDirections.actionBreedToPhotos(breedName = name, subbreedName = "no subbreeds", fragmentFlag = false)}
+        val direction = breed.name.let { name ->
+            BreedListFragmentDirections.actionBreedToPhotos(
+                breedName = name,
+                subbreedName = "no subbreeds",
+                fragmentFlag = false
+            )
+        }
         direction.let { view.findNavController().navigate(it) }
     }
 

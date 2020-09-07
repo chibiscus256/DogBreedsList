@@ -24,6 +24,7 @@ class DogPhotosFragment : Fragment() {
     private lateinit var dogPhotosViewModel: DogPhotosViewModel
     private lateinit var currentImageUrl: String
     private lateinit var binding: FragmentDogsPhotosBinding
+    private var isFavorite: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,7 +34,7 @@ class DogPhotosFragment : Fragment() {
         binding = FragmentDogsPhotosBinding.inflate(inflater, container, false)
         context ?: return binding.root
 
-        val isFavorite = arguments?.getBoolean("fragmentFlag") as Boolean
+        isFavorite = arguments?.get("fragmentFlag") as Boolean
 
         val imageAdapter = context?.let { DogPhotoAdapter(it) }
         if (imageAdapter != null) {
@@ -115,15 +116,25 @@ class DogPhotosFragment : Fragment() {
     }
 
     fun getBreedInfo(): String {
-        return if (getSubbreedName() == "no subbreeds") {
-            return getBreedName()
-        } else
+        return if (getSubbreedName() != "no subbreeds" && getSubbreedName() != "null") {
             getSubbreedName()
+        } else {
+            getBreedName()
+        }
     }
 
     private fun initViewModel(adapter: DogPhotoAdapter, isFavorite: Boolean) {
         dogPhotosViewModel = ViewModelProvider(this).get(DogPhotosViewModel::class.java)
         if (isFavorite) {
+            dogPhotosViewModel.favoritesPhotos.observe(
+                viewLifecycleOwner,
+                Observer<List<String>> { images ->
+                    images.let {
+                        adapter.setImages(it)
+                    }
+                })
+            dogPhotosViewModel.fetchPhotosFromLocal(getBreedInfo())
+        } else {
             dogPhotosViewModel.photos.observe(
                 viewLifecycleOwner,
                 Observer<Resource<List<String>>> { images ->
@@ -133,16 +144,7 @@ class DogPhotosFragment : Fragment() {
                 })
             dogPhotosViewModel.fetchPhotos(getBreedName(), getSubbreedName())
             dogPhotosViewModel.fetchPhotosFromLocal(getBreedInfo())
-        } else {
-            dogPhotosViewModel.favoritesPhotos.observe(
-                viewLifecycleOwner,
-                Observer<List<String>> { images ->
-                    images.let {
-                        adapter.setImages(it)
-                    }
-                })
         }
-        dogPhotosViewModel.fetchPhotosFromLocal(getBreedInfo())
     }
 
     private fun initViewPager(
@@ -159,8 +161,9 @@ class DogPhotosFragment : Fragment() {
                 positionOffset: Float,
                 positionOffsetPixels: Int
             ) {
-                val currentItemUrl = viewModel.photos.value?.data!![position]
-                currentImageUrl = currentItemUrl
+                if (isFavorite) {
+                    currentImageUrl = viewModel.favoritesPhotos.value?.get(position).toString()
+                } else currentImageUrl = viewModel.photos.value?.data!![position]
             }
 
             override fun onPageSelected(position: Int) {
