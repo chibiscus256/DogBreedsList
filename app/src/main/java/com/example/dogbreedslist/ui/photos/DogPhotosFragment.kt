@@ -1,5 +1,6 @@
 package com.example.dogbreedslist.ui.photos
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
@@ -17,6 +18,7 @@ import com.example.dogbreedslist.utils.toGone
 import com.example.dogbreedslist.viewmodel.DogPhotosViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.breed_image.view.*
 
 @AndroidEntryPoint
 class DogPhotosFragment : Fragment() {
@@ -51,9 +53,18 @@ class DogPhotosFragment : Fragment() {
         activity?.bottom_nav?.toGone()
         binding.apply {
             setClickListener {
-                dogPhotosViewModel.setLike(currentImageUrl)
+                setLike()
             }
         }
+    }
+
+    private fun setLike() {
+        if (dogPhotosViewModel.favorite.value as Boolean) {
+            removeFromFavorites()
+        } else {
+            addToFavorites()
+        }
+        dogPhotosViewModel.setLike(getCurrentImageUrl())
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -71,29 +82,33 @@ class DogPhotosFragment : Fragment() {
         }
     }
 
-    private fun declareAttitude(isLoved: Boolean) {
-        if (isLoved) addToFavorites(currentImageUrl) else {
-            removeFromFavorites(currentImageUrl)
+    private fun declareAttitude(isFavorite: Boolean) {
+        if (isFavorite) like() else {
+            unlike()
         }
     }
 
-    private fun addToFavorites(url: String) {
+    private fun getCurrentImageUrl(): String {
+        return currentImageUrl
+    }
+
+    private fun addToFavorites() {
         like()
         dogPhotosViewModel.addToFavorites(
             FavoriteData(
                 name = getBreedInfo(),
-                photoUrl = url
+                photoUrl = getCurrentImageUrl()
             )
         )
         Toast.makeText(context, "Added to your favorites", Toast.LENGTH_SHORT).show()
     }
 
-    private fun removeFromFavorites(url: String) {
+    private fun removeFromFavorites() {
         unlike()
         dogPhotosViewModel.deleteFavorite(
             FavoriteData(
                 name = getBreedInfo(),
-                photoUrl = url
+                photoUrl = getCurrentImageUrl()
             )
         )
         Toast.makeText(context, "Removed from your favorites", Toast.LENGTH_SHORT).show()
@@ -126,7 +141,7 @@ class DogPhotosFragment : Fragment() {
     private fun initViewModel(adapter: DogPhotoAdapter, isFavorite: Boolean) {
         dogPhotosViewModel = ViewModelProvider(this).get(DogPhotosViewModel::class.java)
         dogPhotosViewModel.favorite.observe(viewLifecycleOwner, Observer<Boolean> { like ->
-            declareAttitude(!like)
+            declareAttitude(like)
         })
         if (isFavorite) {
             dogPhotosViewModel.favoritesPhotos.observe(
@@ -164,17 +179,12 @@ class DogPhotosFragment : Fragment() {
                 positionOffset: Float,
                 positionOffsetPixels: Int
             ) {
-                unlike()
                 if (isTheFragmentFavorites) {
                     currentImageUrl = viewModel.favoritesPhotos.value?.get(position).toString()
                 } else {
                     currentImageUrl = viewModel.photos.value?.data!![position]
                 }
-                val currentList = dogPhotosViewModel.favoritesPhotos.value
-                if (currentList != null && currentImageUrl in currentList){
-                    like()
-                }
-
+                dogPhotosViewModel.setLike(getCurrentImageUrl())
             }
 
             override fun onPageSelected(position: Int) {
