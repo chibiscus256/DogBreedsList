@@ -24,7 +24,7 @@ class DogPhotosFragment : Fragment() {
     private lateinit var dogPhotosViewModel: DogPhotosViewModel
     private lateinit var currentImageUrl: String
     private lateinit var binding: FragmentDogsPhotosBinding
-    private var isFavorite: Boolean = false
+    private var isTheFragmentFavorites: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,11 +34,11 @@ class DogPhotosFragment : Fragment() {
         binding = FragmentDogsPhotosBinding.inflate(inflater, container, false)
         context ?: return binding.root
 
-        isFavorite = arguments?.get("fragmentFlag") as Boolean
+        isTheFragmentFavorites = arguments?.get("fragmentFlag") as Boolean
 
         val imageAdapter = context?.let { DogPhotoAdapter(it) }
         if (imageAdapter != null) {
-            initViewModel(imageAdapter, isFavorite)
+            initViewModel(imageAdapter, isTheFragmentFavorites)
             initViewPager(binding, dogPhotosViewModel, imageAdapter)
         }
         initUI()
@@ -50,7 +50,9 @@ class DogPhotosFragment : Fragment() {
         setTitle(getBreedInfo().capitalize())
         activity?.bottom_nav?.toGone()
         binding.apply {
-
+            setClickListener {
+                dogPhotosViewModel.setLike(currentImageUrl)
+            }
         }
     }
 
@@ -69,14 +71,14 @@ class DogPhotosFragment : Fragment() {
         }
     }
 
-/*    private fun declareAttitude(url: String) {
-        if (binding.btnUnlove.isVisible) addToFavorites(url) else {
-            removeFromFavorites(url)
+    private fun declareAttitude(isLoved: Boolean) {
+        if (isLoved) addToFavorites(currentImageUrl) else {
+            removeFromFavorites(currentImageUrl)
         }
-    }*/
+    }
 
     private fun addToFavorites(url: String) {
-        //like()
+        like()
         dogPhotosViewModel.addToFavorites(
             FavoriteData(
                 name = getBreedInfo(),
@@ -87,7 +89,7 @@ class DogPhotosFragment : Fragment() {
     }
 
     private fun removeFromFavorites(url: String) {
-        //unlike()
+        unlike()
         dogPhotosViewModel.deleteFavorite(
             FavoriteData(
                 name = getBreedInfo(),
@@ -97,15 +99,13 @@ class DogPhotosFragment : Fragment() {
         Toast.makeText(context, "Removed from your favorites", Toast.LENGTH_SHORT).show()
     }
 
-/*    private fun unlike() {
-        binding.btnUnlove.toVisible()
-        binding.btnLove.toGone()
+    private fun unlike() {
+        binding.fabImageLiked.setImageResource(R.drawable.ic_love_border)
     }
 
     private fun like() {
-        binding.btnLove.toVisible()
-        binding.btnUnlove.toGone()
-    }*/
+        binding.fabImageLiked.setImageResource(R.drawable.ic_love)
+    }
 
     fun getBreedName(): String {
         return arguments?.getString("breedName").toString()
@@ -125,6 +125,9 @@ class DogPhotosFragment : Fragment() {
 
     private fun initViewModel(adapter: DogPhotoAdapter, isFavorite: Boolean) {
         dogPhotosViewModel = ViewModelProvider(this).get(DogPhotosViewModel::class.java)
+        dogPhotosViewModel.favorite.observe(viewLifecycleOwner, Observer<Boolean> { like ->
+            declareAttitude(!like)
+        })
         if (isFavorite) {
             dogPhotosViewModel.favoritesPhotos.observe(
                 viewLifecycleOwner,
@@ -161,9 +164,17 @@ class DogPhotosFragment : Fragment() {
                 positionOffset: Float,
                 positionOffsetPixels: Int
             ) {
-                if (isFavorite) {
+                unlike()
+                if (isTheFragmentFavorites) {
                     currentImageUrl = viewModel.favoritesPhotos.value?.get(position).toString()
-                } else currentImageUrl = viewModel.photos.value?.data!![position]
+                } else {
+                    currentImageUrl = viewModel.photos.value?.data!![position]
+                }
+                val currentList = dogPhotosViewModel.favoritesPhotos.value
+                if (currentList != null && currentImageUrl in currentList){
+                    like()
+                }
+
             }
 
             override fun onPageSelected(position: Int) {

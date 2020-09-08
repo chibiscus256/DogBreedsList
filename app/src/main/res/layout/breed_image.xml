@@ -4,7 +4,6 @@
 
     <data>
 
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,23 +12,12 @@
 
         <ImageView
             android:id="@+id/image"
+            android:tooltipText=""
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:scaleType="centerCrop"
             android:src="@drawable/iggy" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_image_liked"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/margin_normal"
-            android:layout_marginBottom="@dimen/margin_normal"
-            android:clickable="true"
-            android:src="@{0 > 1 ? @drawable/ic_love : @drawable/ic_love_border}"
-            app:backgroundTint="@color/dbl_white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

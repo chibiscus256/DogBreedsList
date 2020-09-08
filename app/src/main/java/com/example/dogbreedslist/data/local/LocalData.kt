@@ -1,6 +1,5 @@
 package com.example.dogbreedslist.data.local
 
-import androidx.lifecycle.LiveData
 import com.example.dogbreedslist.data.local.breeds.BreedDao
 import com.example.dogbreedslist.data.local.breeds.BreedData
 import com.example.dogbreedslist.data.local.favorites.FavoritesDao
@@ -32,15 +31,15 @@ class LocalData @Inject constructor(
         breedDao.getBreedsAndLikes()
     }
 
-    suspend fun getFavorites() = withContext(ioDispatcher) {
-        favoritesDao.getFavorites()
+    suspend fun getFavoritesNames() = withContext(ioDispatcher) {
+        favoritesDao.getFavoritesNames()
     }
 
     suspend fun getPhotosOfBreedFromLocal(breedName: String) = withContext(ioDispatcher) {
         favoritesDao.getPhotosOfBreed(breedName)
     }
 
-    fun isLoved(url: String): LiveData<Boolean> {
+    suspend fun isLoved(url: String): Boolean {
         return favoritesDao.isLoved(url)
     }
 

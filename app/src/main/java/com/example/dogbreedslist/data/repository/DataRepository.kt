@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.dogbreedslist.data.Resource
 import com.example.dogbreedslist.data.local.LocalData
+import com.example.dogbreedslist.data.local.breeds.BreedData
 import com.example.dogbreedslist.data.local.favorites.FavoriteData
 import com.example.dogbreedslist.data.network.RemoteData
 import com.example.dogbreedslist.data.network.dto.Breed
@@ -37,7 +38,7 @@ constructor(private val remoteData: RemoteData, private val localData: LocalData
     }
 
     override suspend fun getFavorites(): Array<String> {
-        return localData.getFavorites()
+        return localData.getFavoritesNames()
     }
 
     override suspend fun deleteFavorite(favorite: FavoriteData) {
@@ -48,8 +49,12 @@ constructor(private val remoteData: RemoteData, private val localData: LocalData
         return localData.getPhotosOfBreedFromLocal(breed)
     }
 
-    override fun isLoved(url: String): LiveData<Boolean> {
+    override suspend fun isLoved(url: String): Boolean {
         return localData.isLoved(url)
+    }
+
+    override suspend fun getBreedsWithLikes(): List<BreedData> {
+        return localData.getBreedsAndLikes()
     }
 
     override suspend fun getFavoritesBreeds(): List<String> {

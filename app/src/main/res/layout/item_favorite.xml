@@ -9,8 +9,8 @@
             type="String" />
 
         <variable
-            name="photosCount"
-            type="int" />
+            name="breedData"
+            type="com.example.dogbreedslist.data.local.breeds.BreedData" />
 
         <variable
             name="clickListener"
@@ -57,7 +57,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.526"
-                app:photosNumber="@{photosCount}"/>
+                app:photosNumber="@{breedData.likes}"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>

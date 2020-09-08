@@ -9,6 +9,5 @@ import java.util.*
 data class FavoriteData @JvmOverloads constructor(
     @ColumnInfo(name = "name") var name: String = "",
     @ColumnInfo(name = "photo") var photoUrl: String? = null,
-    @ColumnInfo(name = "likes") var likes: Int? = 0,
     @PrimaryKey @ColumnInfo(name = "id") var id: String = UUID.randomUUID().toString()
 )

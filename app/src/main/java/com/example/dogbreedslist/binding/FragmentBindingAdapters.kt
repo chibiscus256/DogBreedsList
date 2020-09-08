@@ -50,3 +50,4 @@ fun setPhotosNumber(view: TextView, number: Int){
 }
 
 
+

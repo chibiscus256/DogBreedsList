@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.dogbreedslist.data.local.breeds.BreedData
 import com.example.dogbreedslist.databinding.FragmentBreedlistBinding
 import com.example.dogbreedslist.ui.favorites.favoritesadapter.FavoriteAdapter
 import com.example.dogbreedslist.viewmodel.FavoritesViewModel
@@ -46,7 +47,7 @@ class FavoritesListFragment : Fragment() {
         binding.breedList.adapter = favoritesAdapter
         favoritesViewModel.favoritesBreeds.observe(
             viewLifecycleOwner,
-            Observer<List<String>> {
+            Observer<List<BreedData>> {
                 favoritesAdapter.submitList(it)
             })
     }
