@@ -84,9 +84,4 @@ class BreedListFragment : Fragment() {
             is Resource.DataError -> showDataView(false)
         }
     }
-
-    override fun onDetach() {
-        super.onDetach()
-        Log.i(ContentValues.TAG, "aaaaa")
-    }
 }

@@ -14,7 +14,6 @@ import javax.inject.Singleton
 @InstallIn(ApplicationComponent::class)
 class DataModule {
 
-
     @Singleton
     @Provides
     fun provideDataRepository(remoteDataSource: RemoteData, localDataSource: LocalData) =

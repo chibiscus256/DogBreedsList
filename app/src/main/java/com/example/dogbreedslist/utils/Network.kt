@@ -4,10 +4,6 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 
-/**
- * Created by AhmedEltaher
- */
-
 class Network {
 
     companion object Utils {
