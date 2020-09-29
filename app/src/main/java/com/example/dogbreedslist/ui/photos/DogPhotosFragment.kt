@@ -1,6 +1,5 @@
 package com.example.dogbreedslist.ui.photos
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
@@ -15,10 +14,8 @@ import com.example.dogbreedslist.databinding.FragmentDogsPhotosBinding
 import com.example.dogbreedslist.utils.intentShareText
 import com.example.dogbreedslist.utils.setTitle
 import com.example.dogbreedslist.utils.toGone
-import com.example.dogbreedslist.viewmodel.DogPhotosViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.breed_image.view.*
 
 @AndroidEntryPoint
 class DogPhotosFragment : Fragment() {

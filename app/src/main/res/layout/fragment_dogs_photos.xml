@@ -8,7 +8,7 @@
             type="android.view.View.OnClickListener" />
         <variable
             name="viewmodel"
-            type="com.example.dogbreedslist.viewmodel.DogPhotosViewModel" />
+            type="com.example.dogbreedslist.ui.photos.DogPhotosViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

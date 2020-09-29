@@ -28,6 +28,7 @@ class DogPhotoAdapter(private val context: Context) : PagerAdapter() {
 
         Glide.with(context)
             .load(photos[position])
+            .centerCrop()
             .signature(ObjectKey(System.currentTimeMillis().toString()))
             .diskCacheStrategy(DiskCacheStrategy.NONE)
             .skipMemoryCache(true)

@@ -1,4 +1,4 @@
-package com.example.dogbreedslist.viewmodel
+package com.example.dogbreedslist.ui.photos
 
 import android.widget.ImageView
 import androidx.hilt.lifecycle.ViewModelInject

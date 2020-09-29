@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dogbreedslist.data.local.breeds.BreedData
 import com.example.dogbreedslist.databinding.FragmentBreedlistBinding
 import com.example.dogbreedslist.ui.favorites.favoritesadapter.FavoriteAdapter
-import com.example.dogbreedslist.viewmodel.FavoritesViewModel
 import com.example.dogbreedslist.utils.autoCleared
 import com.example.dogbreedslist.utils.toVisible
 import dagger.hilt.android.AndroidEntryPoint

@@ -15,7 +15,6 @@ import com.example.dogbreedslist.data.Resource
 import com.example.dogbreedslist.data.network.dto.Breed
 import com.example.dogbreedslist.databinding.FragmentBreedlistBinding
 import com.example.dogbreedslist.ui.breeds.adapters.BreedAdapter
-import com.example.dogbreedslist.viewmodel.BreedListViewModel
 import com.example.dogbreedslist.utils.autoCleared
 import com.example.dogbreedslist.utils.observe
 import com.example.dogbreedslist.utils.toGone
