@@ -1,6 +1,5 @@
 package com.example.dogbreedslist.ui.breeds
 
-import android.content.ContentValues
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -55,7 +54,7 @@ class BreedListFragment : Fragment() {
         breedListViewModel.getBreeds()
     }
 
-    fun bindListData(breedsResponse: List<Breed>) {
+    private fun bindListData(breedsResponse: List<Breed>) {
         if (!breedsResponse.isNullOrEmpty()) {
             val breedsAdapter = BreedAdapter(breedsResponse)
             binding.breedList.adapter = breedsAdapter
@@ -65,7 +64,7 @@ class BreedListFragment : Fragment() {
         }
     }
 
-    internal fun showLoadingView() {
+    private fun showLoadingView() {
         binding.pbLoading.toVisible()
         binding.tvNoData.toGone()
         binding.clBreedList.toGone()

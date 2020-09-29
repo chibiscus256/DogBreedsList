@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class SubbreedsListFragment : Fragment() {
 
     var binding: FragmentBreedlistBinding by autoCleared()
-    lateinit var breedListViewModel: BreedListViewModel
+    private lateinit var breedListViewModel: BreedListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,

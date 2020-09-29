@@ -11,7 +11,8 @@ import com.example.dogbreedslist.data.network.dto.Breed
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class BreedListViewModel @ViewModelInject constructor(private val dataRepository: DataRepository) : ViewModel() {
+class BreedListViewModel @ViewModelInject constructor(private val dataRepository: DataRepository) :
+    ViewModel() {
 
     private val _fetchedBreeds = MutableLiveData<Resource<List<Breed>>>()
     val breedsResponse: LiveData<Resource<List<Breed>>> = _fetchedBreeds
@@ -19,7 +20,7 @@ class BreedListViewModel @ViewModelInject constructor(private val dataRepository
     fun getBreeds() {
         viewModelScope.launch {
             _fetchedBreeds.value = Resource.Loading()
-            dataRepository.requestBreeds().collect{
+            dataRepository.requestBreeds().collect {
                 _fetchedBreeds.value = it
             }
         }
