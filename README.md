@@ -1,5 +1,5 @@
 # DogBreedsList
-Recieving list of dog breeds and subbreeds from (https://dog.ceo/dog-api), displaying list of breeds and photos of dogs. Photos can be liked and thus saved in the list of favorites.
+Retrieving list of dog breeds and subbreeds from (https://dog.ceo/dog-api), displaying list of breeds and photos of dogs. Photos can be liked and thus saved in the list of favorites.
 
 * Language: Kotlin
 * Layout elements: ViewPager, BottomNavigationBar (with navigation graphs), RecyclerView (of CardViews), ConstraintLayout
